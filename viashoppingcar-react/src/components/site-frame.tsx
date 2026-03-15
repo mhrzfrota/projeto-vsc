@@ -1,7 +1,19 @@
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Facebook, Instagram, MapPin, Menu, MessageCircle, Phone, X } from 'lucide-react'
-import { navItems, mapsLink, createWhatsappLink, privacyHighlights } from '../site-data'
+import {
+  businessHoursSummary,
+  contactPhone,
+  contactPhoneHref,
+  createWhatsappLink,
+  facebookLink,
+  instagramLink,
+  mapsLink,
+  navItems,
+  privacyHighlights,
+  siteLink,
+  shoppingAddress,
+} from '../site-data'
 
 type SiteFrameProps = {
   children: ReactNode
@@ -44,9 +56,9 @@ export function SiteFrame({
       <header className="site-header">
         <div className="utility-bar">
           <div className="container utility-wrap">
-            <a className="utility-link" href="tel:+558530373036">
+            <a className="utility-link" href={contactPhoneHref}>
               <Phone size={16} />
-              <span>(85) 3037-3036</span>
+              <span>{contactPhone}</span>
             </a>
             <a
               className="utility-link"
@@ -58,20 +70,10 @@ export function SiteFrame({
               <span>Atendimento via WhatsApp</span>
             </a>
             <div className="utility-social">
-              <a
-                href="https://facebook.com/ViaShoppingCar/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Facebook"
-              >
+              <a href={facebookLink} target="_blank" rel="noreferrer" aria-label="Facebook">
                 <Facebook size={16} />
               </a>
-              <a
-                href="https://www.instagram.com/viashoppingcar/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-              >
+              <a href={instagramLink} target="_blank" rel="noreferrer" aria-label="Instagram">
                 <Instagram size={16} />
               </a>
             </div>
@@ -94,7 +96,7 @@ export function SiteFrame({
           <div className="nav-actions">
             <a
               className="btn btn-primary nav-cta"
-              href={createWhatsappLink()}
+              href={createWhatsappLink('Olá! Quero agendar uma visita ao Via Shopping Car.')}
               target="_blank"
               rel="noreferrer"
             >
@@ -130,7 +132,7 @@ export function SiteFrame({
               </nav>
               <a
                 className="btn btn-primary full-width"
-                href={createWhatsappLink()}
+                href={createWhatsappLink('Olá! Quero falar com a equipe do Via Shopping Car.')}
                 target="_blank"
                 rel="noreferrer"
                 onClick={handleNavClick}
@@ -149,17 +151,17 @@ export function SiteFrame({
           <div className="footer-brand">
             <img src="/assets/logo-footer.png" alt="Via Shopping Car" />
             <p>
-              Av. Washington Soares, 2100 - Edson Queiroz
+              {shoppingAddress}
               <br />
-              Fortaleza - CE, 60810-350
+              {businessHoursSummary}
             </p>
           </div>
 
           <div className="footer-col">
             <h3>Contato</h3>
-            <a href="tel:+558530373036">
+            <a href={contactPhoneHref}>
               <Phone size={16} />
-              (85) 3037-3036
+              {contactPhone}
             </a>
             <a href={createWhatsappLink()} target="_blank" rel="noreferrer">
               <MessageCircle size={16} />
@@ -178,6 +180,9 @@ export function SiteFrame({
                 {item.label}
               </a>
             ))}
+            <a href={siteLink} target="_blank" rel="noreferrer">
+              Site oficial
+            </a>
             <button type="button" className="footer-link-button" onClick={handleOpenPolicyModal}>
               Política de privacidade
             </button>
@@ -242,8 +247,8 @@ export function SiteFrame({
                 ))}
               </ul>
               <p>
-                Ao preencher formulários, você concorda com o uso dos dados para atendimento e pode revogar
-                esse consentimento a qualquer momento por solicitação ao estabelecimento.
+                Ao preencher formulários, você concorda com o uso dos dados para atendimento e pode
+                revogar esse consentimento a qualquer momento por solicitação ao estabelecimento.
               </p>
             </div>
 

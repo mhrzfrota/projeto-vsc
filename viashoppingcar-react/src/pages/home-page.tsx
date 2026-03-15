@@ -5,22 +5,40 @@ import {
   ArrowRight,
   CalendarDays,
   CarFront,
+  Facebook,
   Fuel,
   Gauge,
+  Globe,
   HandCoins,
+  Instagram,
   MapPin,
   MessageCircle,
+  Phone,
   Search,
   ShieldCheck,
+  Store,
 } from 'lucide-react'
 import {
+  businessHours,
+  businessHoursSummary,
   createWhatsappLink,
+  facebookLink,
   formatCurrency,
+  heroFacts,
   mapsLink,
   persistNewsletterLead,
+  publicVerificationNote,
   services,
+  shoppingAddress,
+  shoppingFeatures,
+  shoppingGallery,
+  siteLink,
   stores,
   vehicles,
+  visitChannels,
+  wazeLink,
+  type ShoppingFeature,
+  type VisitChannel,
 } from '../site-data'
 
 type Feedback = {
@@ -42,6 +60,9 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
   const [newsletterConsent, setNewsletterConsent] = useState(false)
   const [newsletterFeedback, setNewsletterFeedback] = useState<Feedback | null>(null)
   const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false)
+
+  const featuredGallery = shoppingGallery[0]
+  const brandGallery = shoppingGallery[1]
 
   const brands = useMemo(
     () => [...new Set(vehicles.map((vehicle) => vehicle.brand))].sort(),
@@ -198,32 +219,31 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         <div className="container hero-grid">
           <div className="hero-copy reveal">
             <p className="eyebrow">Via Shopping Car</p>
-            <h1>Seminovos selecionados com segurança e atendimento diferenciado</h1>
+            <h1>Um shopping de carros em Fortaleza que já pode se apresentar online como operação real</h1>
             <p>
-              Um novo site para uma experiência mais rápida, elegante e intuitiva na busca pelo seu
-              próximo carro em Fortaleza.
+              Esta prévia combina vitrine de estoque, estrutura do local, canais oficiais e chamada
+              para visita presencial. A ideia é o dono bater o olho e já sentir o site funcionando.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="#estoque">
-                Ver destaques <ArrowRight size={16} />
+              <a className="btn btn-primary" href="#conheca">
+                Conhecer o shopping <ArrowRight size={16} />
               </a>
-              <a className="btn btn-light" href={createWhatsappLink()} target="_blank" rel="noreferrer">
-                WhatsApp <MessageCircle size={16} />
+              <a
+                className="btn btn-light"
+                href={createWhatsappLink('Olá! Quero agendar uma visita ao Via Shopping Car.')}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Agendar visita <MessageCircle size={16} />
               </a>
             </div>
             <div className="hero-metrics">
-              <div>
-                <strong>+10</strong>
-                <span>Lojas no shopping</span>
-              </div>
-              <div>
-                <strong>100%</strong>
-                <span>Foco em confiança</span>
-              </div>
-              <div>
-                <strong>Fortaleza</strong>
-                <span>Av. Washington Soares</span>
-              </div>
+              {heroFacts.map((fact) => (
+                <div key={fact.value}>
+                  <strong>{fact.value}</strong>
+                  <span>{fact.label}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -232,8 +252,10 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
               <Search size={18} />
               Encontre seu veículo
             </h2>
-            <p>Filtre por marca, modelo e ano e abra a vitrine completa do showroom.</p>
-            <p className="search-note">A listagem interna agora abre em uma rota dedicada e mais completa.</p>
+            <p>Filtre por marca, modelo e ano e abra o showroom completo desta prévia funcional.</p>
+            <p className="search-note">
+              Depois do filtro, o cliente já pode seguir para estoque, WhatsApp e visita presencial.
+            </p>
 
             <div className="form-grid">
               <label>
@@ -298,14 +320,81 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         </div>
       </section>
 
+      <section className="shopping-preview section" id="conheca">
+        <div className="container">
+          <div className="section-header reveal">
+            <p className="eyebrow eyebrow-dark">Conheça o shopping</p>
+            <h2>Conteúdo real para a prévia já vender o espaço físico e a operação</h2>
+            <p>{publicVerificationNote}</p>
+          </div>
+
+          <div className="shopping-preview-grid">
+            <article className="shopping-showcase-card reveal">
+              <div className="shopping-showcase-media">
+                <img src={featuredGallery.image} alt={featuredGallery.title} loading="lazy" />
+                <span className="shopping-showcase-badge">{featuredGallery.badge}</span>
+              </div>
+              <div className="shopping-showcase-body">
+                <h3>{featuredGallery.title}</h3>
+                <p>{featuredGallery.description}</p>
+                <div className="shopping-showcase-actions">
+                  <a className="btn btn-secondary" href={mapsLink} target="_blank" rel="noreferrer">
+                    Abrir no Google Maps
+                  </a>
+                  <a className="btn btn-outline-light" href={wazeLink} target="_blank" rel="noreferrer">
+                    Traçar rota no Waze
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <div className="shopping-feature-stack">
+              {shoppingFeatures.map((feature, index) => (
+                <article
+                  key={feature.title}
+                  className="shopping-feature-card reveal"
+                  style={{ animationDelay: `${index * 90}ms` }}
+                >
+                  <div className="shopping-feature-icon">{renderFeatureIcon(feature)}</div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                  {feature.href && feature.ctaLabel && (
+                    <a className="shopping-feature-link" href={feature.href} target="_blank" rel="noreferrer">
+                      {feature.ctaLabel} <ArrowRight size={16} />
+                    </a>
+                  )}
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="shopping-brand-band reveal delay-1">
+            <img src={brandGallery.image} alt={brandGallery.title} loading="lazy" />
+            <div className="shopping-brand-copy">
+              <span className="shopping-brand-tag">{brandGallery.badge}</span>
+              <h3>{brandGallery.title}</h3>
+              <p>{brandGallery.description}</p>
+            </div>
+            <div className="shopping-brand-actions">
+              <a className="btn btn-secondary" href={siteLink} target="_blank" rel="noreferrer">
+                Abrir site oficial
+              </a>
+              <a className="btn btn-outline-light" href={facebookLink} target="_blank" rel="noreferrer">
+                Ver Facebook
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="inventory section" id="estoque">
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow eyebrow-dark">Estoque atualizado</p>
             <h2>Veículos em destaque</h2>
             <p>
-              A seleção abaixo funciona como vitrine rápida. Ao clicar em qualquer carro, você entra na
-              tela completa de estoque com filtros, ordenação e comparação.
+              A seleção abaixo funciona como vitrine rápida. Ao clicar em qualquer carro, você entra
+              na tela completa de estoque com filtros, ordenação e comparação.
             </p>
           </div>
 
@@ -430,17 +519,22 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         <div className="about-overlay" />
         <div className="container about-grid">
           <div className="about-mark reveal">
-            <img src="/assets/about-mark.png" alt="Marca Via Shopping Car" />
+            <img src={brandGallery.image} alt="Marca Via Shopping Car" />
           </div>
           <div className="about-content reveal delay-1">
             <p className="eyebrow">Sobre o Via Shopping Car</p>
-            <h2>Shopping automobilístico em uma das áreas mais nobres de Fortaleza</h2>
+            <h2>Visita prática, canais oficiais ativos e uma jornada mais clara para compra ou troca</h2>
             <p>
-              Aqui prezamos por confiança, segurança e conforto. Reunimos mais de 10 lojas
-              selecionadas, financeiras e serviços em um só lugar para facilitar sua compra, venda ou
-              troca.
+              O endereço público do shopping está em <strong>{shoppingAddress}</strong>. Nesta prévia,
+              a proposta é mostrar o Via Shopping Car como um destino real de visita, com atendimento
+              digital, estrutura física e pronta evolução para páginas dedicadas por loja.
             </p>
-            <a className="btn btn-light" href="#contato">
+            <a
+              className="btn btn-light"
+              href={createWhatsappLink('Olá! Quero agendar uma visita ao Via Shopping Car.')}
+              target="_blank"
+              rel="noreferrer"
+            >
               Agendar visita <ArrowRight size={16} />
             </a>
           </div>
@@ -475,6 +569,51 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="visit section" id="visita">
+        <div className="container visit-grid">
+          <article className="visit-card reveal">
+            <p className="eyebrow eyebrow-dark">Planeje a visita</p>
+            <h2>Horários públicos e argumentos reais para o dono aprovar a prévia</h2>
+            <p className="visit-summary">
+              {businessHoursSummary} O foco aqui é mostrar uma página que já conversa com mapa, visita e
+              atendimento.
+            </p>
+            <div className="visit-hours">
+              {businessHours.map((item) => (
+                <div key={item.day} className="visit-hour-row">
+                  <span>{item.day}</span>
+                  <strong>{item.hours}</strong>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="visit-card reveal delay-1">
+            <p className="eyebrow eyebrow-dark">Canais oficiais</p>
+            <h2>Links que já transformam curiosidade em ação</h2>
+            <div className="visit-channel-list">
+              {visitChannels.map((channel) => (
+                <div key={channel.title} className="visit-channel-card">
+                  <div className="visit-channel-icon">{renderChannelIcon(channel)}</div>
+                  <div className="visit-channel-copy">
+                    <strong>{channel.title}</strong>
+                    <p>{channel.description}</p>
+                  </div>
+                  <a
+                    className="visit-channel-link"
+                    href={channel.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {channel.ctaLabel}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </article>
         </div>
       </section>
 
@@ -534,15 +673,37 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow eyebrow-dark">Todas as lojas</p>
-            <h2>Um ecossistema completo para negociar seu carro</h2>
-            <p>Várias lojas em um único local, com experiência centralizada e atendimento coordenado.</p>
+            <h2>Estrutura pronta para evoluir cada loja para uma página dedicada</h2>
+            <p>
+              Nesta prévia, o mix já aparece organizado. Na próxima etapa, cada operação pode ganhar
+              logo, estoque, ofertas e contato próprio dentro do ecossistema do shopping.
+            </p>
           </div>
           <div className="stores-grid">
-            {stores.map((store) => (
-              <div key={store} className="store-chip">
-                <CarFront size={16} />
-                <span>{store}</span>
-              </div>
+            {stores.map((store, index) => (
+              <article
+                key={store}
+                className="store-card reveal"
+                style={{ animationDelay: `${index * 60}ms` }}
+              >
+                <div className="store-card-top">
+                  <div className="store-card-icon">
+                    <Store size={18} />
+                  </div>
+                  <h3>{store}</h3>
+                </div>
+                <p>
+                  Loja prevista no mix multimarcas do Via Shopping Car, com espaço pronto para logo,
+                  vitrine, destaques e captação dedicada.
+                </p>
+                <a
+                  href={createWhatsappLink(`Olá! Quero falar sobre a loja ${store} no Via Shopping Car.`)}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Solicitar contato <ArrowRight size={15} />
+                </a>
+              </article>
             ))}
           </div>
           <div className="section-actions stores-actions reveal delay-1">
@@ -562,4 +723,40 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
       </section>
     </main>
   )
+}
+
+function renderFeatureIcon(feature: ShoppingFeature) {
+  if (feature.kind === 'contact') {
+    return <Phone size={20} />
+  }
+
+  if (feature.kind === 'location') {
+    return <MapPin size={20} />
+  }
+
+  if (feature.kind === 'parking') {
+    return <CarFront size={20} />
+  }
+
+  return <Store size={20} />
+}
+
+function renderChannelIcon(channel: VisitChannel) {
+  if (channel.kind === 'whatsapp') {
+    return <MessageCircle size={18} />
+  }
+
+  if (channel.kind === 'instagram') {
+    return <Instagram size={18} />
+  }
+
+  if (channel.kind === 'facebook') {
+    return <Facebook size={18} />
+  }
+
+  if (channel.kind === 'site') {
+    return <Globe size={18} />
+  }
+
+  return <MapPin size={18} />
 }
