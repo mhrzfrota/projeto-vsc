@@ -219,10 +219,10 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         <div className="container hero-grid">
           <div className="hero-copy reveal">
             <p className="eyebrow">Via Shopping Car</p>
-            <h1>Um shopping de carros em Fortaleza que já pode se apresentar online como operação real</h1>
+            <h1>O shopping de carros de Fortaleza, agora online</h1>
             <p>
-              Esta prévia combina vitrine de estoque, estrutura do local, canais oficiais e chamada
-              para visita presencial. A ideia é o dono bater o olho e já sentir o site funcionando.
+              Veículos selecionados, estrutura completa e atendimento direto com a equipe.
+              Explore o estoque, conheça o espaço e agende sua visita.
             </p>
             <div className="hero-actions">
               <a className="btn btn-primary" href="#conheca">
