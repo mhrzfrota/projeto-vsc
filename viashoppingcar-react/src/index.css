@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 html,
 body,
 #root {
@@ -27,6 +31,8 @@ body {
   margin: 0;
   color: var(--color-ink);
   font-family: 'Manrope', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 12% -6%, rgba(222, 8, 5, 0.11) 0%, rgba(222, 8, 5, 0) 42%),
     radial-gradient(circle at 88% 2%, rgba(15, 15, 23, 0.08) 0%, rgba(15, 15, 23, 0) 36%),
