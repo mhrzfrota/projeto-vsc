@@ -10,9 +10,10 @@ import {
 } from 'lucide-react'
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom'
 import {
-  createWhatsappLink,
+  createStoreWhatsappLink,
   formatCurrency,
   mapsLink,
+  stores as allStores,
   vehicles,
   type Vehicle,
 } from '../site-data'
@@ -26,7 +27,7 @@ export function InventoryPage() {
   const [keyword, setKeyword] = useState('')
   const [brand, setBrand] = useState(searchParams.get('brand') ?? '')
   const [model, setModel] = useState(searchParams.get('model') ?? '')
-  const [store, setStore] = useState('')
+  const [store, setStore] = useState(searchParams.get('store') ?? '')
   const [year, setYear] = useState(searchParams.get('yearFrom') ?? '')
   const [transmission, setTransmission] = useState('')
   const [fuel, setFuel] = useState('')
@@ -56,7 +57,7 @@ export function InventoryPage() {
   )
 
   const stores = useMemo(
-    () => [...new Set(vehicles.map((vehicle) => vehicle.store))].sort(),
+    () => [...new Set([...allStores, ...vehicles.map((vehicle) => vehicle.store)])].sort(),
     [],
   )
 
@@ -379,8 +380,9 @@ export function InventoryPage() {
                         vehicle={vehicle}
                         onInterested={() =>
                           window.open(
-                            createWhatsappLink(
-                              `Olá! Tenho interesse no ${vehicle.brand} ${vehicle.model} ${vehicle.year}.`,
+                            createStoreWhatsappLink(
+                              vehicle.store,
+                              `Olá ${vehicle.store}! Tenho interesse no ${vehicle.brand} ${vehicle.model} ${vehicle.year} do Via Shopping Car.`,
                             ),
                             '_blank',
                             'noopener,noreferrer',

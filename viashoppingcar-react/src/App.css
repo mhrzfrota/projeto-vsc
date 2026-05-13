@@ -1992,6 +1992,19 @@
   border-radius: 18px;
   padding: 1rem;
   background: linear-gradient(180deg, #fff 0%, #fafbfc 100%);
+  cursor: pointer;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.store-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(222, 8, 5, 0.25);
+  box-shadow: 0 22px 50px -36px rgba(16, 16, 20, 0.55);
+}
+
+.store-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
 .store-card-top {
@@ -2004,17 +2017,46 @@
   font-size: 1.02rem;
 }
 
-.store-card a {
+.store-card p {
+  margin: 0;
+}
+
+.store-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: auto;
+}
+
+.store-card-link {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   color: var(--color-ink);
   font-size: 0.92rem;
   font-weight: 800;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
 }
 
-.store-card a:hover {
+.store-card-link-primary {
+  padding: 0.55rem 0.85rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #ff4338 100%);
+  color: #fff;
+}
+
+.store-card-link:hover {
   color: var(--color-primary);
+}
+
+.store-card-link-primary:hover {
+  color: #fff;
+  filter: brightness(0.96);
 }
 
 .store-chip {

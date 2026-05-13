@@ -338,6 +338,29 @@ export function createWhatsappLink(message?: string) {
   return `https://api.whatsapp.com/send?phone=558530373036&text=${encodeURIComponent(content)}`
 }
 
+export function getStorePhoneDigits(storeName: string) {
+  const vehicleFromStore = vehicles.find((vehicle) => vehicle.store === storeName)
+
+  if (!vehicleFromStore) {
+    return null
+  }
+
+  return vehicleFromStore.phone.replace(/\D/g, '')
+}
+
+export function createStoreWhatsappLink(storeName: string, message?: string) {
+  const phoneDigits = getStorePhoneDigits(storeName)
+  const content =
+    message ?? `Olá! Quero falar com a loja ${storeName} no Via Shopping Car.`
+
+  if (!phoneDigits) {
+    return createWhatsappLink(content)
+  }
+
+  const normalized = phoneDigits.startsWith('55') ? phoneDigits : `55${phoneDigits}`
+  return `https://api.whatsapp.com/send?phone=${normalized}&text=${encodeURIComponent(content)}`
+}
+
 export const services: Service[] = [
   {
     title: 'Financiamento',

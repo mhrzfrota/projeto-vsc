@@ -21,6 +21,7 @@ import {
 import {
   businessHours,
   businessHoursSummary,
+  createStoreWhatsappLink,
   createWhatsappLink,
   facebookLink,
   formatCurrency,
@@ -477,8 +478,9 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
                       </button>
                       <a
                         className="vehicle-link vehicle-link-primary"
-                        href={createWhatsappLink(
-                          `Olá! Tenho interesse no ${vehicle.brand} ${vehicle.model} ${vehicle.year}.`,
+                        href={createStoreWhatsappLink(
+                          vehicle.store,
+                          `Olá ${vehicle.store}! Tenho interesse no ${vehicle.brand} ${vehicle.model} ${vehicle.year} do Via Shopping Car.`,
                         )}
                         target="_blank"
                         rel="noreferrer"
@@ -680,31 +682,65 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
             </p>
           </div>
           <div className="stores-grid">
-            {stores.map((store, index) => (
-              <article
-                key={store}
-                className="store-card reveal"
-                style={{ animationDelay: `${index * 60}ms` }}
-              >
-                <div className="store-card-top">
-                  <div className="store-card-icon">
-                    <Store size={18} />
-                  </div>
-                  <h3>{store}</h3>
-                </div>
-                <p>
-                  Loja prevista no mix multimarcas do Via Shopping Car, com espaço pronto para logo,
-                  vitrine, destaques e captação dedicada.
-                </p>
-                <a
-                  href={createWhatsappLink(`Olá! Quero falar sobre a loja ${store} no Via Shopping Car.`)}
-                  target="_blank"
-                  rel="noreferrer"
+            {stores.map((store, index) => {
+              const storeInventoryRoute = `/estoque?store=${encodeURIComponent(store)}`
+              const storeVehicleCount = vehicles.filter((vehicle) => vehicle.store === store).length
+              const storeCountLabel =
+                storeVehicleCount > 0
+                  ? `${storeVehicleCount} veículo${storeVehicleCount === 1 ? '' : 's'} em destaque`
+                  : 'Em breve, veículos desta loja'
+
+              return (
+                <article
+                  key={store}
+                  className="store-card reveal"
+                  style={{ animationDelay: `${index * 60}ms` }}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => navigate(storeInventoryRoute)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      navigate(storeInventoryRoute)
+                    }
+                  }}
                 >
-                  Solicitar contato <ArrowRight size={15} />
-                </a>
-              </article>
-            ))}
+                  <div className="store-card-top">
+                    <div className="store-card-icon">
+                      <Store size={18} />
+                    </div>
+                    <h3>{store}</h3>
+                  </div>
+                  <p>
+                    Loja prevista no mix multimarcas do Via Shopping Car. {storeCountLabel}.
+                  </p>
+                  <div className="store-card-actions">
+                    <button
+                      type="button"
+                      className="store-card-link store-card-link-primary"
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        navigate(storeInventoryRoute)
+                      }}
+                    >
+                      Ver veículos da loja <ArrowRight size={15} />
+                    </button>
+                    <a
+                      className="store-card-link"
+                      href={createStoreWhatsappLink(
+                        store,
+                        `Olá ${store}! Vim pelo site do Via Shopping Car e quero falar com vocês.`,
+                      )}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      WhatsApp da loja
+                    </a>
+                  </div>
+                </article>
+              )
+            })}
           </div>
           <div className="section-actions stores-actions reveal delay-1">
             <a
