@@ -1,3 +1,5 @@
+export type VehicleType = 'SUV' | 'Sedan' | 'Pickup' | 'Hatch'
+
 export type Vehicle = {
   id: number
   brand: string
@@ -16,7 +18,10 @@ export type Vehicle = {
   description: string
   image: string
   tag: string
+  type: VehicleType
 }
+
+export const vehicleTypes: VehicleType[] = ['SUV', 'Sedan', 'Pickup', 'Hatch']
 
 export type Service = {
   title: string
@@ -77,11 +82,11 @@ export const publicVerificationNote =
 
 export const navItems = [
   { label: 'Home', href: '/' },
-  { label: 'Sobre nós', href: '/#sobre' },
+  { label: 'Sobre', href: '/sobre' },
   { label: 'Estoque', href: '/estoque' },
-  { label: 'Serviços', href: '/#servicos' },
+  { label: 'Serviços', href: '/servicos' },
   { label: 'Todas as lojas', href: '/#lojas' },
-  { label: 'Contato', href: '/#contato' },
+  { label: 'Contato', href: '/contato' },
 ]
 
 export const heroFacts: HeroFact[] = [
@@ -220,6 +225,7 @@ export const vehicles: Vehicle[] = [
       'Sedã equilibrado para quem quer conforto no uso diário, acabamento acima da média e revenda forte.',
     image: '/assets/cars/car-1.jpg',
     tag: 'Destaque',
+    type: 'Sedan',
   },
   {
     id: 2,
@@ -240,6 +246,7 @@ export const vehicles: Vehicle[] = [
       'SUV com postura premium, excelente acerto urbano e ótimo pacote tecnológico para a faixa de preço.',
     image: '/assets/cars/car-2.jpg',
     tag: 'SUV',
+    type: 'SUV',
   },
   {
     id: 3,
@@ -260,6 +267,7 @@ export const vehicles: Vehicle[] = [
       'Modelo para quem valoriza desempenho linear, cabine silenciosa e assinatura visual mais executiva.',
     image: '/assets/cars/car-3.jpg',
     tag: 'Premium',
+    type: 'Sedan',
   },
   {
     id: 4,
@@ -280,6 +288,7 @@ export const vehicles: Vehicle[] = [
       'SUV compacto com perfil urbano, excelente ergonomia e espaço inteligente para a rotina da família.',
     image: '/assets/cars/car-4.jpg',
     tag: 'Seminovo',
+    type: 'SUV',
   },
   {
     id: 5,
@@ -300,6 +309,7 @@ export const vehicles: Vehicle[] = [
       'Hatch prático, econômico e muito bem equipado para quem quer tecnologia sem abrir mão de custo-benefício.',
     image: '/assets/cars/car-5.jpg',
     tag: 'Oportunidade',
+    type: 'Hatch',
   },
   {
     id: 6,
@@ -320,6 +330,7 @@ export const vehicles: Vehicle[] = [
       'Sedã para quem quer imagem forte, acabamento de alto padrão e dinâmica acima do segmento tradicional.',
     image: '/assets/cars/car-6.jpg',
     tag: 'Top de linha',
+    type: 'Sedan',
   },
 ]
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Facebook, Instagram, MapPin, Menu, MessageCircle, Phone, X } from 'lucide-react'
 import {
   businessHoursSummary,
@@ -33,6 +34,7 @@ export function SiteFrame({
   onOpenPolicyModal,
 }: SiteFrameProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen || isPolicyModalOpen ? 'hidden' : ''
@@ -41,6 +43,11 @@ export function SiteFrame({
       document.body.style.overflow = ''
     }
   }, [isMobileMenuOpen, isPolicyModalOpen])
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+  }, [location.pathname])
 
   function handleOpenPolicyModal() {
     setIsMobileMenuOpen(false)
@@ -81,16 +88,12 @@ export function SiteFrame({
         </div>
 
         <div className="container nav-wrap">
-          <a className="brand" href="/" onClick={handleNavClick}>
+          <Link className="brand" to="/" onClick={handleNavClick}>
             <img src="/assets/logo-header.png" alt="Via Shopping Car" />
-          </a>
+          </Link>
 
           <nav className="main-nav" aria-label="Navegação principal">
-            {navItems.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => renderNavItem(item, 'main-nav-link', handleNavClick))}
           </nav>
 
           <div className="nav-actions">
@@ -124,11 +127,7 @@ export function SiteFrame({
             />
             <div className="container mobile-nav-panel">
               <nav className="mobile-nav" aria-label="Navegação mobile">
-                {navItems.map((item) => (
-                  <a key={item.href} href={item.href} onClick={handleNavClick}>
-                    {item.label}
-                  </a>
-                ))}
+                {navItems.map((item) => renderNavItem(item, 'mobile-nav-link', handleNavClick))}
               </nav>
               <a
                 className="btn btn-primary full-width"
@@ -175,11 +174,7 @@ export function SiteFrame({
 
           <div className="footer-col">
             <h3>Navegação</h3>
-            {navItems.slice(1).map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
+            {navItems.slice(1).map((item) => renderNavItem(item, 'footer-nav-link'))}
             <a href={siteLink} target="_blank" rel="noreferrer">
               Site oficial
             </a>
@@ -266,5 +261,31 @@ export function SiteFrame({
         </div>
       )}
     </div>
+  )
+}
+
+function renderNavItem(
+  item: { label: string; href: string },
+  className: string,
+  onNavigate?: () => void,
+) {
+  if (item.href.startsWith('/#') || item.href.startsWith('#')) {
+    return (
+      <a key={item.href} href={item.href} className={className} onClick={onNavigate}>
+        {item.label}
+      </a>
+    )
+  }
+
+  return (
+    <NavLink
+      key={item.href}
+      to={item.href}
+      end={item.href === '/'}
+      className={({ isActive }) => `${className}${isActive ? ' is-active' : ''}`}
+      onClick={onNavigate}
+    >
+      {item.label}
+    </NavLink>
   )
 }

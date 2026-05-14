@@ -29,6 +29,7 @@ export function InventoryPage() {
   const [model, setModel] = useState(searchParams.get('model') ?? '')
   const [store, setStore] = useState(searchParams.get('store') ?? '')
   const [year, setYear] = useState(searchParams.get('yearFrom') ?? '')
+  const [type, setType] = useState(searchParams.get('type') ?? '')
   const [transmission, setTransmission] = useState('')
   const [fuel, setFuel] = useState('')
   const [color, setColor] = useState('')
@@ -95,6 +96,7 @@ export function InventoryPage() {
       const matchesModel = !model || vehicle.model === model
       const matchesStore = !store || vehicle.store === store
       const matchesYear = !year || String(vehicle.year) === year
+      const matchesType = !type || vehicle.type === type
       const matchesTransmission = !transmission || vehicle.transmission === transmission
       const matchesFuel = !fuel || vehicle.fuel === fuel
       const matchesColor = !color || vehicle.color === color
@@ -105,6 +107,7 @@ export function InventoryPage() {
         matchesModel &&
         matchesStore &&
         matchesYear &&
+        matchesType &&
         matchesTransmission &&
         matchesFuel &&
         matchesColor
@@ -126,7 +129,7 @@ export function InventoryPage() {
 
       return second.year - first.year || first.km - second.km
     })
-  }, [brand, color, fuel, keyword, model, sort, store, transmission, year])
+  }, [brand, color, fuel, keyword, model, sort, store, transmission, type, year])
 
   const comparedVehicles = useMemo(
     () => vehicles.filter((vehicle) => comparedVehicleIds.includes(vehicle.id)),
@@ -139,6 +142,7 @@ export function InventoryPage() {
     setModel('')
     setStore('')
     setYear('')
+    setType('')
     setTransmission('')
     setFuel('')
     setColor('')

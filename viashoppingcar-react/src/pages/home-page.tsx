@@ -4,42 +4,26 @@ import { useNavigate } from 'react-router-dom'
 import {
   ArrowRight,
   CalendarDays,
+  Car,
   CarFront,
-  Facebook,
   Fuel,
   Gauge,
-  Globe,
-  HandCoins,
-  Instagram,
-  MapPin,
   MessageCircle,
-  Phone,
   Search,
-  ShieldCheck,
   Store,
+  Truck,
 } from 'lucide-react'
 import {
-  businessHours,
-  businessHoursSummary,
   createStoreWhatsappLink,
   createWhatsappLink,
-  facebookLink,
   formatCurrency,
   heroFacts,
   mapsLink,
   persistNewsletterLead,
-  publicVerificationNote,
-  services,
-  shoppingAddress,
-  shoppingFeatures,
-  shoppingGallery,
-  siteLink,
   stores,
   vehicles,
-  visitChannels,
-  wazeLink,
-  type ShoppingFeature,
-  type VisitChannel,
+  vehicleTypes,
+  type VehicleType,
 } from '../site-data'
 
 type Feedback = {
@@ -57,13 +41,13 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
   const [model, setModel] = useState('')
   const [yearFrom, setYearFrom] = useState('')
   const [yearTo, setYearTo] = useState('')
+  const [searchTab, setSearchTab] = useState<'tipo' | 'marca'>('tipo')
+  const [searchBrand, setSearchBrand] = useState('')
+  const [searchModel, setSearchModel] = useState('')
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterConsent, setNewsletterConsent] = useState(false)
   const [newsletterFeedback, setNewsletterFeedback] = useState<Feedback | null>(null)
   const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false)
-
-  const featuredGallery = shoppingGallery[0]
-  const brandGallery = shoppingGallery[1]
 
   const brands = useMemo(
     () => [...new Set(vehicles.map((vehicle) => vehicle.brand))].sort(),
@@ -321,70 +305,102 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         </div>
       </section>
 
-      <section className="shopping-preview section" id="conheca">
+      <section className="search-by section" id="pesquise">
         <div className="container">
-          <div className="section-header reveal">
-            <p className="eyebrow eyebrow-dark">Conheça o shopping</p>
-            <h2>Conteúdo real para a prévia já vender o espaço físico e a operação</h2>
-            <p>{publicVerificationNote}</p>
+          <div className="search-by-header reveal">
+            <p className="search-by-eyebrow">Pesquise por:</p>
+            <div className="search-by-tabs" role="tablist" aria-label="Modos de pesquisa">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={searchTab === 'tipo'}
+                className={`search-by-tab${searchTab === 'tipo' ? ' is-active' : ''}`}
+                onClick={() => setSearchTab('tipo')}
+              >
+                Tipo
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={searchTab === 'marca'}
+                className={`search-by-tab${searchTab === 'marca' ? ' is-active' : ''}`}
+                onClick={() => setSearchTab('marca')}
+              >
+                Marca e Modelo
+              </button>
+            </div>
           </div>
 
-          <div className="shopping-preview-grid">
-            <article className="shopping-showcase-card reveal">
-              <div className="shopping-showcase-media">
-                <img src={featuredGallery.image} alt={featuredGallery.title} loading="lazy" />
-                <span className="shopping-showcase-badge">{featuredGallery.badge}</span>
-              </div>
-              <div className="shopping-showcase-body">
-                <h3>{featuredGallery.title}</h3>
-                <p>{featuredGallery.description}</p>
-                <div className="shopping-showcase-actions">
-                  <a className="btn btn-secondary" href={mapsLink} target="_blank" rel="noreferrer">
-                    Abrir no Google Maps
-                  </a>
-                  <a className="btn btn-outline-light" href={wazeLink} target="_blank" rel="noreferrer">
-                    Traçar rota no Waze
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <div className="shopping-feature-stack">
-              {shoppingFeatures.map((feature, index) => (
-                <article
-                  key={feature.title}
-                  className="shopping-feature-card reveal"
-                  style={{ animationDelay: `${index * 90}ms` }}
+          {searchTab === 'tipo' ? (
+            <div className="search-by-types reveal delay-1" role="tabpanel">
+              {vehicleTypes.map((type, index) => (
+                <button
+                  key={type}
+                  type="button"
+                  className="search-by-type-card"
+                  style={{ animationDelay: `${index * 80}ms` }}
+                  onClick={() => navigate(`/estoque?type=${encodeURIComponent(type)}`)}
                 >
-                  <div className="shopping-feature-icon">{renderFeatureIcon(feature)}</div>
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
-                  {feature.href && feature.ctaLabel && (
-                    <a className="shopping-feature-link" href={feature.href} target="_blank" rel="noreferrer">
-                      {feature.ctaLabel} <ArrowRight size={16} />
-                    </a>
-                  )}
-                </article>
+                  <span className="search-by-type-icon">{renderVehicleTypeIcon(type)}</span>
+                  <span className="search-by-type-label">{type}</span>
+                </button>
               ))}
             </div>
-          </div>
+          ) : (
+            <form
+              className="search-by-brand reveal delay-1"
+              role="tabpanel"
+              onSubmit={(event) => {
+                event.preventDefault()
+                const params = new URLSearchParams()
+                if (searchBrand) params.set('brand', searchBrand)
+                if (searchModel) params.set('model', searchModel)
+                const query = params.toString()
+                navigate(query ? `/estoque?${query}` : '/estoque')
+              }}
+            >
+              <label>
+                Marca
+                <select
+                  value={searchBrand}
+                  onChange={(event) => {
+                    setSearchBrand(event.target.value)
+                    setSearchModel('')
+                  }}
+                >
+                  <option value="">Todas</option>
+                  {brands.map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
-          <div className="shopping-brand-band reveal delay-1">
-            <img src={brandGallery.image} alt={brandGallery.title} loading="lazy" />
-            <div className="shopping-brand-copy">
-              <span className="shopping-brand-tag">{brandGallery.badge}</span>
-              <h3>{brandGallery.title}</h3>
-              <p>{brandGallery.description}</p>
-            </div>
-            <div className="shopping-brand-actions">
-              <a className="btn btn-secondary" href={siteLink} target="_blank" rel="noreferrer">
-                Abrir site oficial
-              </a>
-              <a className="btn btn-outline-light" href={facebookLink} target="_blank" rel="noreferrer">
-                Ver Facebook
-              </a>
-            </div>
-          </div>
+              <label>
+                Modelo
+                <select
+                  value={searchModel}
+                  onChange={(event) => setSearchModel(event.target.value)}
+                >
+                  <option value="">Todos</option>
+                  {vehicles
+                    .filter((vehicle) => !searchBrand || vehicle.brand === searchBrand)
+                    .map((vehicle) => vehicle.model)
+                    .filter((value, index, array) => array.indexOf(value) === index)
+                    .map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                </select>
+              </label>
+
+              <button type="submit" className="btn btn-primary search-by-brand-submit">
+                Buscar <Search size={16} />
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
@@ -517,105 +533,25 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         <img src="/assets/strip-cars.jpg" alt="Faixa de veículos do Via Shopping Car" />
       </section>
 
-      <section className="about section" id="sobre">
-        <div className="about-overlay" />
-        <div className="container about-grid">
-          <div className="about-mark reveal">
-            <img src={brandGallery.image} alt="Marca Via Shopping Car" />
-          </div>
-          <div className="about-content reveal delay-1">
-            <p className="eyebrow">Sobre o Via Shopping Car</p>
-            <h2>Visita prática, canais oficiais ativos e uma jornada mais clara para compra ou troca</h2>
-            <p>
-              O endereço público do shopping está em <strong>{shoppingAddress}</strong>. Nesta prévia,
-              a proposta é mostrar o Via Shopping Car como um destino real de visita, com atendimento
-              digital, estrutura física e pronta evolução para páginas dedicadas por loja.
-            </p>
-            <a
-              className="btn btn-light"
-              href={createWhatsappLink('Olá! Quero agendar uma visita ao Via Shopping Car.')}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Agendar visita <ArrowRight size={16} />
-            </a>
+      <section className="logo-marquee section" aria-label="Lojas parceiras">
+        <div className="container">
+          <div className="logo-marquee-header reveal">
+            <p className="eyebrow eyebrow-dark">Lojas parceiras</p>
+            <h2>Multimarcas reunidas em um só lugar</h2>
           </div>
         </div>
-      </section>
-
-      <section className="services section" id="servicos">
-        <div className="container">
-          <div className="section-header reveal">
-            <p className="eyebrow eyebrow-dark">Nossos serviços</p>
-            <h2>Mais do que venda de carros</h2>
-            <p>Soluções pensadas para simplificar toda a jornada da sua negociação.</p>
-          </div>
-
-          <div className="services-grid">
-            {services.map((service, index) => (
-              <article
-                key={service.title}
-                className="service-card reveal"
-                style={{ animationDelay: `${index * 110}ms` }}
+        <div className="logo-marquee-track-wrap reveal delay-1">
+          <div className="logo-marquee-track">
+            {[...stores, ...stores].map((store, index) => (
+              <div
+                key={`${store}-${index}`}
+                className="logo-marquee-item"
+                aria-hidden={index >= stores.length}
               >
-                <div className="service-icon">
-                  {service.title === 'Financiamento' && <HandCoins size={24} />}
-                  {service.title === 'Seguros' && <ShieldCheck size={24} />}
-                  {service.title === 'Localização' && <MapPin size={24} />}
-                </div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                <a className="service-link" href={service.href} target="_blank" rel="noreferrer">
-                  {service.ctaLabel} <ArrowRight size={16} />
-                </a>
-              </article>
+                <StoreLogo name={store} />
+              </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="visit section" id="visita">
-        <div className="container visit-grid">
-          <article className="visit-card reveal">
-            <p className="eyebrow eyebrow-dark">Planeje a visita</p>
-            <h2>Horários públicos e argumentos reais para o dono aprovar a prévia</h2>
-            <p className="visit-summary">
-              {businessHoursSummary} O foco aqui é mostrar uma página que já conversa com mapa, visita e
-              atendimento.
-            </p>
-            <div className="visit-hours">
-              {businessHours.map((item) => (
-                <div key={item.day} className="visit-hour-row">
-                  <span>{item.day}</span>
-                  <strong>{item.hours}</strong>
-                </div>
-              ))}
-            </div>
-          </article>
-
-          <article className="visit-card reveal delay-1">
-            <p className="eyebrow eyebrow-dark">Canais oficiais</p>
-            <h2>Links que já transformam curiosidade em ação</h2>
-            <div className="visit-channel-list">
-              {visitChannels.map((channel) => (
-                <div key={channel.title} className="visit-channel-card">
-                  <div className="visit-channel-icon">{renderChannelIcon(channel)}</div>
-                  <div className="visit-channel-copy">
-                    <strong>{channel.title}</strong>
-                    <p>{channel.description}</p>
-                  </div>
-                  <a
-                    className="visit-channel-link"
-                    href={channel.href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {channel.ctaLabel}
-                  </a>
-                </div>
-              ))}
-            </div>
-          </article>
         </div>
       </section>
 
@@ -761,38 +697,47 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
   )
 }
 
-function renderFeatureIcon(feature: ShoppingFeature) {
-  if (feature.kind === 'contact') {
-    return <Phone size={20} />
+function renderVehicleTypeIcon(type: VehicleType) {
+  if (type === 'SUV') {
+    return <CarFront size={36} strokeWidth={1.6} />
   }
-
-  if (feature.kind === 'location') {
-    return <MapPin size={20} />
+  if (type === 'Sedan') {
+    return <Car size={36} strokeWidth={1.6} />
   }
-
-  if (feature.kind === 'parking') {
-    return <CarFront size={20} />
+  if (type === 'Pickup') {
+    return <Truck size={36} strokeWidth={1.6} />
   }
-
-  return <Store size={20} />
+  return <Car size={36} strokeWidth={1.6} />
 }
 
-function renderChannelIcon(channel: VisitChannel) {
-  if (channel.kind === 'whatsapp') {
-    return <MessageCircle size={18} />
-  }
+function StoreLogo({ name }: { name: string }) {
+  const initials = name
+    .split(/\s+/)
+    .map((part) => part[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
 
-  if (channel.kind === 'instagram') {
-    return <Instagram size={18} />
-  }
-
-  if (channel.kind === 'facebook') {
-    return <Facebook size={18} />
-  }
-
-  if (channel.kind === 'site') {
-    return <Globe size={18} />
-  }
-
-  return <MapPin size={18} />
+  return (
+    <div className="store-logo">
+      <span className="store-logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="44" height="44" focusable="false">
+          <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" strokeWidth="2" />
+          <text
+            x="24"
+            y="29"
+            textAnchor="middle"
+            fontFamily="Sora, sans-serif"
+            fontWeight="700"
+            fontSize="16"
+            fill="currentColor"
+          >
+            {initials}
+          </text>
+        </svg>
+      </span>
+      <span className="store-logo-name">{name}</span>
+    </div>
+  )
 }
