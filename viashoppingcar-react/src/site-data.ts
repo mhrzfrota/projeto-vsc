@@ -63,6 +63,18 @@ export type VisitChannel = {
   kind: 'whatsapp' | 'instagram' | 'facebook' | 'site' | 'map'
 }
 
+export type EventNews = {
+  id: string
+  title: string
+  summary: string
+  category: string
+  date: string
+  dateLabel: { day: string; month: string }
+  location: string
+  image: string
+  href: string
+}
+
 export const COOKIE_CONSENT_KEY = 'vsc-cookie-consent'
 export const NEWSLETTER_LEADS_KEY = 'vsc-newsletter-leads'
 
@@ -85,7 +97,6 @@ export const navItems = [
   { label: 'Sobre', href: '/sobre' },
   { label: 'Estoque', href: '/estoque' },
   { label: 'Serviços', href: '/servicos' },
-  { label: 'Todas as lojas', href: '/#lojas' },
   { label: 'Contato', href: '/contato' },
 ]
 
@@ -393,6 +404,45 @@ export const services: Service[] = [
       'Shopping automobilístico na Av. Washington Soares, 2100, com estacionamento para clientes e visita mais prática.',
     ctaLabel: 'Ver no mapa',
     href: mapsLink,
+  },
+]
+
+export const eventsNews: EventNews[] = [
+  {
+    id: 'feirao-aniversario',
+    title: 'Feirão de Aniversário do Via Shopping Car',
+    summary:
+      'Três dias com ofertas exclusivas em todas as lojas do shopping, taxa zero em financiamento e bônus na avaliação do seu usado.',
+    category: 'Feirão',
+    date: '2026-06-13',
+    dateLabel: { day: '13', month: 'Jun' },
+    location: 'Av. Washington Soares, 2100 · Fortaleza',
+    image: '/assets/strip-cars.jpg',
+    href: createWhatsappLink('Olá! Quero saber mais sobre o Feirão de Aniversário.'),
+  },
+  {
+    id: 'test-drive-suvs',
+    title: 'Test Drive aberto: nova safra de SUVs',
+    summary:
+      'Agende seu test drive nos SUVs mais procurados do mês. Atendimento direto com as lojas e bebidas cortesia no espaço de convivência.',
+    category: 'Test Drive',
+    date: '2026-06-22',
+    dateLabel: { day: '22', month: 'Jun' },
+    location: 'Pátio coberto · Sábado, 09h às 17h',
+    image: '/assets/shopping-exterior.jpg',
+    href: createWhatsappLink('Olá! Quero agendar um test drive nos SUVs em destaque.'),
+  },
+  {
+    id: 'noite-premium',
+    title: 'Noite Premium: lançamentos e seminovos de alto padrão',
+    summary:
+      'Evento por convite com curadoria das lojas premium do shopping. Apresentação dos novos modelos, condições especiais e atendimento personalizado.',
+    category: 'Evento',
+    date: '2026-07-05',
+    dateLabel: { day: '05', month: 'Jul' },
+    location: 'Top Premium · 19h',
+    image: '/assets/hero-bg.jpg',
+    href: createWhatsappLink('Olá! Quero participar da Noite Premium do Via Shopping Car.'),
   },
 ]
 

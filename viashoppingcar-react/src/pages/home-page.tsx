@@ -10,15 +10,14 @@ import {
   Gauge,
   MessageCircle,
   Search,
-  Store,
   Truck,
 } from 'lucide-react'
 import {
   createStoreWhatsappLink,
   createWhatsappLink,
+  eventsNews,
   formatCurrency,
   heroFacts,
-  mapsLink,
   persistNewsletterLead,
   stores,
   vehicles,
@@ -555,6 +554,51 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         </div>
       </section>
 
+      <section className="events section" id="eventos" aria-label="Notícias e eventos">
+        <div className="container">
+          <div className="section-header reveal">
+            <p className="eyebrow eyebrow-dark">Notícias e eventos</p>
+            <h2>O que está rolando no Via Shopping Car</h2>
+            <p>
+              Feirões, lançamentos, test drives e ações conjuntas das lojas. Acompanhe a agenda e
+              não fique de fora das oportunidades.
+            </p>
+          </div>
+
+          <div className="events-grid">
+            {eventsNews.map((event, index) => (
+              <article
+                key={event.id}
+                className="event-card reveal"
+                style={{ animationDelay: `${index * 90}ms` }}
+              >
+                <div className="event-media">
+                  <img src={event.image} alt={event.title} loading="lazy" />
+                  <span className="event-category">{event.category}</span>
+                  <span className="event-date" aria-hidden="true">
+                    <strong>{event.dateLabel.day}</strong>
+                    <span>{event.dateLabel.month}</span>
+                  </span>
+                </div>
+                <div className="event-body">
+                  <h3>{event.title}</h3>
+                  <p className="event-location">{event.location}</p>
+                  <p className="event-summary">{event.summary}</p>
+                  <a
+                    className="event-link"
+                    href={event.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Saiba mais <ArrowRight size={16} />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="newsletter" id="promocoes">
         <div className="container newsletter-wrap">
           <div className="newsletter-copy reveal">
@@ -607,92 +651,6 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         </div>
       </section>
 
-      <section className="stores section" id="lojas">
-        <div className="container">
-          <div className="section-header reveal">
-            <p className="eyebrow eyebrow-dark">Todas as lojas</p>
-            <h2>Estrutura pronta para evoluir cada loja para uma página dedicada</h2>
-            <p>
-              Nesta prévia, o mix já aparece organizado. Na próxima etapa, cada operação pode ganhar
-              logo, estoque, ofertas e contato próprio dentro do ecossistema do shopping.
-            </p>
-          </div>
-          <div className="stores-grid">
-            {stores.map((store, index) => {
-              const storeInventoryRoute = `/estoque?store=${encodeURIComponent(store)}`
-              const storeVehicleCount = vehicles.filter((vehicle) => vehicle.store === store).length
-              const storeCountLabel =
-                storeVehicleCount > 0
-                  ? `${storeVehicleCount} veículo${storeVehicleCount === 1 ? '' : 's'} em destaque`
-                  : 'Em breve, veículos desta loja'
-
-              return (
-                <article
-                  key={store}
-                  className="store-card reveal"
-                  style={{ animationDelay: `${index * 60}ms` }}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => navigate(storeInventoryRoute)}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                      event.preventDefault()
-                      navigate(storeInventoryRoute)
-                    }
-                  }}
-                >
-                  <div className="store-card-top">
-                    <div className="store-card-icon">
-                      <Store size={18} />
-                    </div>
-                    <h3>{store}</h3>
-                  </div>
-                  <p>
-                    Loja prevista no mix multimarcas do Via Shopping Car. {storeCountLabel}.
-                  </p>
-                  <div className="store-card-actions">
-                    <button
-                      type="button"
-                      className="store-card-link store-card-link-primary"
-                      onClick={(event) => {
-                        event.stopPropagation()
-                        navigate(storeInventoryRoute)
-                      }}
-                    >
-                      Ver veículos da loja <ArrowRight size={15} />
-                    </button>
-                    <a
-                      className="store-card-link"
-                      href={createStoreWhatsappLink(
-                        store,
-                        `Olá ${store}! Vim pelo site do Via Shopping Car e quero falar com vocês.`,
-                      )}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      WhatsApp da loja
-                    </a>
-                  </div>
-                </article>
-              )
-            })}
-          </div>
-          <div className="section-actions stores-actions reveal delay-1">
-            <a
-              className="btn btn-secondary"
-              href={createWhatsappLink('Olá! Quero conhecer melhor as lojas disponíveis no Via Shopping Car.')}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Falar sobre as lojas
-            </a>
-            <a className="btn btn-outline-light" href={mapsLink} target="_blank" rel="noreferrer">
-              Como chegar
-            </a>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }
