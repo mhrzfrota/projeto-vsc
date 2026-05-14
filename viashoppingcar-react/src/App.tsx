@@ -6,6 +6,8 @@ import { ContactPage } from './pages/contact-page'
 import { HomePage } from './pages/home-page'
 import { InventoryPage } from './pages/inventory-page'
 import { ServicesPage } from './pages/services-page'
+import { StoreDetailPage } from './pages/store-detail-page'
+import { StoresPage } from './pages/stores-page'
 import { COOKIE_CONSENT_KEY, readCookieConsent } from './site-data'
 import './App.css'
 
@@ -34,6 +36,8 @@ function App() {
         />
         <Route path="/sobre" element={<AboutPage />} />
         <Route path="/servicos" element={<ServicesPage />} />
+        <Route path="/lojas" element={<StoresPage />} />
+        <Route path="/lojas/:slug" element={<StoreDetailPage />} />
         <Route path="/contato" element={<ContactPage />} />
         <Route path="/estoque" element={<InventoryPage />} />
       </Routes>

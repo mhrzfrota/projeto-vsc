@@ -63,6 +63,21 @@ export type VisitChannel = {
   kind: 'whatsapp' | 'instagram' | 'facebook' | 'site' | 'map'
 }
 
+export type StoreVehicleTeaser = {
+  title: string
+  subtitle: string
+  image: string
+  price: string
+}
+
+export type StoreCatalogItem = {
+  slug: string
+  name: string
+  tagline: string
+  olxUrl: string
+  vehicles: StoreVehicleTeaser[]
+}
+
 export type EventNews = {
   id: string
   title: string
@@ -97,6 +112,7 @@ export const navItems = [
   { label: 'Sobre', href: '/sobre' },
   { label: 'Estoque', href: '/estoque' },
   { label: 'Serviços', href: '/servicos' },
+  { label: 'Todas as lojas', href: '/lojas' },
   { label: 'Contato', href: '/contato' },
 ]
 
@@ -443,6 +459,108 @@ export const eventsNews: EventNews[] = [
     location: 'Via Shopping Car · Fortaleza',
     image: '/assets/evento2.png',
     href: createWhatsappLink('Olá! Quero saber mais sobre a campanha Maio Amarelo no Via Shopping Car.'),
+  },
+]
+
+function placeholderVehicles(): StoreVehicleTeaser[] {
+  return [
+    {
+      title: 'Modelo em destaque 1',
+      subtitle: 'Confira no catálogo da loja',
+      image: '/assets/cars/car-1.jpg',
+      price: 'Sob consulta',
+    },
+    {
+      title: 'Modelo em destaque 2',
+      subtitle: 'Confira no catálogo da loja',
+      image: '/assets/cars/car-2.jpg',
+      price: 'Sob consulta',
+    },
+    {
+      title: 'Modelo em destaque 3',
+      subtitle: 'Confira no catálogo da loja',
+      image: '/assets/cars/car-3.jpg',
+      price: 'Sob consulta',
+    },
+    {
+      title: 'Modelo em destaque 4',
+      subtitle: 'Confira no catálogo da loja',
+      image: '/assets/cars/car-4.jpg',
+      price: 'Sob consulta',
+    },
+  ]
+}
+
+export const storesCatalog: StoreCatalogItem[] = [
+  {
+    slug: 'pulse-car',
+    name: 'Pulse Car',
+    tagline: 'Sedãs e SUVs com curadoria executiva.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
+  },
+  {
+    slug: 'jmg-veiculos',
+    name: 'JMG Veículos',
+    tagline: 'SUVs e crossovers para o uso urbano.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
+  },
+  {
+    slug: 'lopes-veiculos',
+    name: 'Lopes Veículos',
+    tagline: 'Linha premium e seminovos selecionados.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
+  },
+  {
+    slug: 'ares-automoveis',
+    name: 'Ares Automóveis',
+    tagline: 'Hatches, sedãs e SUVs com revisão em dia.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
+  },
+  {
+    slug: 'fort-car',
+    name: 'Fort Car',
+    tagline: 'Custo-benefício e oportunidades semanais.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
+  },
+  {
+    slug: 'master-motors',
+    name: 'Master Motors',
+    tagline: 'Multimarcas com foco em conforto e tecnologia.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
+  },
+  {
+    slug: 'prime-auto',
+    name: 'Prime Auto',
+    tagline: 'Modelos zero km e seminovos garantidos.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
+  },
+  {
+    slug: 'top-premium',
+    name: 'Top Premium',
+    tagline: 'Linha premium europeia com baixa rodagem.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
+  },
+  {
+    slug: 'fast-seminovos',
+    name: 'Fast Seminovos',
+    tagline: 'Giro rápido com preços competitivos.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
+  },
+  {
+    slug: 'drive-center',
+    name: 'Drive Center',
+    tagline: 'Variedade de marcas e financiamento facilitado.',
+    olxUrl: '',
+    vehicles: placeholderVehicles(),
   },
 ]
 
