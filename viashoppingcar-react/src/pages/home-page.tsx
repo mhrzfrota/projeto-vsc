@@ -203,7 +203,7 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         <div className="container hero-grid">
           <div className="hero-copy reveal">
             <p className="eyebrow">Via Shopping Car</p>
-            <h1>O shopping de carros de Fortaleza, agora online</h1>
+            <h1>O melhor Shopping de automóveis da cidade</h1>
             <p>
               Veículos selecionados, estrutura completa e atendimento direto com a equipe.
               Explore o estoque, conheça o espaço e agende sua visita.
