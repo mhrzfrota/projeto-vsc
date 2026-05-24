@@ -6,16 +6,18 @@ import {
   CalendarDays,
   Car,
   CarFront,
+  Clock,
   Fuel,
   Gauge,
+  MapPin,
   MessageCircle,
   Search,
   Truck,
 } from 'lucide-react'
 import {
+  businessHoursSummary,
   createStoreWhatsappLink,
   createWhatsappLink,
-  eventsNews,
   formatCurrency,
   heroFacts,
   persistNewsletterLead,
@@ -88,6 +90,10 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
     filteredVehicles.length === 1
       ? '1 destaque encontrado'
       : `${filteredVehicles.length} destaques encontrados`
+  const locationAddress = 'Av. Washington Soares, 2100 - Edson Queiroz, Fortaleza - CE'
+  const googleMapsEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
+    `Via Shopping Car, ${locationAddress}`,
+  )}&output=embed`
 
   function buildInventoryRoute(vehicleId?: number) {
     const params = new URLSearchParams()
@@ -554,47 +560,39 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         </div>
       </section>
 
-      <section className="events section" id="eventos" aria-label="Notícias e eventos">
-        <div className="container">
-          <div className="section-header reveal">
-            <p className="eyebrow eyebrow-dark">Notícias e eventos</p>
-            <h2>O que está rolando no Via Shopping Car</h2>
-            <p>
-              Feirões, lançamentos, test drives e ações conjuntas das lojas. Acompanhe a agenda e
-              não fique de fora das oportunidades.
-            </p>
+      <section className="location-section section" id="localizacao" aria-label="Localização">
+        <div className="container location-grid">
+          <div className="location-copy reveal">
+            <p className="eyebrow">Localização</p>
+            <h2>Chegue fácil ao Via Shopping Car</h2>
+
+            <div className="location-details">
+              <div className="location-detail">
+                <MapPin size={20} />
+                <span>Endereço</span>
+                <strong>{locationAddress}</strong>
+              </div>
+              <div className="location-detail">
+                <Clock size={20} />
+                <span>Funcionamento</span>
+                <strong>{businessHoursSummary}</strong>
+              </div>
+            </div>
           </div>
 
-          <div className="events-grid">
-            {eventsNews.map((event, index) => (
-              <article
-                key={event.id}
-                className="event-card reveal"
-                style={{ animationDelay: `${index * 90}ms` }}
-              >
-                <div className="event-media">
-                  <img src={event.image} alt={event.title} loading="lazy" />
-                  <span className="event-category">{event.category}</span>
-                  <span className="event-date" aria-hidden="true">
-                    <strong>{event.dateLabel.day}</strong>
-                    <span>{event.dateLabel.month}</span>
-                  </span>
-                </div>
-                <div className="event-body">
-                  <h3>{event.title}</h3>
-                  <p className="event-location">{event.location}</p>
-                  <p className="event-summary">{event.summary}</p>
-                  <a
-                    className="event-link"
-                    href={event.href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Saiba mais <ArrowRight size={16} />
-                  </a>
-                </div>
-              </article>
-            ))}
+          <div className="location-map-card reveal delay-1">
+            <iframe
+              title="Mapa do Via Shopping Car no Google Maps"
+              src={googleMapsEmbedSrc}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <div className="location-map-badge" aria-hidden="true">
+              <MapPin size={22} />
+              <strong>Via Shopping Car</strong>
+              <span>Av. Washington Soares, 2100</span>
+            </div>
           </div>
         </div>
       </section>
