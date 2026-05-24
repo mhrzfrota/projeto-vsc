@@ -414,10 +414,6 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
           <div className="section-header reveal">
             <p className="eyebrow eyebrow-dark">Estoque atualizado</p>
             <h2>Veículos em destaque</h2>
-            <p>
-              A seleção abaixo funciona como vitrine rápida. Ao clicar em qualquer carro, você entra
-              na tela completa de estoque com filtros, ordenação e comparação.
-            </p>
           </div>
 
           <div className="section-actions reveal delay-1">
@@ -425,7 +421,7 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
             <div className="inventory-actions">
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn inventory-catalog-button"
                 onClick={() => navigate(buildInventoryRoute())}
               >
                 Abrir catálogo completo
