@@ -35,6 +35,7 @@ export function SiteFrame({
 }: SiteFrameProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const shouldShowPromoBanner = location.pathname === '/'
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen || isPolicyModalOpen ? 'hidden' : ''
@@ -143,9 +144,11 @@ export function SiteFrame({
         )}
       </header>
 
-      <div className="promo-banner" aria-label="Destaque do Via Shopping Car">
-        <img src="/assets/banner3-wide.png" alt="Via Shopping Car" />
-      </div>
+      {shouldShowPromoBanner && (
+        <div className="promo-banner" aria-label="Destaque do Via Shopping Car">
+          <img src="/assets/banner3-wide.png" alt="Via Shopping Car" />
+        </div>
+      )}
 
       {children}
 
