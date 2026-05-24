@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import { useState } from 'react'
 import { SiteFrame } from './components/site-frame'
+import { AdvertisePage } from './pages/advertise-page'
 import { AboutPage } from './pages/about-page'
 import { ContactPage } from './pages/contact-page'
 import { HomePage } from './pages/home-page'
@@ -35,6 +36,7 @@ function App() {
           element={<HomePage onOpenPolicyModal={() => setIsPolicyModalOpen(true)} />}
         />
         <Route path="/sobre" element={<AboutPage />} />
+        <Route path="/anuncie-aqui" element={<AdvertisePage />} />
         <Route path="/servicos" element={<ServicesPage />} />
         <Route path="/lojas" element={<StoresPage />} />
         <Route path="/lojas/:slug" element={<StoreDetailPage />} />

@@ -36,6 +36,7 @@ export function SiteFrame({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
   const shouldShowPromoBanner = location.pathname === '/'
+  const headerNavItems = navItems.filter((item) => item.href !== '/servicos')
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen || isPolicyModalOpen ? 'hidden' : ''
@@ -94,7 +95,7 @@ export function SiteFrame({
           </Link>
 
           <nav className="main-nav" aria-label="Navegação principal">
-            {navItems.map((item) => renderNavItem(item, 'main-nav-link', handleNavClick))}
+            {headerNavItems.map((item) => renderNavItem(item, 'main-nav-link', handleNavClick))}
           </nav>
 
           <div className="nav-actions">
@@ -128,7 +129,7 @@ export function SiteFrame({
             />
             <div className="container mobile-nav-panel">
               <nav className="mobile-nav" aria-label="Navegação mobile">
-                {navItems.map((item) => renderNavItem(item, 'mobile-nav-link', handleNavClick))}
+                {headerNavItems.map((item) => renderNavItem(item, 'mobile-nav-link', handleNavClick))}
               </nav>
               <a
                 className="btn btn-primary full-width"
@@ -145,9 +146,15 @@ export function SiteFrame({
       </header>
 
       {shouldShowPromoBanner && (
-        <div className="promo-banner" aria-label="Destaque do Via Shopping Car">
+        <a
+          className="promo-banner"
+          href={createWhatsappLink('Olá! Vim pelo banner de ofertas do Via Shopping Car.')}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Abrir WhatsApp pelo banner de ofertas do Via Shopping Car"
+        >
           <img src="/assets/banner3-wide.png" alt="Via Shopping Car" />
-        </div>
+        </a>
       )}
 
       {children}

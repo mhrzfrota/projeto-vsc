@@ -111,6 +111,7 @@ export const navItems = [
   { label: 'Home', href: '/' },
   { label: 'Sobre', href: '/sobre' },
   { label: 'Estoque', href: '/estoque' },
+  { label: 'Anuncie aqui', href: '/anuncie-aqui' },
   { label: 'Serviços', href: '/servicos' },
   { label: 'Todas as lojas', href: '/lojas' },
   { label: 'Contato', href: '/contato' },
