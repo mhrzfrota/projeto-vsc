@@ -125,13 +125,13 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: #050505;
+  background: #fff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .promo-banner img {
-  width: auto;
-  max-width: 100%;
+  width: 100%;
+  max-width: none;
   height: auto;
   object-fit: contain;
   object-position: center;

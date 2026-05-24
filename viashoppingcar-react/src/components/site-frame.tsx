@@ -144,7 +144,7 @@ export function SiteFrame({
       </header>
 
       <div className="promo-banner" aria-label="Destaque do Via Shopping Car">
-        <img src="/assets/banner3.png" alt="Via Shopping Car" />
+        <img src="/assets/banner3-wide.png" alt="Via Shopping Car" />
       </div>
 
       {children}
