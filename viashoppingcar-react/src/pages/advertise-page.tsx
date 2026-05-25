@@ -1,5 +1,5 @@
 import { type FormEvent, useState } from 'react'
-import { ArrowRight, CarFront, Megaphone, MessageCircle, Repeat, Search } from 'lucide-react'
+import { ArrowRight, CarFront, Megaphone, Repeat, Search } from 'lucide-react'
 import { createWhatsappLink } from '../site-data'
 
 type RequestType = 'vender' | 'trocar' | 'anunciar' | 'procurar'
@@ -83,32 +83,11 @@ export function AdvertisePage() {
 
   return (
     <main>
-      <section className="page-hero">
-        <div className="container page-hero-wrap reveal">
-          <p className="eyebrow">ANUNCIE AQUI</p>
-          <h1>Quer vender seu veículo com segurança e agilidade?</h1>
-          <p>
-            Envie os dados do seu veículo ou conte o carro que você procura. Nossa equipe entra em
-            contato para orientar venda, troca, anúncio ou busca personalizada.
-          </p>
-          <div className="page-hero-actions">
-            <a
-              className="btn btn-primary"
-              href={createWhatsappLink('Olá! Quero anunciar, vender, trocar ou solicitar um carro no Via Shopping Car.')}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MessageCircle size={16} /> Falar no WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section className="advertise section">
         <div className="container advertise-grid">
           <div className="advertise-copy reveal">
             <p className="eyebrow eyebrow-dark">Como podemos ajudar?</p>
-            <h2>Escolha o objetivo e envie sua solicitação</h2>
+            <h2>Quer vender seu veículo com segurança e agilidade?</h2>
             <div className="advertise-option-list">
               {requestOptions.map((option) => (
                 <button

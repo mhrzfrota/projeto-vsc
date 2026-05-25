@@ -178,17 +178,6 @@ export function InventoryPage() {
 
   return (
     <main className="inventory-page">
-      <section className="inventory-page-hero">
-        <div className="inventory-page-hero-overlay" />
-        <div className="container inventory-page-hero-content">
-          <p className="inventory-page-hero-icon">
-            <CarFront size={24} />
-          </p>
-          <h1>Estoque de veículos</h1>
-          <p>Uma página dedicada ao showroom com a mesma lógica da referência, em uma leitura mais atual.</p>
-        </div>
-      </section>
-
       <section className="inventory-page-section">
         <div className="container">
           <div className="inventory-page-heading">

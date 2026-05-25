@@ -2306,6 +2306,26 @@
   gap: 0.8rem;
 }
 
+.advertise-form .checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  line-height: 1.55;
+}
+
+.advertise-form .checkbox-row input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15rem;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.advertise-form .checkbox-row span {
+  flex: 1 1 auto;
+}
+
 .advertise-consent {
   color: var(--color-muted);
   font-weight: 700;
