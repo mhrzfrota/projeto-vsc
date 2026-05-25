@@ -578,6 +578,24 @@ export const stores = [
   'Drive Center',
 ]
 
+export type StoreLogoEntry = {
+  name: string
+  image: string
+}
+
+export const storeLogos: StoreLogoEntry[] = [
+  { name: 'Pulse Car', image: '/assets/logos/pulse.png' },
+  { name: 'JMG Veículos', image: '/assets/logos/jmg.png' },
+  { name: 'Lopes Veículos', image: '/assets/logos/lopes.png' },
+  { name: 'Lopes Premium Car', image: '/assets/logos/lopes-premium.png' },
+  { name: 'A2E2 Veículos', image: '/assets/logos/a2e2.png' },
+  { name: 'Avent Veículos', image: '/assets/logos/avent.png' },
+  { name: 'Direciona Veículos', image: '/assets/logos/direciona.png' },
+  { name: 'Gold Car', image: '/assets/logos/gold-car.png' },
+  { name: 'iDrive Car', image: '/assets/logos/idrive.png' },
+  { name: 'Quality Premium Car', image: '/assets/logos/qaulity.png' },
+]
+
 export const privacyHighlights = [
   'Os dados enviados em formulários são usados para contato comercial, relacionamento e atendimento.',
   'As informações podem ser compartilhadas com parceiros envolvidos na jornada de compra, venda ou seguro.',

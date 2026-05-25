@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where magick *)",
+      "PowerShell(Get-Command magick, pdftoppm, pdf2svg, inkscape, gs, gswin64c -ErrorAction SilentlyContinue)",
+      "PowerShell($tools = @\\('magick.exe','pdftoppm.exe','pdf2svg.exe','inkscape.exe','gswin64c.exe','gs.exe','convert.exe','mutool.exe'\\); foreach\\($t in $tools\\){ $c = Get-Command $t -ErrorAction SilentlyContinue; if\\($c\\){ Write-Output \"FOUND: $\\($c.Source\\)\" } else { Write-Output \"MISSING: $t\" } })",
+      "PowerShell($tools = @\\('node.exe','npm.cmd','npx.cmd','python.exe','python3.exe','py.exe'\\); foreach\\($t in $tools\\){ $c = Get-Command $t -ErrorAction SilentlyContinue; if\\($c\\){ Write-Output \"FOUND: $\\($c.Source\\)\" } else { Write-Output \"MISSING: $t\" } })",
+      "PowerShell(python -c \"import pymupdf; print\\(pymupdf.__version__\\)\" 2>&1)",
+      "PowerShell(python -c \"import fitz; print\\(fitz.__version__\\)\" 2>&1)",
+      "PowerShell(python viashoppingcar-react/public/assets/logos/_convert.py)",
+      "PowerShell(python C:\\\\Users\\\\DESIGNER03\\\\Projetos\\\\projeto-vsc\\\\viashoppingcar-react\\\\public\\\\assets\\\\logos\\\\_convert.py)",
+      "PowerShell(python -c \"from PIL import Image; print\\(Image.__version__\\)\" 2>&1)",
+      "PowerShell(python C:\\\\Users\\\\DESIGNER03\\\\Projetos\\\\projeto-vsc\\\\viashoppingcar-react\\\\public\\\\assets\\\\logos\\\\_fix_jmg.py)",
+      "Bash(curl -sI http://localhost:5173/assets/logos/pulse.png)",
+      "Bash(curl -sI http://localhost:5173/assets/logos/jmg.png)"
+    ]
+  }
+}

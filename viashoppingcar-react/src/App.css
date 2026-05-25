@@ -3578,28 +3578,28 @@
 .store-logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-  color: rgba(13, 16, 20, 0.55);
-  transition: color 240ms ease, transform 240ms ease;
+  justify-content: center;
+  height: clamp(56px, 7vw, 84px);
+  width: clamp(140px, 16vw, 200px);
+  transition: transform 240ms ease, filter 240ms ease, opacity 240ms ease;
+  filter: grayscale(20%);
+  opacity: 0.78;
 }
 
 .store-logo:hover {
-  color: var(--color-primary);
+  filter: grayscale(0%);
+  opacity: 1;
   transform: translateY(-2px);
 }
 
-.store-logo-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.store-logo-name {
-  font-family: 'Sora', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+.store-logo-image {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 @keyframes logo-marquee {

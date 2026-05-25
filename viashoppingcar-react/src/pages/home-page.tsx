@@ -21,7 +21,7 @@ import {
   formatCurrency,
   heroFacts,
   persistNewsletterLead,
-  stores,
+  storeLogos,
   vehicles,
   vehicleTypes,
   type VehicleType,
@@ -543,13 +543,13 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         </div>
         <div className="logo-marquee-track-wrap reveal delay-1">
           <div className="logo-marquee-track">
-            {[...stores, ...stores].map((store, index) => (
+            {[...storeLogos, ...storeLogos].map((logo, index) => (
               <div
-                key={`${store}-${index}`}
+                key={`${logo.name}-${index}`}
                 className="logo-marquee-item"
-                aria-hidden={index >= stores.length}
+                aria-hidden={index >= storeLogos.length}
               >
-                <StoreLogo name={store} />
+                <StoreLogo name={logo.name} image={logo.image} />
               </div>
             ))}
           </div>
@@ -662,34 +662,17 @@ function renderVehicleTypeIcon(type: VehicleType) {
   return <Car size={36} strokeWidth={1.6} />
 }
 
-function StoreLogo({ name }: { name: string }) {
-  const initials = name
-    .split(/\s+/)
-    .map((part) => part[0])
-    .filter(Boolean)
-    .slice(0, 2)
-    .join('')
-    .toUpperCase()
-
+function StoreLogo({ name, image }: { name: string; image: string }) {
   return (
-    <div className="store-logo">
-      <span className="store-logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 48 48" width="44" height="44" focusable="false">
-          <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" strokeWidth="2" />
-          <text
-            x="24"
-            y="29"
-            textAnchor="middle"
-            fontFamily="Sora, sans-serif"
-            fontWeight="700"
-            fontSize="16"
-            fill="currentColor"
-          >
-            {initials}
-          </text>
-        </svg>
-      </span>
-      <span className="store-logo-name">{name}</span>
+    <div className="store-logo" title={name}>
+      <img
+        className="store-logo-image"
+        src={image}
+        alt={name}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+      />
     </div>
   )
 }
