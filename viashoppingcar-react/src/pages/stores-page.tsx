@@ -26,13 +26,37 @@ export function StoresPage() {
                 className="store-catalog-card reveal"
                 style={{ animationDelay: `${index * 60}ms` }}
               >
-                <div className="store-catalog-card-top">
-                  <span className="store-catalog-card-icon" aria-hidden="true">
-                    <Store size={20} />
-                  </span>
-                  <h3>{store.name}</h3>
+                <div className="store-catalog-card-logo">
+                  {store.logo ? (
+                    <img
+                      src={store.logo}
+                      alt={`Logo ${store.name}`}
+                      loading="lazy"
+                      decoding="async"
+                      draggable={false}
+                    />
+                  ) : (
+                    <span className="store-catalog-card-logo-fallback" aria-hidden="true">
+                      <Store size={28} />
+                    </span>
+                  )}
                 </div>
-                <p>{store.tagline}</p>
+                <div className="store-catalog-card-content">
+                  <div className="store-catalog-card-top">
+                    <h3>{store.name}</h3>
+                    {store.city && (
+                      <span className="store-catalog-card-city">{store.city}</span>
+                    )}
+                  </div>
+                  <p>{store.tagline}</p>
+                  {store.specialties && store.specialties.length > 0 && (
+                    <ul className="store-catalog-card-tags">
+                      {store.specialties.slice(0, 3).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
                 <span className="store-catalog-card-cta">
                   Ver veículos da loja <ArrowRight size={16} />
                 </span>

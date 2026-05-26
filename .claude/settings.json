@@ -12,7 +12,8 @@
       "PowerShell(python -c \"from PIL import Image; print\\(Image.__version__\\)\" 2>&1)",
       "PowerShell(python C:\\\\Users\\\\DESIGNER03\\\\Projetos\\\\projeto-vsc\\\\viashoppingcar-react\\\\public\\\\assets\\\\logos\\\\_fix_jmg.py)",
       "Bash(curl -sI http://localhost:5173/assets/logos/pulse.png)",
-      "Bash(curl -sI http://localhost:5173/assets/logos/jmg.png)"
+      "Bash(curl -sI http://localhost:5173/assets/logos/jmg.png)",
+      "Bash(npx tsc *)"
     ]
   }
 }
