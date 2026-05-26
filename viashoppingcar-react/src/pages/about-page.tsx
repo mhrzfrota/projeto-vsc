@@ -14,13 +14,11 @@ import {
   aboutHighlights,
   createWhatsappLink,
   customerTestimonials,
-  facebookLink,
   mapsLink,
   publicVerificationNote,
   shoppingAddress,
   shoppingFeatures,
   shoppingGallery,
-  siteLink,
   wazeLink,
   type ShoppingFeature,
   type Testimonial,
@@ -144,32 +142,6 @@ export function AboutPage() {
                 )}
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="about-brand-section section">
-        <div className="container">
-          <div className="shopping-brand-band reveal">
-            <img src={brandGallery.image} alt={brandGallery.title} loading="lazy" />
-            <div className="shopping-brand-copy">
-              <span className="shopping-brand-tag">{brandGallery.badge}</span>
-              <h3>{brandGallery.title}</h3>
-              <p>{brandGallery.description}</p>
-            </div>
-            <div className="shopping-brand-actions">
-              <a className="btn btn-secondary" href={siteLink} target="_blank" rel="noreferrer">
-                Abrir site oficial
-              </a>
-              <a
-                className="btn btn-outline-light"
-                href={facebookLink}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Ver Facebook
-              </a>
-            </div>
           </div>
         </div>
       </section>
