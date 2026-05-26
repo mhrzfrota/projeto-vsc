@@ -84,6 +84,23 @@ export type StoreCatalogItem = {
   specialties?: string[]
 }
 
+export type Testimonial = {
+  id: string
+  author: string
+  initials: string
+  avatarColor: string
+  rating: number
+  date: string
+  body: string
+  source: 'google'
+}
+
+export type AboutHighlight = {
+  value: string
+  label: string
+  description: string
+}
+
 export type EventNews = {
   id: string
   title: string
@@ -427,6 +444,87 @@ export const services: Service[] = [
       'Shopping automobilístico na Av. Washington Soares, 2100, com estacionamento para clientes e visita mais prática.',
     ctaLabel: 'Ver no mapa',
     href: mapsLink,
+  },
+]
+
+export const aboutHighlights: AboutHighlight[] = [
+  {
+    value: '15+',
+    label: 'Lojas reunidas',
+    description: 'Multimarcas que dividem o mesmo endereço, com mix amplo de seminovos e zero km.',
+  },
+  {
+    value: 'Seg–Sáb',
+    label: 'Atendimento presencial',
+    description: 'Estrutura aberta seis dias por semana, com horários compatíveis para visita antes ou depois do trabalho.',
+  },
+  {
+    value: '1 endereço',
+    label: 'Visita prática',
+    description: 'Compare carros, marcas e preços em poucos minutos sem precisar rodar a cidade inteira.',
+  },
+]
+
+export const customerTestimonials: Testimonial[] = [
+  {
+    id: 'depoimento-1',
+    author: 'Carlos Henrique',
+    initials: 'CH',
+    avatarColor: '#1a73e8',
+    rating: 5,
+    date: 'há 2 semanas',
+    body: 'Atendimento excelente do início ao fim. Consegui comparar vários modelos no mesmo lugar e fechei negócio sem pressa. Recomendo demais o Via Shopping Car.',
+    source: 'google',
+  },
+  {
+    id: 'depoimento-2',
+    author: 'Mariana Lopes',
+    initials: 'ML',
+    avatarColor: '#34a853',
+    rating: 5,
+    date: 'há 1 mês',
+    body: 'Comprei meu SUV em uma das lojas do shopping. Processo de financiamento rápido, transferência sem complicação e equipe muito atenciosa. Voltarei nas próximas trocas.',
+    source: 'google',
+  },
+  {
+    id: 'depoimento-3',
+    author: 'Rafael Sousa',
+    initials: 'RS',
+    avatarColor: '#fbbc04',
+    rating: 4,
+    date: 'há 1 mês',
+    body: 'Gostei muito da estrutura. Várias lojas no mesmo endereço, estacionamento bom e pude negociar bem. Só achei que poderia ter mais sinalização interna.',
+    source: 'google',
+  },
+  {
+    id: 'depoimento-4',
+    author: 'Juliana Albuquerque',
+    initials: 'JA',
+    avatarColor: '#ea4335',
+    rating: 5,
+    date: 'há 2 meses',
+    body: 'Atendimento humanizado, sem aquela pressão típica de loja de carros. Entendi tudo do veículo antes de fechar. Saí com sensação de bom negócio.',
+    source: 'google',
+  },
+  {
+    id: 'depoimento-5',
+    author: 'Pedro Vasconcelos',
+    initials: 'PV',
+    avatarColor: '#9334e6',
+    rating: 5,
+    date: 'há 3 meses',
+    body: 'Excelente shopping de veículos em Fortaleza. Dá pra comparar várias marcas e ver vários modelos em uma única visita. Acabei trocando meu carro no mesmo dia.',
+    source: 'google',
+  },
+  {
+    id: 'depoimento-6',
+    author: 'Aline Ferreira',
+    initials: 'AF',
+    avatarColor: '#0f9d58',
+    rating: 5,
+    date: 'há 4 meses',
+    body: 'Equipe muito profissional. Avaliaram meu usado de forma justa e fizeram a entrega técnica direitinho. Recomendo para quem quer comprar com tranquilidade.',
+    source: 'google',
   },
 ]
 
