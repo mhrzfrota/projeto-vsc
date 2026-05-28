@@ -1,6 +1,12 @@
-import { ArrowRight, Store } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { storesCatalog } from '../site-data'
+import { storesCatalog, type StoreCatalogItem } from '../site-data'
+
+type StoreCatalogItemWithLogo = StoreCatalogItem & { logo: string }
+
+const storesWithLogo = storesCatalog.filter(
+  (store): store is StoreCatalogItemWithLogo => Boolean(store.logo),
+)
 
 export function StoresPage() {
   return (
@@ -19,7 +25,7 @@ export function StoresPage() {
       <section className="stores-catalog section">
         <div className="container">
           <div className="stores-catalog-grid">
-            {storesCatalog.map((store, index) => (
+            {storesWithLogo.map((store, index) => (
               <Link
                 key={store.slug}
                 to={`/lojas/${store.slug}`}
@@ -27,19 +33,13 @@ export function StoresPage() {
                 style={{ animationDelay: `${index * 60}ms` }}
               >
                 <div className="store-catalog-card-logo">
-                  {store.logo ? (
-                    <img
-                      src={store.logo}
-                      alt={`Logo ${store.name}`}
-                      loading="lazy"
-                      decoding="async"
-                      draggable={false}
-                    />
-                  ) : (
-                    <span className="store-catalog-card-logo-fallback" aria-hidden="true">
-                      <Store size={28} />
-                    </span>
-                  )}
+                  <img
+                    src={store.logo}
+                    alt={`Logo ${store.name}`}
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                  />
                 </div>
                 <div className="store-catalog-card-content">
                   <div className="store-catalog-card-top">
