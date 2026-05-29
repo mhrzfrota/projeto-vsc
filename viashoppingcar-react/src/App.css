@@ -4304,7 +4304,7 @@
 /* Logo marquee (lojas parceiras) */
 .logo-marquee {
   background: transparent;
-  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  padding: clamp(1.4rem, 3vw, 2.4rem) 0 clamp(2.5rem, 5vw, 4rem);
   overflow: hidden;
 }
 
