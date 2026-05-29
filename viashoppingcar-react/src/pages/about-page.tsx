@@ -4,6 +4,8 @@ import {
   CarFront,
   ChevronLeft,
   ChevronRight,
+  Clock,
+  Coffee,
   ExternalLink,
   MapPin,
   Phone,
@@ -64,11 +66,14 @@ export function AboutPage() {
           </div>
 
           <ul className="about-intro-highlights reveal delay-1">
-            {aboutHighlights.map((item) => (
+            {aboutHighlights.map((item, index) => (
               <li key={item.label}>
-                <span className="about-intro-highlights-value">{item.value}</span>
-                <strong>{item.label}</strong>
-                <p>{item.description}</p>
+                <span className="about-intro-highlights-icon" aria-hidden="true">
+                  {renderAboutHighlightIcon(index)}
+                </span>
+                <span className="about-intro-highlights-copy">
+                  <strong>{item.label}</strong>
+                </span>
               </li>
             ))}
           </ul>
@@ -176,10 +181,17 @@ export function AboutPage() {
   )
 }
 
+function renderAboutHighlightIcon(index: number) {
+  if (index === 0) return <Store size={22} />
+  if (index === 1) return <Clock size={22} />
+  return <MapPin size={22} />
+}
+
 function renderFeatureIcon(feature: ShoppingFeature) {
   if (feature.kind === 'contact') return <Phone size={20} />
   if (feature.kind === 'location') return <MapPin size={20} />
   if (feature.kind === 'parking') return <CarFront size={20} />
+  if (feature.kind === 'food') return <Coffee size={20} />
   return <Store size={20} />
 }
 

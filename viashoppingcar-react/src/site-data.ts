@@ -40,7 +40,7 @@ export type ShoppingFeature = {
   description: string
   ctaLabel?: string
   href?: string
-  kind: 'contact' | 'location' | 'parking' | 'structure'
+  kind: 'contact' | 'location' | 'parking' | 'structure' | 'food'
 }
 
 export type ShoppingGalleryItem = {
@@ -200,10 +200,10 @@ export const shoppingFeatures: ShoppingFeature[] = [
     href: wazeLink,
   },
   {
-    kind: 'structure',
-    title: 'Prévia pronta para evoluir loja por loja',
+    kind: 'food',
+    title: 'Lanchonete no local',
     description:
-      'A estrutura atual já comporta estoque, contato, lojas e serviços. A próxima etapa é ligar cada lojista ao seu mix real de veículos.',
+      'Café da manhã, almoço e lanches na Av. Washington Soares, 2100. Segunda a sexta, das 07:30 às 18h; sábado até 14h.',
   },
 ]
 
