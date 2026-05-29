@@ -12,7 +12,6 @@ import {
   mapsLink,
   navItems,
   privacyHighlights,
-  siteLink,
   shoppingAddress,
 } from '../site-data'
 
@@ -34,17 +33,19 @@ export function SiteFrame({
   onOpenPolicyModal,
 }: SiteFrameProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isCookieModalOpen, setIsCookieModalOpen] = useState(false)
   const location = useLocation()
   const shouldShowPromoBanner = location.pathname === '/'
   const headerNavItems = navItems.filter((item) => item.href !== '/servicos')
 
   useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen || isPolicyModalOpen ? 'hidden' : ''
+    document.body.style.overflow =
+      isMobileMenuOpen || isPolicyModalOpen || isCookieModalOpen ? 'hidden' : ''
 
     return () => {
       document.body.style.overflow = ''
     }
-  }, [isMobileMenuOpen, isPolicyModalOpen])
+  }, [isCookieModalOpen, isMobileMenuOpen, isPolicyModalOpen])
 
   useEffect(() => {
     setIsMobileMenuOpen(false)
@@ -53,7 +54,18 @@ export function SiteFrame({
 
   function handleOpenPolicyModal() {
     setIsMobileMenuOpen(false)
+    setIsCookieModalOpen(false)
     onOpenPolicyModal()
+  }
+
+  function handleOpenCookieModal() {
+    setIsMobileMenuOpen(false)
+    setIsCookieModalOpen(true)
+  }
+
+  function handleAcceptCookies() {
+    setIsCookieModalOpen(false)
+    onAcceptCookies()
   }
 
   function handleNavClick() {
@@ -189,17 +201,18 @@ export function SiteFrame({
           <div className="footer-col">
             <h3>Navegação</h3>
             {navItems.slice(1).map((item) => renderNavItem(item, 'footer-nav-link'))}
-            <a href={siteLink} target="_blank" rel="noreferrer">
-              Site oficial
-            </a>
-            <button type="button" className="footer-link-button" onClick={handleOpenPolicyModal}>
-              Política de privacidade
-            </button>
           </div>
         </div>
         <div className="container footer-bottom">
           <p>© {new Date().getFullYear()} Via Shopping Car. Todos os direitos reservados.</p>
-          <p>Consentimento de cookies e política de privacidade disponíveis neste site.</p>
+          <div className="footer-legal-actions" aria-label="Políticas do site">
+            <button type="button" className="footer-legal-button" onClick={handleOpenPolicyModal}>
+              Política de privacidade
+            </button>
+            <button type="button" className="footer-legal-button" onClick={handleOpenCookieModal}>
+              Cookies
+            </button>
+          </div>
         </div>
       </footer>
 
@@ -213,7 +226,7 @@ export function SiteFrame({
             <button type="button" className="btn btn-secondary" onClick={handleOpenPolicyModal}>
               Política de privacidade
             </button>
-            <button type="button" className="btn btn-primary" onClick={onAcceptCookies}>
+            <button type="button" className="btn btn-primary" onClick={handleAcceptCookies}>
               Ok, entendi
             </button>
           </div>
@@ -263,11 +276,65 @@ export function SiteFrame({
 
             <div className="policy-modal-footer">
               {!hasCookieConsent && (
-                <button type="button" className="btn btn-primary" onClick={onAcceptCookies}>
+                <button type="button" className="btn btn-primary" onClick={handleAcceptCookies}>
                   Aceitar cookies
                 </button>
               )}
               <button type="button" className="btn btn-secondary" onClick={onClosePolicyModal}>
+                Fechar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isCookieModalOpen && (
+        <div className="policy-modal-shell" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
+          <button
+            type="button"
+            className="policy-modal-backdrop"
+            aria-label="Fechar tela de cookies"
+            onClick={() => setIsCookieModalOpen(false)}
+          />
+          <div className="policy-modal">
+            <div className="policy-modal-header">
+              <div>
+                <p className="eyebrow eyebrow-dark">Cookies</p>
+                <h2 id="cookie-title">Consentimento e uso de cookies</h2>
+              </div>
+              <button
+                type="button"
+                className="policy-close"
+                aria-label="Fechar tela de cookies"
+                onClick={() => setIsCookieModalOpen(false)}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="policy-modal-content">
+              <p>
+                Este site usa cookies locais para lembrar seu consentimento e melhorar a experiência de
+                navegação. Esses cookies ajudam a evitar que o aviso apareça repetidamente depois do aceite.
+              </p>
+              <ul className="policy-list">
+                <li>O consentimento fica salvo apenas neste navegador.</li>
+                <li>Você pode limpar os cookies e dados do site nas configurações do navegador.</li>
+                <li>Ao aceitar, o site registra essa preferência localmente.</li>
+              </ul>
+              <p>
+                Status atual:{' '}
+                <strong>{hasCookieConsent ? 'cookies aceitos' : 'consentimento pendente'}</strong>.
+              </p>
+            </div>
+
+            <div className="policy-modal-footer">
+              {!hasCookieConsent && (
+                <button type="button" className="btn btn-primary" onClick={handleAcceptCookies}>
+                  Aceitar cookies
+                </button>
+              )}
+              <button type="button" className="btn btn-secondary" onClick={() => setIsCookieModalOpen(false)}>
                 Fechar
               </button>
             </div>

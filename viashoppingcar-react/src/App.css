@@ -946,11 +946,13 @@
   }
 }
 
+.search-by,
+.inventory {
+  background: var(--color-surface-soft);
+}
+
 .search-by {
   padding: 4.25rem 0 2rem;
-  background:
-    radial-gradient(circle at top right, rgba(222, 8, 5, 0.06) 0%, rgba(222, 8, 5, 0) 32%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(244, 246, 249, 0.96) 100%);
 }
 
 .search-by-header {
@@ -1103,9 +1105,6 @@
 
 .inventory {
   padding-top: 3rem;
-  background:
-    radial-gradient(circle at top right, rgba(222, 8, 5, 0.06) 0%, rgba(222, 8, 5, 0) 32%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(244, 246, 249, 0.96) 100%);
 }
 
 .section-actions {
@@ -2942,6 +2941,34 @@
   color: rgba(239, 242, 246, 0.75);
 }
 
+.footer-legal-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.footer-legal-button {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(239, 242, 246, 0.78);
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.footer-legal-button:hover {
+  color: #fff;
+}
+
 .reveal {
   animation: riseIn 0.6s ease forwards;
   opacity: 0;
@@ -3402,6 +3429,10 @@
 
   .footer-bottom {
     flex-direction: column;
+  }
+
+  .footer-legal-actions {
+    justify-content: flex-start;
   }
 
   .cookie-banner {
@@ -4090,7 +4121,7 @@
   display: grid;
   grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1.14fr);
   gap: 2rem;
-  align-items: center;
+  align-items: stretch;
 }
 
 .location-copy h2 {
@@ -4144,6 +4175,7 @@
 
 .location-map-card {
   position: relative;
+  height: 100%;
   min-height: 440px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -4153,6 +4185,7 @@
 }
 
 .location-map-card iframe {
+  display: block;
   width: 100%;
   height: 100%;
   min-height: 440px;
@@ -4303,6 +4336,7 @@
 
 .logo-marquee-track {
   display: flex;
+  align-items: center;
   gap: clamp(2rem, 5vw, 4rem);
   width: max-content;
   animation: logo-marquee 32s linear infinite;
@@ -4314,10 +4348,14 @@
 
 .logo-marquee-item {
   flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(56px, 7vw, 84px);
 }
 
 .store-logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   height: clamp(56px, 7vw, 84px);
@@ -4334,11 +4372,11 @@
 }
 
 .store-logo-image {
-  max-height: 100%;
-  max-width: 100%;
-  width: auto;
-  height: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  object-position: center;
   user-select: none;
   -webkit-user-drag: none;
 }
