@@ -33,14 +33,14 @@ export function AboutPage() {
 
   return (
     <main>
-      <section className="page-hero">
+      <section className="page-hero about-page-hero">
         <div className="container page-hero-wrap reveal">
           <p className="eyebrow">Sobre o Via Shopping Car</p>
-          <h1>Conheça o shopping</h1>
+          <h1>O shopping de veículos na Washington Soares</h1>
           <p>
-            O endereço público está em <strong>{shoppingAddress}</strong>. Aqui você confere o
-            espaço, a estrutura e os detalhes que tornam o Via Shopping Car um destino real para
-            quem vai comprar, trocar ou conhecer o mix de lojas.
+            Na <strong>{shoppingAddress}</strong>, o Via Shopping Car reúne lojas multimarcas,
+            atendimento presencial e uma experiência pensada para quem quer comparar opções antes de
+            decidir o próximo carro.
           </p>
         </div>
       </section>
