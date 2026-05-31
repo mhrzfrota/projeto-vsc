@@ -20,23 +20,13 @@ import {
   createWhatsappLink,
   formatCurrency,
   heroFacts,
-  persistNewsletterLead,
   storeLogos,
   vehicles,
   vehicleTypes,
   type VehicleType,
 } from '../site-data'
 
-type Feedback = {
-  kind: 'success' | 'error' | 'info'
-  message: string
-}
-
-type HomePageProps = {
-  onOpenPolicyModal: () => void
-}
-
-export function HomePage({ onOpenPolicyModal }: HomePageProps) {
+export function HomePage() {
   const navigate = useNavigate()
   const [brand, setBrand] = useState('')
   const [model, setModel] = useState('')
@@ -45,10 +35,6 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
   const [searchTab, setSearchTab] = useState<'tipo' | 'marca'>('tipo')
   const [searchBrand, setSearchBrand] = useState('')
   const [searchModel, setSearchModel] = useState('')
-  const [newsletterEmail, setNewsletterEmail] = useState('')
-  const [newsletterConsent, setNewsletterConsent] = useState(false)
-  const [newsletterFeedback, setNewsletterFeedback] = useState<Feedback | null>(null)
-  const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false)
 
   const brands = useMemo(
     () => [...new Set(vehicles.map((vehicle) => vehicle.brand))].sort(),
@@ -127,81 +113,6 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
     navigate(buildInventoryRoute())
   }
 
-  async function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    const email = newsletterEmail.trim().toLowerCase()
-
-    if (!email) {
-      return
-    }
-
-    if (!newsletterConsent) {
-      setNewsletterFeedback({
-        kind: 'error',
-        message: 'Confirme o aceite de privacidade para continuar.',
-      })
-      return
-    }
-
-    setIsNewsletterSubmitting(true)
-
-    const endpoint = import.meta.env.VITE_NEWSLETTER_ENDPOINT?.trim()
-    const payload = {
-      email,
-      acceptedAt: new Date().toISOString(),
-      source: 'site-promocoes',
-    }
-
-    try {
-      if (endpoint) {
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        })
-
-        if (!response.ok) {
-          throw new Error('newsletter submission failed')
-        }
-
-        setNewsletterFeedback({
-          kind: 'success',
-          message: 'Cadastro enviado com sucesso.',
-        })
-      } else {
-        persistNewsletterLead(email)
-
-        const whatsappLink = createWhatsappLink(
-          `Olá! Quero receber promoções do Via Shopping Car. Meu e-mail é ${email}.`,
-        )
-        const popup = window.open(whatsappLink, '_blank', 'noopener,noreferrer')
-
-        if (!popup) {
-          window.location.href = whatsappLink
-        }
-
-        setNewsletterFeedback({
-          kind: 'info',
-          message: 'Abrimos o WhatsApp para concluir seu cadastro com a equipe.',
-        })
-      }
-
-      setNewsletterEmail('')
-      setNewsletterConsent(false)
-    } catch {
-      setNewsletterFeedback({
-        kind: 'error',
-        message:
-          'Não foi possível concluir o cadastro agora. Tente novamente ou fale conosco pelo WhatsApp.',
-      })
-    } finally {
-      setIsNewsletterSubmitting(false)
-    }
-  }
-
   return (
     <main>
       <section className="hero" id="inicio">
@@ -210,14 +121,10 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
           <div className="hero-copy reveal">
             <p className="eyebrow">Via Shopping Car</p>
             <h1>O melhor Shopping de automóveis da cidade</h1>
-            <p>
-              Veículos selecionados, estrutura completa e atendimento direto com a equipe.
-              Explore o estoque, conheça o espaço e agende sua visita.
-            </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="#conheca">
+              <button type="button" className="btn btn-primary" onClick={() => navigate('/sobre')}>
                 Conhecer o shopping <ArrowRight size={16} />
-              </a>
+              </button>
               <a
                 className="btn btn-light"
                 href={createWhatsappLink('Olá! Quero agendar uma visita ao Via Shopping Car.')}
@@ -530,10 +437,6 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
         </div>
       </section>
 
-      <section className="strip-banner">
-        <img src="/assets/strip-cars.jpg" alt="Faixa de veículos do Via Shopping Car" />
-      </section>
-
       <section className="logo-marquee section" aria-label="Lojas parceiras">
         <div className="container">
           <div className="logo-marquee-header reveal">
@@ -554,6 +457,10 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="strip-banner">
+        <img src="/assets/strip-cars.jpg" alt="Faixa de veículos do Via Shopping Car" />
       </section>
 
       <section className="location-section section" id="localizacao" aria-label="Localização">
@@ -590,58 +497,6 @@ export function HomePage({ onOpenPolicyModal }: HomePageProps) {
               <span>Av. Washington Soares, 2100</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="newsletter" id="promocoes">
-        <div className="container newsletter-wrap">
-          <div className="newsletter-copy reveal">
-            <p className="eyebrow">Promoções</p>
-            <h2>Receba oportunidades antes de todo mundo</h2>
-            <p>Cadastre seu e-mail e receba novidades, ofertas e veículos recém-chegados.</p>
-          </div>
-          <form className="newsletter-form reveal delay-1" onSubmit={handleNewsletterSubmit}>
-            <label htmlFor="newsletter-email">Seu melhor e-mail</label>
-            <div className="newsletter-field">
-              <input
-                id="newsletter-email"
-                type="email"
-                value={newsletterEmail}
-                onChange={(event) => {
-                  setNewsletterEmail(event.target.value)
-                  setNewsletterFeedback(null)
-                }}
-                placeholder="Digite aqui seu e-mail"
-                required
-              />
-              <button type="submit" className="btn btn-dark" disabled={isNewsletterSubmitting}>
-                {isNewsletterSubmitting ? 'Enviando...' : 'Quero receber'}
-              </button>
-            </div>
-            <label className="checkbox-row" htmlFor="newsletter-consent">
-              <input
-                id="newsletter-consent"
-                type="checkbox"
-                checked={newsletterConsent}
-                onChange={(event) => {
-                  setNewsletterConsent(event.target.checked)
-                  setNewsletterFeedback(null)
-                }}
-              />
-              <span>
-                Aceito receber ofertas e promoções por e-mail e WhatsApp, conforme a política de
-                privacidade.
-              </span>
-            </label>
-            <button type="button" className="text-link" onClick={onOpenPolicyModal}>
-              Ler política de privacidade
-            </button>
-            {newsletterFeedback && (
-              <p className={`newsletter-feedback newsletter-feedback-${newsletterFeedback.kind}`}>
-                {newsletterFeedback.message}
-              </p>
-            )}
-          </form>
         </div>
       </section>
 

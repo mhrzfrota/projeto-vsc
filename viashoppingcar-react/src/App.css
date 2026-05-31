@@ -152,6 +152,11 @@
   font-size: 0.85rem;
 }
 
+.utility-bar-home {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-ink);
+}
+
 .utility-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -2403,49 +2408,6 @@
   color: var(--color-primary-dark);
 }
 
-.newsletter {
-  padding: 3.7rem 0;
-  color: #fff;
-  background:
-    linear-gradient(110deg, rgba(0, 0, 0, 0.84) 0%, rgba(17, 9, 9, 0.68) 100%),
-    url('/assets/menu-texture.png') center / cover no-repeat,
-    linear-gradient(90deg, #ca0604 0%, #de0805 100%);
-}
-
-.newsletter-wrap {
-  display: grid;
-  grid-template-columns: 1fr minmax(300px, 480px);
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.newsletter-copy h2 {
-  margin: 0;
-  font-family: 'Sora', sans-serif;
-  font-size: clamp(1.7rem, 2.6vw, 2.5rem);
-  letter-spacing: -0.02em;
-}
-
-.newsletter-copy p {
-  margin: 0.95rem 0 0;
-  max-width: 54ch;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.newsletter-form {
-  display: grid;
-  gap: 0.6rem;
-  background: rgba(12, 13, 16, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 1rem;
-}
-
-.newsletter-form label {
-  font-size: 0.86rem;
-  font-weight: 700;
-}
-
 .checkbox-row {
   display: flex;
   align-items: flex-start;
@@ -2455,58 +2417,6 @@
 
 .checkbox-row input {
   margin-top: 0.2rem;
-}
-
-.newsletter-field {
-  display: flex;
-  gap: 0.55rem;
-}
-
-.newsletter-field input {
-  flex: 1;
-  min-width: 0;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  padding: 0.72rem 0.78rem;
-}
-
-.newsletter-field input::placeholder {
-  color: rgba(255, 255, 255, 0.66);
-}
-
-.text-link {
-  width: fit-content;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.88);
-  font-weight: 700;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.text-link:hover {
-  color: #fff;
-}
-
-.newsletter-feedback {
-  margin: 0;
-  font-size: 0.86rem;
-  font-weight: 700;
-}
-
-.newsletter-feedback-success {
-  color: #86efac;
-}
-
-.newsletter-feedback-info {
-  color: #fef08a;
-}
-
-.newsletter-feedback-error {
-  color: #fecaca;
 }
 
 .stores {
@@ -3206,10 +3116,6 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .newsletter-wrap {
-    grid-template-columns: 1fr;
-  }
-
   .footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3383,10 +3289,6 @@
 
   .visit-channel-link {
     white-space: normal;
-  }
-
-  .newsletter-field {
-    flex-direction: column;
   }
 
   .inventory-shell {
@@ -3584,14 +3486,6 @@
 
   .inventory-spotlight-media {
     min-height: 220px;
-  }
-
-  .newsletter {
-    padding: 2.6rem 0;
-  }
-
-  .newsletter-form {
-    padding: 0.85rem;
   }
 
   .footer-grid {

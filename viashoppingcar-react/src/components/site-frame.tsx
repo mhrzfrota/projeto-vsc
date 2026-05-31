@@ -75,7 +75,7 @@ export function SiteFrame({
   return (
     <div className="site-shell">
       <header className="site-header">
-        <div className="utility-bar">
+        <div className={`utility-bar${shouldShowPromoBanner ? ' utility-bar-home' : ''}`}>
           <div className="container utility-wrap">
             <a className="utility-link" href={contactPhoneHref}>
               <Phone size={16} />

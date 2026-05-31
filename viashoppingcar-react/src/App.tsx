@@ -31,10 +31,7 @@ function App() {
       onOpenPolicyModal={() => setIsPolicyModalOpen(true)}
     >
       <Routes>
-        <Route
-          path="/"
-          element={<HomePage onOpenPolicyModal={() => setIsPolicyModalOpen(true)} />}
-        />
+        <Route path="/" element={<HomePage />} />
         <Route path="/sobre" element={<AboutPage />} />
         <Route path="/anuncie-aqui" element={<AdvertisePage />} />
         <Route path="/servicos" element={<ServicesPage />} />

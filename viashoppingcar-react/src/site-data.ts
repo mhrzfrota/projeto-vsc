@@ -114,7 +114,6 @@ export type EventNews = {
 }
 
 export const COOKIE_CONSENT_KEY = 'vsc-cookie-consent'
-export const NEWSLETTER_LEADS_KEY = 'vsc-newsletter-leads'
 
 export const contactPhone = '(85) 3037-3036'
 export const contactPhoneHref = 'tel:+558530373036'
@@ -874,28 +873,4 @@ export function readCookieConsent() {
   }
 
   return window.localStorage.getItem(COOKIE_CONSENT_KEY) === 'accepted'
-}
-
-export function persistNewsletterLead(email: string) {
-  if (typeof window === 'undefined') {
-    return
-  }
-
-  const nextLead = {
-    email,
-    createdAt: new Date().toISOString(),
-  }
-
-  try {
-    const raw = window.localStorage.getItem(NEWSLETTER_LEADS_KEY)
-    const current = raw ? (JSON.parse(raw) as Array<{ email: string; createdAt: string }>) : []
-    const deduped = current.filter((lead) => lead.email.toLowerCase() !== email.toLowerCase())
-
-    window.localStorage.setItem(
-      NEWSLETTER_LEADS_KEY,
-      JSON.stringify([nextLead, ...deduped].slice(0, 50)),
-    )
-  } catch {
-    window.localStorage.setItem(NEWSLETTER_LEADS_KEY, JSON.stringify([nextLead]))
-  }
 }
