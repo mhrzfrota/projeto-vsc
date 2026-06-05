@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Facebook, Instagram, MapPin, Menu, MessageCircle, Phone, X } from 'lucide-react'
+import { Facebook, Instagram, MapPin, Menu, MessageCircle, Phone, PhoneCall, X } from 'lucide-react'
 import {
   businessHoursSummary,
   contactPhone,
@@ -73,7 +73,7 @@ export function SiteFrame({
   }
 
   return (
-    <div className="site-shell">
+    <div className={`site-shell${!hasCookieConsent ? ' has-cookie-banner' : ''}`}>
       <header className="site-header">
         <div className={`utility-bar${shouldShowPromoBanner ? ' utility-bar-home' : ''}`}>
           <div className="container utility-wrap">
@@ -215,6 +215,20 @@ export function SiteFrame({
           </div>
         </div>
       </footer>
+
+      <a
+        className="floating-whatsapp"
+        href={createWhatsappLink('Olá! Quero falar com a equipe do Via Shopping Car.')}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Fale agora com a gente pelo WhatsApp"
+      >
+        <span className="floating-whatsapp-icon" aria-hidden="true">
+          <MessageCircle size={42} strokeWidth={2.25} />
+          <PhoneCall size={17} strokeWidth={3} />
+        </span>
+        <span>Fale agora com a gente!</span>
+      </a>
 
       {!hasCookieConsent && (
         <div className="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
