@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Instagram } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { storesCatalog, type StoreCatalogItem } from '../site-data'
 
@@ -11,14 +11,10 @@ const storesWithLogo = storesCatalog.filter(
 export function StoresPage() {
   return (
     <main>
-      <section className="page-hero">
+      <section className="page-hero stores-page-hero">
         <div className="container page-hero-wrap reveal">
           <p className="eyebrow">Todas as lojas</p>
           <h1>Lojas parceiras do Via Shopping Car</h1>
-          <p>
-            Conheça as operações que fazem parte do mix multimarcas do shopping. Clique em uma loja
-            para ver veículos em destaque e acessar o catálogo completo.
-          </p>
         </div>
       </section>
 
@@ -46,6 +42,12 @@ export function StoresPage() {
                     <h3>{store.name}</h3>
                     {store.city && (
                       <span className="store-catalog-card-city">{store.city}</span>
+                    )}
+                    {store.instagramHandle && (
+                      <span className="store-catalog-card-instagram">
+                        <Instagram size={13} />
+                        {store.instagramHandle}
+                      </span>
                     )}
                   </div>
                   <p>{store.tagline}</p>

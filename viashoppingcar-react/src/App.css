@@ -3733,6 +3733,21 @@
   color: var(--color-muted);
 }
 
+.store-catalog-card-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.store-catalog-card-instagram svg {
+  flex-shrink: 0;
+}
+
 .store-catalog-card p {
   margin: 0;
   color: var(--color-muted);
@@ -4300,6 +4315,51 @@
 .about-page-hero .page-hero-wrap p {
   max-width: 650px;
   font-size: clamp(1rem, 1.4vw, 1.12rem);
+}
+
+.stores-page-hero,
+.contact-page-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(300px, 34vw, 450px);
+  display: grid;
+  align-items: center;
+  color: #fff;
+  border-bottom: 0;
+}
+
+.stores-page-hero {
+  background:
+    linear-gradient(90deg, rgba(6, 8, 14, 0.9) 0%, rgba(18, 8, 8, 0.76) 48%, rgba(18, 8, 8, 0.5) 100%),
+    radial-gradient(circle at 18% 30%, rgba(222, 8, 5, 0.38) 0%, rgba(222, 8, 5, 0) 38%),
+    url('/assets/strip-cars.jpg') center / cover no-repeat;
+}
+
+.contact-page-hero {
+  background:
+    linear-gradient(90deg, rgba(6, 8, 14, 0.92) 0%, rgba(18, 8, 8, 0.76) 46%, rgba(18, 8, 8, 0.4) 100%),
+    radial-gradient(circle at 18% 30%, rgba(222, 8, 5, 0.36) 0%, rgba(222, 8, 5, 0) 38%),
+    url('/assets/hero-bg.jpg') center / cover no-repeat;
+}
+
+.stores-page-hero .page-hero-wrap,
+.contact-page-hero .page-hero-wrap {
+  max-width: 780px;
+}
+
+.stores-page-hero .page-hero-wrap .eyebrow,
+.stores-page-hero .page-hero-wrap p,
+.contact-page-hero .page-hero-wrap .eyebrow,
+.contact-page-hero .page-hero-wrap p {
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 20px rgba(0, 0, 0, 0.34);
+}
+
+.stores-page-hero .page-hero-wrap h1,
+.contact-page-hero .page-hero-wrap h1 {
+  max-width: 16ch;
+  color: #fff;
+  text-shadow: 0 18px 50px rgba(0, 0, 0, 0.42);
 }
 
 .page-hero-wrap {

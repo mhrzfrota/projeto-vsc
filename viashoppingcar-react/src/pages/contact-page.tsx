@@ -14,7 +14,7 @@ import {
 export function ContactPage() {
   return (
     <main>
-      <section className="page-hero">
+      <section className="page-hero contact-page-hero">
         <div className="container page-hero-wrap reveal">
           <p className="eyebrow">Contato e visita</p>
           <h1>Planeje sua visita e fale com a equipe</h1>

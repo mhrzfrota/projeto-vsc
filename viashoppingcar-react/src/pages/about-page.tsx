@@ -18,7 +18,6 @@ import {
   customerTestimonials,
   mapsLink,
   publicVerificationNote,
-  shoppingAddress,
   shoppingFeatures,
   shoppingGallery,
   wazeLink,
@@ -39,11 +38,6 @@ export function AboutPage() {
         <div className="container page-hero-wrap reveal">
           <p className="eyebrow">Sobre o Via Shopping Car</p>
           <h1>O shopping de veículos na Washington Soares</h1>
-          <p>
-            Na <strong>{shoppingAddress}</strong>, o Via Shopping Car reúne lojas multimarcas,
-            atendimento presencial e uma experiência pensada para quem quer comparar opções antes de
-            decidir o próximo carro.
-          </p>
         </div>
       </section>
 

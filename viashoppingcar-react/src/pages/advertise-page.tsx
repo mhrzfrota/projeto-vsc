@@ -87,10 +87,6 @@ export function AdvertisePage() {
         <div className="container advertise-hero-content reveal">
           <p className="eyebrow">Anuncie aqui</p>
           <h1>Venda, troque ou anuncie seu veículo no Via Shopping Car</h1>
-          <p>
-            Sua proposta começa em uma vitrine feita para quem já está procurando carro em
-            Fortaleza.
-          </p>
           <a className="btn btn-primary" href="#anuncie-form">
             Começar solicitação <ArrowRight size={16} />
           </a>

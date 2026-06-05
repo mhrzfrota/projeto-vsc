@@ -76,6 +76,8 @@ export type StoreCatalogItem = {
   tagline: string
   olxUrl: string
   vehicles: StoreVehicleTeaser[]
+  instagramHandle?: string
+  instagramUrl?: string
   logo?: string
   city?: string
   phone?: string
@@ -131,8 +133,8 @@ export const publicVerificationNote =
 
 export const navItems = [
   { label: 'Home', href: '/' },
-  { label: 'Sobre', href: '/sobre' },
   { label: 'Estoque', href: '/estoque' },
+  { label: 'Sobre', href: '/sobre' },
   { label: 'Anuncie aqui', href: '/anuncie-aqui' },
   { label: 'Serviços', href: '/servicos' },
   { label: 'Todas as lojas', href: '/lojas' },
@@ -595,6 +597,10 @@ function placeholderVehicles(): StoreVehicleTeaser[] {
   ]
 }
 
+function createInstagramProfileLink(handle: string) {
+  return `https://www.instagram.com/${handle.replace(/^@/, '')}/`
+}
+
 export const storesCatalog: StoreCatalogItem[] = [
   {
     slug: 'pulse-car',
@@ -607,6 +613,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@pulsecar.of',
+    instagramUrl: createInstagramProfileLink('@pulsecar.of'),
     logo: '/assets/logos/pulse.png',
     vehicles: placeholderVehicles(),
   },
@@ -621,6 +629,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3122-5590',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@jmgveiculos',
+    instagramUrl: createInstagramProfileLink('@jmgveiculos'),
     logo: '/assets/logos/jmg.png',
     vehicles: placeholderVehicles(),
   },
@@ -635,6 +645,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3122-5590',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@lopesveiculos',
+    instagramUrl: createInstagramProfileLink('@lopesveiculos'),
     logo: '/assets/logos/lopes.png',
     vehicles: placeholderVehicles(),
   },
@@ -649,6 +661,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3122-5590',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@lopespremiumcar',
+    instagramUrl: createInstagramProfileLink('@lopespremiumcar'),
     logo: '/assets/logos/lopes-premium.png',
     vehicles: placeholderVehicles(),
   },
@@ -663,6 +677,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@a2e2veiculos',
+    instagramUrl: createInstagramProfileLink('@a2e2veiculos'),
     logo: '/assets/logos/a2e2.png',
     vehicles: placeholderVehicles(),
   },
@@ -677,6 +693,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@aventveiculos',
+    instagramUrl: createInstagramProfileLink('@aventveiculos'),
     logo: '/assets/logos/avent.png',
     vehicles: placeholderVehicles(),
   },
@@ -691,6 +709,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@direcionaveiculos',
+    instagramUrl: createInstagramProfileLink('@direcionaveiculos'),
     logo: '/assets/logos/direciona.png',
     vehicles: placeholderVehicles(),
   },
@@ -705,6 +725,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@goldcarveiculos',
+    instagramUrl: createInstagramProfileLink('@goldcarveiculos'),
     logo: '/assets/logos/gold-car.png',
     vehicles: placeholderVehicles(),
   },
@@ -719,6 +741,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@idroovecar.fortaleza',
+    instagramUrl: createInstagramProfileLink('@idroovecar.fortaleza'),
     logo: '/assets/logos/idrive.png',
     vehicles: placeholderVehicles(),
   },
@@ -733,6 +757,8 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    instagramHandle: '@qualitycar.premium',
+    instagramUrl: createInstagramProfileLink('@qualitycar.premium'),
     logo: '/assets/logos/qaulity.png',
     vehicles: placeholderVehicles(),
   },

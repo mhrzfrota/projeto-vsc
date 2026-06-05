@@ -3,6 +3,7 @@ import {
   ArrowRight,
   Clock,
   ExternalLink,
+  Instagram,
   MapPin,
   Phone,
   Store,
@@ -35,6 +36,8 @@ export function StoreDetailPage() {
 
   const olxHref = store.olxUrl?.trim() ? store.olxUrl : '#'
   const hasOlx = Boolean(store.olxUrl?.trim())
+  const instagramHref = store.instagramUrl?.trim() ? store.instagramUrl : '#'
+  const hasInstagram = Boolean(store.instagramUrl?.trim())
 
   return (
     <main>
@@ -142,6 +145,16 @@ export function StoreDetailPage() {
               >
                 WhatsApp da loja
               </a>
+              {hasInstagram && (
+                <a
+                  className="btn btn-secondary"
+                  href={instagramHref}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Instagram size={16} /> Instagram da loja
+                </a>
+              )}
             </div>
           </div>
         </div>
