@@ -2399,6 +2399,8 @@
 }
 
 .visit-card {
+  display: flex;
+  flex-direction: column;
   padding: 1.25rem;
   border: 1px solid var(--color-border);
   border-radius: 24px;
@@ -2406,13 +2408,57 @@
   box-shadow: 0 18px 50px -42px rgba(13, 16, 20, 0.48);
 }
 
+.visit-plan-card {
+  gap: 1rem;
+  padding: 1.35rem;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(222, 8, 5, 0.1) 0%, rgba(222, 8, 5, 0) 34%),
+    linear-gradient(180deg, #fff 0%, #f8f9fb 100%);
+}
+
+.visit-card-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.visit-card-heading .eyebrow {
+  margin-bottom: 0.55rem;
+}
+
+.visit-card-heading-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 18px;
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 18px 32px -22px rgba(222, 8, 5, 0.85);
+}
+
 .visit-summary {
   margin-top: 0.9rem;
 }
 
+.visit-plan-summary {
+  margin: 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(222, 8, 5, 0.12);
+  border-radius: 16px;
+  background: rgba(222, 8, 5, 0.06);
+  color: #414752;
+}
+
 .visit-hours {
-  margin-top: 1.25rem;
+  margin-top: 0.1rem;
   display: grid;
+  overflow: hidden;
+  border: 1px solid rgba(13, 16, 20, 0.08);
+  border-radius: 18px;
+  background: #fff;
 }
 
 .visit-hour-row {
@@ -2420,12 +2466,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.9rem 0;
+  padding: 0.78rem 0.95rem;
   border-bottom: 1px solid rgba(13, 16, 20, 0.08);
 }
 
 .visit-hour-row:last-child {
-  padding-bottom: 0;
   border-bottom: 0;
 }
 
@@ -2437,6 +2482,12 @@
 .visit-hour-row strong {
   font-family: 'Sora', sans-serif;
   color: #1f2531;
+  font-size: 0.92rem;
+}
+
+.visit-plan-card .btn {
+  margin-top: auto;
+  width: 100%;
 }
 
 .visit-channel-list {

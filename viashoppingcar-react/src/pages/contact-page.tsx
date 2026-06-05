@@ -1,4 +1,4 @@
-import { Facebook, Globe, Instagram, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { Clock, Facebook, Globe, Instagram, MapPin, MessageCircle, Phone } from 'lucide-react'
 import {
   businessHours,
   businessHoursSummary,
@@ -39,10 +39,17 @@ export function ContactPage() {
 
       <section className="visit section">
         <div className="container visit-grid">
-          <article className="visit-card reveal">
-            <p className="eyebrow eyebrow-dark">Planeje a visita</p>
-            <h2>Horários e localização</h2>
-            <p className="visit-summary">
+          <article className="visit-card visit-plan-card reveal">
+            <div className="visit-card-heading">
+              <span className="visit-card-heading-icon" aria-hidden="true">
+                <Clock size={22} />
+              </span>
+              <div>
+                <p className="eyebrow eyebrow-dark">Planeje a visita</p>
+                <h2>Horários e localização</h2>
+              </div>
+            </div>
+            <p className="visit-summary visit-plan-summary">
               {businessHoursSummary} Estacionamento disponível para clientes no local.
             </p>
             <div className="visit-hours">
