@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Facebook, Instagram, MapPin, Menu, MessageCircle, Phone, PhoneCall, X } from 'lucide-react'
+import { MapPin, Menu, MessageCircle, Phone, PhoneCall, X } from 'lucide-react'
 import {
   businessHoursSummary,
   contactPhone,
   contactPhoneHref,
   createWhatsappLink,
-  facebookLink,
-  instagramLink,
   mapsLink,
   navItems,
   privacyHighlights,
@@ -75,32 +73,6 @@ export function SiteFrame({
   return (
     <div className={`site-shell${!hasCookieConsent ? ' has-cookie-banner' : ''}`}>
       <header className="site-header">
-        <div className={`utility-bar${shouldShowPromoBanner ? ' utility-bar-home' : ''}`}>
-          <div className="container utility-wrap">
-            <a className="utility-link" href={contactPhoneHref}>
-              <Phone size={16} />
-              <span>{contactPhone}</span>
-            </a>
-            <a
-              className="utility-link"
-              href={createWhatsappLink()}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MessageCircle size={16} />
-              <span>Atendimento via WhatsApp</span>
-            </a>
-            <div className="utility-social">
-              <a href={facebookLink} target="_blank" rel="noreferrer" aria-label="Facebook">
-                <Facebook size={16} />
-              </a>
-              <a href={instagramLink} target="_blank" rel="noreferrer" aria-label="Instagram">
-                <Instagram size={16} />
-              </a>
-            </div>
-          </div>
-        </div>
-
         <div className="container nav-wrap">
           <Link className="brand" to="/" onClick={handleNavClick}>
             <img src="/assets/logo-header.png" alt="Via Shopping Car" />
