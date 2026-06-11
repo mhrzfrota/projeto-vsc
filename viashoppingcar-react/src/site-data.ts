@@ -146,9 +146,9 @@ export const navItems = [
   { label: 'Home', href: '/' },
   { label: 'Estoque', href: '/estoque' },
   { label: 'Sobre', href: '/sobre' },
-  { label: 'Anuncie aqui', href: '/anuncie-aqui' },
-  { label: 'Serviços', href: '/servicos' },
   { label: 'Todas as lojas', href: '/lojas' },
+  { label: 'Serviços', href: '/servicos' },
+  { label: 'Anuncie aqui', href: '/anuncie-aqui' },
   { label: 'Contato', href: '/contato' },
 ]
 

@@ -137,7 +137,7 @@ export function SiteFrame({
           rel="noreferrer"
           aria-label="Abrir WhatsApp pelo banner de ofertas do Via Shopping Car"
         >
-          <img src="/assets/banner3-wide.png" alt="Via Shopping Car" />
+          <img src="/assets/banner7.png" alt="Via Shopping Car" />
         </a>
       )}
 

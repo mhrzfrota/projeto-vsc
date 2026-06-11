@@ -196,15 +196,15 @@
   place-items: center;
   overflow: hidden;
   background: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .promo-banner img {
   width: 100%;
   max-width: none;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
+  display: block;
 }
 
 .site-header {
@@ -369,7 +369,7 @@
   background:
     linear-gradient(120deg, rgba(7, 8, 14, 0.88) 0%, rgba(22, 7, 7, 0.73) 42%, rgba(16, 14, 20, 0.66) 100%),
     url('/assets/hero-bg.jpg') center / cover no-repeat;
-  min-height: min(850px, 100vh - 120px);
+  min-height: min(650px, 100vh - 80px);
   display: flex;
   align-items: center;
 }
