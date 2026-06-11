@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   ArrowRight,
@@ -69,23 +68,6 @@ export function HomePage() {
     [],
   )
 
-  const models = useMemo(
-    () =>
-      [
-        ...new Set(
-          vehicles
-            .filter((vehicle) => !brand || vehicle.brand === brand)
-            .map((vehicle) => vehicle.model),
-        ),
-      ],
-    [brand],
-  )
-
-  const years = useMemo(
-    () => [...new Set(vehicles.map((vehicle) => vehicle.year))].sort((a, b) => b - a),
-    [],
-  )
-
   const filteredVehicles = useMemo(
     () =>
       vehicles.filter((vehicle) => {
@@ -99,7 +81,6 @@ export function HomePage() {
     [brand, model, yearFrom, yearTo],
   )
 
-  const hasActiveFilters = Boolean(brand || model || yearFrom || yearTo)
   const inventoryCountLabel =
     filteredVehicles.length === 1
       ? '1 destaque encontrado'
@@ -136,11 +117,6 @@ export function HomePage() {
     return query ? `/estoque?${query}` : '/estoque'
   }
 
-  function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    navigate(buildInventoryRoute())
-  }
-
   return (
     <main>
       <section className="hero" id="inicio">
@@ -171,77 +147,6 @@ export function HomePage() {
               ))}
             </div>
           </div>
-
-          <form className="search-card reveal delay-1" onSubmit={handleSearchSubmit}>
-            <h2>
-              <Search size={18} />
-              Encontre seu veículo
-            </h2>
-            <p>Filtre por marca, modelo e ano e abra o showroom completo desta prévia funcional.</p>
-            <p className="search-note">
-              Depois do filtro, o cliente já pode seguir para estoque, WhatsApp e visita presencial.
-            </p>
-
-            <div className="form-grid">
-              <label>
-                Marca
-                <select
-                  value={brand}
-                  onChange={(event) => {
-                    setBrand(event.target.value)
-                    setModel('')
-                  }}
-                >
-                  <option value="">Todas</option>
-                  {brands.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>
-                Modelo
-                <select value={model} onChange={(event) => setModel(event.target.value)}>
-                  <option value="">Todos</option>
-                  {models.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>
-                Ano de
-                <select value={yearFrom} onChange={(event) => setYearFrom(event.target.value)}>
-                  <option value="">Qualquer</option>
-                  {years.map((item) => (
-                    <option key={`de-${item}`} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>
-                Até
-                <select value={yearTo} onChange={(event) => setYearTo(event.target.value)}>
-                  <option value="">Qualquer</option>
-                  {years.map((item) => (
-                    <option key={`ate-${item}`} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-
-            <button type="submit" className="btn btn-primary full-width">
-              {hasActiveFilters ? `Abrir ${inventoryCountLabel}` : 'Abrir showroom'}
-            </button>
-          </form>
         </div>
       </section>
 
