@@ -2412,13 +2412,36 @@
   background: #fff;
 }
 
+@media (max-width: 960px) {
+  .insta-stories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 720px) {
   .insta-stories-grid {
     grid-template-columns: 1fr;
   }
 
   .insta-story-card {
-    max-width: 260px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .insta-story-card {
+    max-width: 100%;
+    border-radius: 28px;
+    padding: 4px;
+  }
+
+  .insta-story-screen {
+    border-radius: 22px;
+    max-height: 460px;
+  }
+
+  .insta-stories-grid {
+    gap: 0.75rem;
   }
 }
 
