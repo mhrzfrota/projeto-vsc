@@ -2300,84 +2300,116 @@
 .insta-story-card {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 12px 36px -24px rgba(13, 16, 20, 0.45);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-  cursor: pointer;
   text-decoration: none;
-  color: var(--color-ink);
+  width: 100%;
+  max-width: 285px;
+  margin: 0 auto;
+  padding: 6px;
+  border-radius: 38px;
+  background: #fff;
+  border: 1px solid #e2e4e8;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.12), 0 20px 45px -15px rgba(0,0,0,0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
 .insta-story-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(222, 8, 5, 0.25);
-  box-shadow: 0 18px 48px -28px rgba(222, 8, 5, 0.45);
+  box-shadow: 0 35px 70px -15px rgba(0,0,0,0.22), 0 15px 35px -10px rgba(239,68,68,0.12);
 }
 
-.insta-story-media {
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
-  background: #f4f5f8;
+.insta-story-screen {
   position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 30px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1b1a1e 0%, #080709 100%);
 }
 
-.insta-story-media img {
+.insta-story-screen img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 500ms ease;
-  display: block;
+  z-index: 0;
 }
 
-.insta-story-card:hover .insta-story-media img {
-  transform: scale(1.05);
-}
-
-.insta-story-overlay {
+.insta-story-gradient {
   position: absolute;
   inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.7) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.insta-story-header {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  right: 16px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+
+.insta-story-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #de0805;
+  border: 2px solid rgba(255,255,255,0.2);
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  background: rgba(0, 0, 0, 0.4);
   color: #fff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  opacity: 0;
-  transition: opacity 280ms ease;
+  font-size: 10px;
+  font-weight: 900;
+  flex-shrink: 0;
 }
 
-.insta-story-card:hover .insta-story-overlay {
-  opacity: 1;
-}
-
-.insta-story-foot {
-  padding: 0.6rem 0.75rem;
-}
-
-.insta-story-stats {
+.insta-story-user {
   display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-size: 0.8rem;
-  color: var(--color-muted);
+  flex-direction: column;
+  gap: 0;
 }
 
-.insta-story-stats svg {
-  display: inline-block;
-  vertical-align: middle;
+.insta-story-name {
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
 }
 
-.insta-story-date {
-  margin-left: auto;
-  font-size: 0.75rem;
-  color: var(--color-muted);
-  opacity: 0.8;
+.insta-story-label {
+  font-size: 7px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.2;
+}
+
+.insta-story-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.insta-story-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
+.insta-story-dot.is-active {
+  width: 10px;
+  height: 4px;
+  border-radius: 2px;
+  background: #fff;
 }
 
 @media (max-width: 720px) {
@@ -2385,8 +2417,8 @@
     grid-template-columns: 1fr;
   }
 
-  .insta-story-media {
-    max-height: 400px;
+  .insta-story-card {
+    max-width: 260px;
   }
 }
 

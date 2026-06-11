@@ -9,7 +9,6 @@ import {
   Clock,
   Fuel,
   Gauge,
-  Instagram,
   MapPin,
   MessageCircle,
   Search,
@@ -464,7 +463,7 @@ export function HomePage() {
         <div className="container">
           <div className="section-header reveal">
             <p className="eyebrow eyebrow-dark">Instagram</p>
-            <h2>Acompanhe as novidades</h2>
+            <h2>Acompanhe as redes sociais</h2>
           </div>
           <div className="insta-stories-grid reveal delay-1">
             <a
@@ -473,28 +472,22 @@ export function HomePage() {
               rel="noreferrer"
               className="insta-story-card"
             >
-              <div className="insta-story-media">
-                <img src="/assets/insta1.png" alt="Post do Instagram 1" loading="lazy" />
-                <div className="insta-story-overlay">
-                  <Instagram size={20} />
-                  <span>Ver no Instagram</span>
+              <div className="insta-story-screen">
+                <div className="insta-story-header">
+                  <div className="insta-story-avatar">
+                    <span>V</span>
+                  </div>
+                  <div className="insta-story-user">
+                    <span className="insta-story-name">viashoppingcar</span>
+                    <span className="insta-story-label">Patrocinado</span>
+                  </div>
                 </div>
-              </div>
-              <div className="insta-story-foot">
-                <div className="insta-story-stats">
-                  <span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                    28
-                  </span>
-                  <span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    3
-                  </span>
-                  <span className="insta-story-date">2 dias</span>
+                <img src="/assets/insta1.png" alt="Post do Instagram 1" loading="lazy" />
+                <div className="insta-story-gradient" />
+                <div className="insta-story-dots">
+                  <span className="insta-story-dot is-active" />
+                  <span className="insta-story-dot" />
+                  <span className="insta-story-dot" />
                 </div>
               </div>
             </a>
@@ -504,28 +497,22 @@ export function HomePage() {
               rel="noreferrer"
               className="insta-story-card"
             >
-              <div className="insta-story-media">
-                <img src="/assets/insta2.png" alt="Post do Instagram 2" loading="lazy" />
-                <div className="insta-story-overlay">
-                  <Instagram size={20} />
-                  <span>Ver no Instagram</span>
+              <div className="insta-story-screen">
+                <div className="insta-story-header">
+                  <div className="insta-story-avatar">
+                    <span>V</span>
+                  </div>
+                  <div className="insta-story-user">
+                    <span className="insta-story-name">viashoppingcar</span>
+                    <span className="insta-story-label">Patrocinado</span>
+                  </div>
                 </div>
-              </div>
-              <div className="insta-story-foot">
-                <div className="insta-story-stats">
-                  <span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                    42
-                  </span>
-                  <span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    7
-                  </span>
-                  <span className="insta-story-date">5 dias</span>
+                <img src="/assets/insta2.png" alt="Post do Instagram 2" loading="lazy" />
+                <div className="insta-story-gradient" />
+                <div className="insta-story-dots">
+                  <span className="insta-story-dot" />
+                  <span className="insta-story-dot is-active" />
+                  <span className="insta-story-dot" />
                 </div>
               </div>
             </a>
@@ -535,28 +522,22 @@ export function HomePage() {
               rel="noreferrer"
               className="insta-story-card"
             >
-              <div className="insta-story-media">
-                <img src="/assets/insta3.png" alt="Post do Instagram 3" loading="lazy" />
-                <div className="insta-story-overlay">
-                  <Instagram size={20} />
-                  <span>Ver no Instagram</span>
+              <div className="insta-story-screen">
+                <div className="insta-story-header">
+                  <div className="insta-story-avatar">
+                    <span>V</span>
+                  </div>
+                  <div className="insta-story-user">
+                    <span className="insta-story-name">viashoppingcar</span>
+                    <span className="insta-story-label">Patrocinado</span>
+                  </div>
                 </div>
-              </div>
-              <div className="insta-story-foot">
-                <div className="insta-story-stats">
-                  <span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                    156
-                  </span>
-                  <span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    12
-                  </span>
-                  <span className="insta-story-date">1 semana</span>
+                <img src="/assets/insta3.png" alt="Post do Instagram 3" loading="lazy" />
+                <div className="insta-story-gradient" />
+                <div className="insta-story-dots">
+                  <span className="insta-story-dot" />
+                  <span className="insta-story-dot" />
+                  <span className="insta-story-dot is-active" />
                 </div>
               </div>
             </a>
