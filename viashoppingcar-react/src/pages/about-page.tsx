@@ -102,8 +102,8 @@ const featuredGallery = {
               <span className="shopping-showcase-badge">{featuredGallery.badge}</span>
             </div>
             <div className="shopping-showcase-body">
-              <h3>{featuredGallery.title}</h3>
-              <p>{featuredGallery.description}</p>
+              <h3>Chegue fácil ao<br/>Via Shopping Car</h3>
+              <p>faca com que fique assim na secao, assim o titulo melhor de entender</p>
               <div className="shopping-showcase-actions">
                 <a className="btn btn-secondary" href={mapsLink} target="_blank" rel="noreferrer">
                   Abrir no Google Maps

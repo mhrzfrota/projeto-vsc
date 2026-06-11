@@ -85,6 +85,7 @@ export type StoreCatalogItem = {
   tagline: string
   olxUrl: string
   vehicles: StoreVehicleTeaser[]
+  contactLink: string
   instagramHandle?: string
   instagramUrl?: string
   logo?: string
@@ -673,6 +674,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://wa.me/5585999485005?text=Quero%2520saber%2520mais%2520informa%25C3%25B5es%2520sobre%2520o%2520carro%2520%255Bescreva%2520o%2520seu%2520carro%255D',
     instagramHandle: '@pulsecar.of',
     instagramUrl: createInstagramProfileLink('@pulsecar.of'),
     logo: '/assets/logos/pulse.png',
@@ -715,6 +717,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3122-5590',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://tr.ee/mXAf2v8gWj',
     instagramHandle: '@jmgveiculos',
     instagramUrl: createInstagramProfileLink('@jmgveiculos'),
     logo: '/assets/logos/jmg.png',
@@ -731,6 +734,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3122-5590',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://bio.site/lopesveiculos',
     instagramHandle: '@lopesveiculos',
     instagramUrl: createInstagramProfileLink('@lopesveiculos'),
     logo: '/assets/logos/lopes.png',
@@ -747,6 +751,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3122-5590',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://lopespremiumcar.my.canva.site',
     instagramHandle: '@lopespremiumcar',
     instagramUrl: createInstagramProfileLink('@lopespremiumcar'),
     logo: '/assets/logos/lopes-premium.png',
@@ -763,6 +768,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://wa.link/khr3y6',
     instagramHandle: '@a2e2veiculos',
     instagramUrl: createInstagramProfileLink('@a2e2veiculos'),
     logo: '/assets/logos/a2e2.png',
@@ -779,6 +785,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://wa.me/558587646839?text=Ol%C3%A1!',
     instagramHandle: '@aventveiculos',
     instagramUrl: createInstagramProfileLink('@aventveiculos'),
     logo: '/assets/logos/avent.png',
@@ -795,6 +802,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://wa.link/jwcewi',
     instagramHandle: '@direcionaveiculos',
     instagramUrl: createInstagramProfileLink('@direcionaveiculos'),
     logo: '/assets/logos/direciona.png',
@@ -811,6 +819,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://api.whatsapp.com/send?phone=5585987122180',
     instagramHandle: '@goldcarveiculos',
     instagramUrl: createInstagramProfileLink('@goldcarveiculos'),
     logo: '/assets/logos/gold-car.png',
@@ -827,6 +836,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://shre.ink/FaleConoscoFortal',
     instagramHandle: '@idroovecar.fortaleza',
     instagramUrl: createInstagramProfileLink('@idroovecar.fortaleza'),
     logo: '/assets/logos/idrive.png',
@@ -843,6 +853,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://wa.me/558591659667',
     instagramHandle: '@qualitycar.premium',
     instagramUrl: createInstagramProfileLink('@qualitycar.premium'),
     logo: '/assets/logos/qaulity.png',
@@ -859,6 +870,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3038-0550',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://api.whatsapp.com/send?phone=558530380550&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Via%20Shopping%20Car%20e%20quero%20saber%20mais%20sobre%20os%20ve%C3%ADculos%20da%20Ares%20Autom%C3%B3veis.',
     vehicles: placeholderVehicles(),
   },
   {
@@ -872,6 +884,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3038-0550',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://api.whatsapp.com/send?phone=558530380550&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Via%20Shopping%20Car%20e%20quero%20saber%20mais%20sobre%20os%20ve%C3%ADculos%20da%20Fort%20Car.',
     vehicles: placeholderVehicles(),
   },
   {
@@ -885,6 +898,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://api.whatsapp.com/send?phone=558530373036&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Via%20Shopping%20Car%20e%20quero%20saber%20mais%20sobre%20os%20ve%C3%ADculos%20da%20Master%20Motors.',
     vehicles: placeholderVehicles(),
   },
   {
@@ -898,6 +912,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://api.whatsapp.com/send?phone=558530373036&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Via%20Shopping%20Car%20e%20quero%20saber%20mais%20sobre%20os%20ve%C3%ADculos%20da%20Prime%20Auto.',
     vehicles: placeholderVehicles(),
   },
   {
@@ -911,6 +926,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 99833-1260',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://api.whatsapp.com/send?phone=5585998331260&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Via%20Shopping%20Car%20e%20quero%20saber%20mais%20sobre%20os%20ve%C3%ADculos%20da%20Top%20Premium.',
     vehicles: placeholderVehicles(),
   },
   {
@@ -924,6 +940,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://api.whatsapp.com/send?phone=558530373036&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Via%20Shopping%20Car%20e%20quero%20saber%20mais%20sobre%20os%20ve%C3%ADculos%20da%20Fast%20Seminovos.',
     vehicles: placeholderVehicles(),
   },
   {
@@ -937,6 +954,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
+    contactLink: 'https://api.whatsapp.com/send?phone=558530373036&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Via%20Shopping%20Car%20e%20quero%20saber%20mais%20sobre%20os%20ve%C3%ADculos%20da%20Drive%20Center.',
     vehicles: placeholderVehicles(),
   },
 ]

@@ -9,7 +9,7 @@ import {
   Store,
 } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
-import { createStoreWhatsappLink, storesCatalog } from '../site-data'
+import { storesCatalog } from '../site-data'
 
 export function StoreDetailPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -179,10 +179,7 @@ export function StoreDetailPage() {
               </a>
               <a
                 className="btn btn-light"
-                href={createStoreWhatsappLink(
-                  store.name,
-                  `Olá ${store.name}! Vim pelo site do Via Shopping Car e quero ver os veículos disponíveis.`,
-                )}
+                href={store.contactLink}
                 target="_blank"
                 rel="noreferrer"
               >

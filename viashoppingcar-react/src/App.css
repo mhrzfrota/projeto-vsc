@@ -3689,6 +3689,18 @@
   box-shadow: 0 28px 64px -40px rgba(222, 8, 5, 0.42);
 }
 
+.store-catalog-card-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.store-catalog-card-inner:hover {
+  color: var(--color-ink);
+}
+
 .store-catalog-card-logo {
   position: relative;
   display: flex;
@@ -3843,10 +3855,39 @@
   font-size: 0.8rem;
   color: var(--color-primary);
   transition: gap 220ms ease;
+  margin-top: auto;
 }
 
 .store-catalog-card:hover .store-catalog-card-cta {
   gap: 0.45rem;
+}
+
+.store-catalog-card-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.65rem 0.95rem;
+  border: none;
+  border-top: 1px solid var(--color-border);
+  background: #25d366;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 220ms ease, gap 220ms ease;
+}
+
+.store-catalog-card-whatsapp:hover {
+  background: #1da954;
+  gap: 0.55rem;
+}
+
+.store-catalog-card-whatsapp svg {
+  flex-shrink: 0;
 }
 
 /* Store detail */
