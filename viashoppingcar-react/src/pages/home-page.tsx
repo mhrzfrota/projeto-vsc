@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -6,6 +6,8 @@ import {
   CalendarDays,
   Car,
   CarFront,
+  ChevronLeft,
+  ChevronRight,
   Clock,
   Fuel,
   Gauge,
@@ -35,6 +37,32 @@ export function HomePage() {
   const [searchTab, setSearchTab] = useState<'tipo' | 'marca'>('tipo')
   const [searchBrand, setSearchBrand] = useState('')
   const [searchModel, setSearchModel] = useState('')
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const updateScrollState = useCallback(() => {
+    const el = carouselRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 4)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4)
+  }, [])
+
+  useEffect(() => {
+    const el = carouselRef.current
+    if (!el) return
+    updateScrollState()
+    el.addEventListener('scroll', updateScrollState)
+    return () => el.removeEventListener('scroll', updateScrollState)
+  }, [updateScrollState])
+
+  const scrollCarousel = useCallback((direction: 'left' | 'right') => {
+    const el = carouselRef.current
+    if (!el) return
+    const card = el.querySelector<HTMLElement>('.vehicle-card')
+    const step = card ? card.offsetWidth + parseFloat(getComputedStyle(el).gap) : 320
+    el.scrollBy({ left: direction === 'left' ? -step : step, behavior: 'smooth' })
+  }, [])
 
   const brands = useMemo(
     () => [...new Set(vehicles.map((vehicle) => vehicle.brand))].sort(),
@@ -345,77 +373,99 @@ export function HomePage() {
           </div>
 
           {filteredVehicles.length > 0 ? (
-            <div className="inventory-grid">
-              {filteredVehicles.map((vehicle, index) => (
-                <article
-                  key={vehicle.id}
-                  className="vehicle-card reveal"
-                  style={{ animationDelay: `${index * 80}ms` }}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => navigate(buildInventoryRoute(vehicle.id))}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                      event.preventDefault()
-                      navigate(buildInventoryRoute(vehicle.id))
-                    }
-                  }}
-                >
-                  <div className="vehicle-media">
-                    <img src={vehicle.image} alt={`${vehicle.brand} ${vehicle.model}`} loading="lazy" />
-                    <span className="vehicle-tag">{vehicle.tag}</span>
-                  </div>
-                  <div className="vehicle-body">
-                    <h3>
-                      {vehicle.brand} {vehicle.model}
-                    </h3>
-                    <p className="vehicle-subtitle">{vehicle.subtitle}</p>
-                    <p className="vehicle-price">{formatCurrency(vehicle.price)}</p>
-                    <ul className="vehicle-specs">
-                      <li>
-                        <CalendarDays size={16} />
-                        {vehicle.year}
-                      </li>
-                      <li>
-                        <Gauge size={16} />
-                        {vehicle.km.toLocaleString('pt-BR')} km
-                      </li>
-                      <li>
-                        <Fuel size={16} />
-                        {vehicle.fuel}
-                      </li>
-                      <li>
-                        <CarFront size={16} />
-                        {vehicle.transmission}
-                      </li>
-                    </ul>
-                    <div className="vehicle-actions">
-                      <button
-                        type="button"
-                        className="vehicle-link vehicle-link-button"
-                        onClick={(event) => {
-                          event.stopPropagation()
-                          navigate(buildInventoryRoute(vehicle.id))
-                        }}
-                      >
-                        Ver showroom <ArrowRight size={16} />
-                      </button>
-                      <a
-                        className="vehicle-link vehicle-link-primary"
-                        href={createStoreWhatsappLink(
-                          vehicle.store,
-                          `Olá ${vehicle.store}! Tenho interesse no ${vehicle.brand} ${vehicle.model} ${vehicle.year} do Via Shopping Car.`,
-                        )}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(event) => event.stopPropagation()}
-                      >
-                        Estou interessado
-                      </a>
+            <div className="inventory-carousel-wrap">
+              <div className="inventory-grid" ref={carouselRef}>
+                {filteredVehicles.map((vehicle, index) => (
+                  <article
+                    key={vehicle.id}
+                    className="vehicle-card reveal"
+                    style={{ animationDelay: `${index * 80}ms` }}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => navigate(buildInventoryRoute(vehicle.id))}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        navigate(buildInventoryRoute(vehicle.id))
+                      }
+                    }}
+                  >
+                    <div className="vehicle-media">
+                      <img src={vehicle.image} alt={`${vehicle.brand} ${vehicle.model}`} loading="lazy" />
+                      <span className="vehicle-tag">{vehicle.tag}</span>
                     </div>
-                  </div>
-                </article>
-              ))}
+                    <div className="vehicle-body">
+                      <h3>
+                        {vehicle.brand} {vehicle.model}
+                      </h3>
+                      <p className="vehicle-subtitle">{vehicle.subtitle}</p>
+                      <p className="vehicle-price">{formatCurrency(vehicle.price)}</p>
+                      <ul className="vehicle-specs">
+                        <li>
+                          <CalendarDays size={16} />
+                          {vehicle.year}
+                        </li>
+                        <li>
+                          <Gauge size={16} />
+                          {vehicle.km.toLocaleString('pt-BR')} km
+                        </li>
+                        <li>
+                          <Fuel size={16} />
+                          {vehicle.fuel}
+                        </li>
+                        <li>
+                          <CarFront size={16} />
+                          {vehicle.transmission}
+                        </li>
+                      </ul>
+                      <div className="vehicle-actions">
+                        <button
+                          type="button"
+                          className="vehicle-link vehicle-link-button"
+                          onClick={(event) => {
+                            event.stopPropagation()
+                            navigate(buildInventoryRoute(vehicle.id))
+                          }}
+                        >
+                          Ver showroom <ArrowRight size={16} />
+                        </button>
+                        <a
+                          className="vehicle-link vehicle-link-primary"
+                          href={createStoreWhatsappLink(
+                            vehicle.store,
+                            `Olá ${vehicle.store}! Tenho interesse no ${vehicle.brand} ${vehicle.model} ${vehicle.year} do Via Shopping Car.`,
+                          )}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(event) => event.stopPropagation()}
+                        >
+                          Estou interessado
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              {canScrollLeft && (
+                <button
+                  type="button"
+                  className="carousel-arrow carousel-arrow-left"
+                  onClick={() => scrollCarousel('left')}
+                  aria-label="Ver carros anteriores"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+              )}
+              {canScrollRight && (
+                <button
+                  type="button"
+                  className="carousel-arrow carousel-arrow-right"
+                  onClick={() => scrollCarousel('right')}
+                  aria-label="Ver mais carros"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              )}
             </div>
           ) : (
             <div className="inventory-empty">
