@@ -29,7 +29,13 @@ const GOOGLE_REVIEWS_URL =
   'https://www.google.com/maps/place/Via+Shopping+Car/@-3.777371,-38.4839154,17z'
 
 export function AboutPage() {
-  const featuredGallery = shoppingGallery[0]
+const featuredGallery = {
+    badge: 'Foto pública do local',
+    title: 'Fachada e área coberta para atendimento',
+    description:
+      'Imagem pública associada ao Via Shopping Car no Waze, útil para o dono visualizar o site já conectando o espaço físico à experiência digital.',
+    image: '/assets/viafachada.png',
+  }
   const brandGallery = shoppingGallery[1]
 
   return (
@@ -84,7 +90,15 @@ export function AboutPage() {
 
           <article className="shopping-showcase-card reveal">
             <div className="shopping-showcase-media">
-              <img src={featuredGallery.image} alt={featuredGallery.title} loading="lazy" />
+              <div 
+                className="shopping-showcase-image-bg" 
+                style={{ 
+                  backgroundImage: `url(${featuredGallery.image})`,
+                  backgroundPosition: 'center center',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              />
               <span className="shopping-showcase-badge">{featuredGallery.badge}</span>
             </div>
             <div className="shopping-showcase-body">

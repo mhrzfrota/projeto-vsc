@@ -70,6 +70,15 @@ export type StoreVehicleTeaser = {
   price: string
 }
 
+export type StoreInstagramPost = {
+  id: string
+  image: string
+  alt: string
+  likes: number
+  comments: number
+  date: string
+}
+
 export type StoreCatalogItem = {
   slug: string
   name: string
@@ -84,6 +93,7 @@ export type StoreCatalogItem = {
   hours?: string
   description?: string
   specialties?: string[]
+  posts?: StoreInstagramPost[]
 }
 
 export type Testimonial = {
@@ -94,7 +104,7 @@ export type Testimonial = {
   rating: number
   date: string
   body: string
-  source: 'google'
+  source: 'google' | 'local-guide'
 }
 
 export type AboutHighlight = {
@@ -157,12 +167,12 @@ export const heroFacts: HeroFact[] = [
 ]
 
 export const shoppingGallery: ShoppingGalleryItem[] = [
-  {
+{
     badge: 'Foto pública do local',
     title: 'Fachada e área coberta para atendimento',
     description:
       'Imagem pública associada ao Via Shopping Car no Waze, útil para o dono visualizar o site já conectando o espaço físico à experiência digital.',
-    image: '/assets/shopping-exterior.jpg',
+    image: '/assets/viafachada.png',
   },
   {
     badge: 'Marca oficial',
@@ -527,6 +537,56 @@ export const customerTestimonials: Testimonial[] = [
     body: 'Equipe muito profissional. Avaliaram meu usado de forma justa e fizeram a entrega técnica direitinho. Recomendo para quem quer comprar com tranquilidade.',
     source: 'google',
   },
+  {
+    id: 'local-guide-1',
+    author: 'Edson Rocha',
+    initials: 'ER',
+    avatarColor: '#ff7043',
+    rating: 5,
+    date: '5 meses atrás',
+    body: 'Excelente lugar para adquirir um carro novo. Quando por lá estive, foi para pesquisar no mercado de veículos seminovos. Fui bem recepcionada por algumas lojas que lá se localizam. Não foi possível realizar negócio, mas sai satisfeito!',
+    source: 'local-guide',
+  },
+  {
+    id: 'local-guide-2',
+    author: 'Airton Queiroz',
+    initials: 'AQ',
+    avatarColor: '#26a69a',
+    rating: 5,
+    date: '8 anos atrás',
+    body: 'Local com boas opções de carros e fui bem recebido pelas empresas de lá.',
+    source: 'local-guide',
+  },
+  {
+    id: 'local-guide-3',
+    author: 'Chico Motta',
+    initials: 'CM',
+    avatarColor: '#ffc107',
+    rating: 5,
+    date: '5 anos atrás',
+    body: 'Muitas lojas de altissima qualidade Atendimento Exelente PREÇO justo',
+    source: 'local-guide',
+  },
+  {
+    id: 'local-guide-4',
+    author: 'Rair Pereira',
+    initials: 'RP',
+    avatarColor: '#e53935',
+    rating: 5,
+    date: '8 anos atrás',
+    body: 'Bom ambiente e ótimo atendimento. A união desses dois elementos da o resultado positivo. Parabéns',
+    source: 'local-guide',
+  },
+  {
+    id: 'local-guide-5',
+    author: 'marcos ponte',
+    initials: 'MP',
+    avatarColor: '#8e24da',
+    rating: 5,
+    date: '3 anos atrás',
+    body: 'Melhor local em fortaleza para comprar o veículo semi-novo trocar por esses depoimentos na tela sobre',
+    source: 'local-guide',
+  },
 ]
 
 export const eventsNews: EventNews[] = [
@@ -617,6 +677,32 @@ export const storesCatalog: StoreCatalogItem[] = [
     instagramUrl: createInstagramProfileLink('@pulsecar.of'),
     logo: '/assets/logos/pulse.png',
     vehicles: placeholderVehicles(),
+    posts: [
+      {
+        id: 'post-1',
+        image: '/assets/cars/car-1.jpg',
+        alt: 'Toyota Corolla em destaque',
+        likes: 124,
+        comments: 8,
+        date: '15/05/2026',
+      },
+      {
+        id: 'post-2',
+        image: '/assets/cars/car-2.jpg',
+        alt: 'Jeep Compass em negociação',
+        likes: 256,
+        comments: 15,
+        date: '12/05/2026',
+      },
+      {
+        id: 'post-3',
+        image: '/assets/cars/car-3.jpg',
+        alt: 'Honda Civic preto premium',
+        likes: 189,
+        comments: 12,
+        date: '10/05/2026',
+      },
+    ],
   },
   {
     slug: 'jmg-veiculos',
