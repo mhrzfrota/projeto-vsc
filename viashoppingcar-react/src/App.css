@@ -270,7 +270,7 @@
 }
 
 .brand {
-  width: clamp(144px, 18vw, 220px);
+  width: clamp(170px, 22vw, 270px);
 }
 
 .main-nav {
@@ -3494,7 +3494,7 @@
   }
 
   .brand {
-    width: 170px;
+    width: 200px;
   }
 
   .nav-cta {
@@ -3733,7 +3733,7 @@
   }
 
   .brand {
-    width: 140px;
+    width: 170px;
   }
 
   .mobile-menu-toggle {
