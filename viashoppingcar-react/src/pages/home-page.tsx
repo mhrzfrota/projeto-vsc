@@ -9,6 +9,7 @@ import {
   Clock,
   Fuel,
   Gauge,
+  Instagram,
   MapPin,
   MessageCircle,
   Search,
@@ -455,6 +456,59 @@ export function HomePage() {
                 <StoreLogo name={logo.name} image={logo.image} />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="insta-stories section" aria-label="Instagram">
+        <div className="container">
+          <div className="section-header reveal">
+            <p className="eyebrow eyebrow-dark">Instagram</p>
+            <h2>Acompanhe as novidades</h2>
+          </div>
+          <div className="insta-stories-grid reveal delay-1">
+            <a
+              href="https://www.instagram.com/reel/DZaXeNCxiTf/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+              target="_blank"
+              rel="noreferrer"
+              className="insta-story-card"
+            >
+              <div className="insta-story-media">
+                <img src="/assets/insta1.png" alt="Post do Instagram 1" loading="lazy" />
+              </div>
+              <div className="insta-story-overlay">
+                <Instagram size={20} />
+                <span>Ver no Instagram</span>
+              </div>
+            </a>
+            <a
+              href="https://www.instagram.com/p/DZXpCjXkQeV/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+              target="_blank"
+              rel="noreferrer"
+              className="insta-story-card"
+            >
+              <div className="insta-story-media">
+                <img src="/assets/insta2.png" alt="Post do Instagram 2" loading="lazy" />
+              </div>
+              <div className="insta-story-overlay">
+                <Instagram size={20} />
+                <span>Ver no Instagram</span>
+              </div>
+            </a>
+            <a
+              href="https://www.instagram.com/reel/DYpbrEyRShc/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+              target="_blank"
+              rel="noreferrer"
+              className="insta-story-card"
+            >
+              <div className="insta-story-media">
+                <img src="/assets/insta3.png" alt="Post do Instagram 3" loading="lazy" />
+              </div>
+              <div className="insta-story-overlay">
+                <Instagram size={20} />
+                <span>Ver no Instagram</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
