@@ -1334,17 +1334,7 @@
 }
 
 .vehicle-tag {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  border-radius: 999px;
-  background: rgba(222, 8, 5, 0.93);
-  color: #fff;
-  padding: 0.32rem 0.75rem;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  display: none;
 }
 
 .vehicle-body {
