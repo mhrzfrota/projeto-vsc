@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { MapPin, Menu, MessageCircle, Phone, PhoneCall, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, MapPin, Menu, MessageCircle, Phone, PhoneCall, X } from 'lucide-react'
 import {
   businessHoursSummary,
   contactPhone,
@@ -32,9 +32,26 @@ export function SiteFrame({
 }: SiteFrameProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isCookieModalOpen, setIsCookieModalOpen] = useState(false)
+  const [activeBanner, setActiveBanner] = useState(0)
   const location = useLocation()
   const shouldShowPromoBanner = location.pathname === '/'
   const headerNavItems = navItems.filter((item) => item.href !== '/servicos')
+
+  const promoBanners = [
+    {
+      src: '/assets/banner7.png',
+      href: createWhatsappLink('Olá! Vim pelo banner de ofertas do Via Shopping Car.'),
+    },
+    {
+      src: '/assets/banner8.png',
+      href: null,
+    },
+  ]
+
+  function goToBanner(index: number) {
+    const total = promoBanners.length
+    setActiveBanner(((index % total) + total) % total)
+  }
 
   useEffect(() => {
     document.body.style.overflow =
@@ -130,15 +147,66 @@ export function SiteFrame({
       </header>
 
       {shouldShowPromoBanner && (
-        <a
-          className="promo-banner"
-          href={createWhatsappLink('Olá! Vim pelo banner de ofertas do Via Shopping Car.')}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Abrir WhatsApp pelo banner de ofertas do Via Shopping Car"
-        >
-          <img src="/assets/banner7.png" alt="Via Shopping Car" />
-        </a>
+        <div className="promo-banner-carousel" aria-label="Ofertas Via Shopping Car">
+          <div
+            className="promo-banner-track"
+            style={{ transform: `translateX(-${activeBanner * 100}%)` }}
+          >
+            {promoBanners.map((banner, index) =>
+              banner.href ? (
+                <a
+                  key={banner.src}
+                  className="promo-banner promo-banner-slide"
+                  href={banner.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  tabIndex={index === activeBanner ? 0 : -1}
+                  aria-hidden={index !== activeBanner}
+                  aria-label="Abrir WhatsApp pelo banner de ofertas do Via Shopping Car"
+                >
+                  <img src={banner.src} alt="Via Shopping Car" />
+                </a>
+              ) : (
+                <div
+                  key={banner.src}
+                  className="promo-banner promo-banner-slide"
+                  aria-hidden={index !== activeBanner}
+                >
+                  <img src={banner.src} alt="Via Shopping Car" />
+                </div>
+              ),
+            )}
+          </div>
+
+          <button
+            type="button"
+            className="promo-banner-arrow promo-banner-arrow-left"
+            onClick={() => goToBanner(activeBanner - 1)}
+            aria-label="Banner anterior"
+          >
+            <ChevronLeft size={22} />
+          </button>
+          <button
+            type="button"
+            className="promo-banner-arrow promo-banner-arrow-right"
+            onClick={() => goToBanner(activeBanner + 1)}
+            aria-label="Próximo banner"
+          >
+            <ChevronRight size={22} />
+          </button>
+
+          <div className="promo-banner-dots">
+            {promoBanners.map((banner, index) => (
+              <button
+                key={banner.src}
+                type="button"
+                className={`promo-banner-dot${index === activeBanner ? ' is-active' : ''}`}
+                aria-label={`Ir para o banner ${index + 1}`}
+                onClick={() => goToBanner(index)}
+              />
+            ))}
+          </div>
+        </div>
       )}
 
       {children}

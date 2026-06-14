@@ -207,6 +207,89 @@
   display: block;
 }
 
+.promo-banner-carousel {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.promo-banner-track {
+  display: flex;
+  transition: transform 450ms ease;
+}
+
+.promo-banner-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+
+.promo-banner-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px -6px rgba(13, 16, 20, 0.3);
+  transition: background 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.promo-banner-arrow:hover {
+  background: #fff;
+  box-shadow: 0 8px 24px -10px rgba(13, 16, 20, 0.4);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.promo-banner-arrow-left {
+  left: 16px;
+}
+
+.promo-banner-arrow-right {
+  right: 16px;
+}
+
+.promo-banner-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+}
+
+.promo-banner-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 1px 4px rgba(13, 16, 20, 0.35);
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.promo-banner-dot.is-active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+@media (max-width: 760px) {
+  .promo-banner-arrow {
+    width: 36px;
+    height: 36px;
+  }
+}
+
 .site-header {
   position: sticky;
   top: 0;
