@@ -4371,6 +4371,13 @@
   margin-top: 0.25rem;
 }
 
+.store-detail-olx-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
 .store-detail-section-header {
   display: flex;
   flex-direction: column;

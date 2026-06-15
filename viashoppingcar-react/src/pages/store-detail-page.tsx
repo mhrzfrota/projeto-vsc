@@ -1,13 +1,11 @@
 import {
   ArrowLeft,
-  ArrowRight,
   Clock,
   Instagram,
   MapPin,
   MessageCircle,
   Phone,
   Store,
-  Tag,
 } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { storesCatalog } from '../site-data'
@@ -122,49 +120,6 @@ export function StoreDetailPage() {
               </ul>
             )}
 
-            {store.posts && store.posts.length > 0 && (
-              <section className="store-detail-instagram reveal">
-                <div className="store-detail-section-header">
-                  <h2>Instagram da {store.name}</h2>
-                  <p>Acompanhe as novidades e promoções do {store.name} no Instagram</p>
-                </div>
-
-                <div className="store-instagram-grid">
-                  {store.posts.map((post, index) => (
-                    <a
-                      key={post.id}
-                      className="store-instagram-card reveal"
-                      href={store.instagramUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ animationDelay: `${index * 60}ms` }}
-                    >
-                      <div className="store-instagram-media">
-                        <img src={post.image} alt={post.alt} loading="lazy" />
-                      </div>
-                      <div className="store-instagram-foot">
-                        <div className="store-instagram-stats">
-                          <span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                            {post.likes}
-                          </span>
-                          <span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                            </svg>
-                            {post.comments}
-                          </span>
-                          <span className="store-instagram-date">{post.date}</span>
-                        </div>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </section>
-            )}
-
             <div className="page-hero-actions store-detail-actions">
               <a
                 className="btn btn-primary"
@@ -176,7 +131,13 @@ export function StoreDetailPage() {
                   if (!hasOlx) event.preventDefault()
                 }}
               >
-                <Tag size={16} /> Ver catálogo completo na OLX
+                <img
+                  src="/assets/olx.png"
+                  alt=""
+                  className="store-detail-olx-icon"
+                  aria-hidden="true"
+                />{' '}
+                Ver catálogo completo na OLX
               </a>
               <a
                 className="btn btn-light"
@@ -198,52 +159,6 @@ export function StoreDetailPage() {
               )}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="store-detail section">
-        <div className="container">
-          <div className="store-detail-section-header reveal">
-            <h2>Veículos em destaque</h2>
-            <p>Confira uma seleção do que a {store.name} preparou para o site.</p>
-          </div>
-
-          <div className="store-detail-grid">
-            {store.vehicles.map((vehicle, index) => (
-              <a
-                key={`${store.slug}-${index}`}
-                className="store-detail-card reveal"
-                style={{ animationDelay: `${index * 80}ms` }}
-                href={olxHref}
-                target="_blank"
-                rel="noreferrer"
-                aria-disabled={!hasOlx}
-                onClick={(event) => {
-                  if (!hasOlx) event.preventDefault()
-                }}
-              >
-                <div className="store-detail-media">
-                  <img src={vehicle.image} alt={vehicle.title} loading="lazy" />
-                </div>
-                <div className="store-detail-body">
-                  <h3>{vehicle.title}</h3>
-                  <p>{vehicle.subtitle}</p>
-                  <div className="store-detail-foot">
-                    <span className="store-detail-price">{vehicle.price}</span>
-                    <span className="store-detail-link">
-                      Ver na OLX <ArrowRight size={15} />
-                    </span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          {!hasOlx && (
-            <p className="store-detail-note">
-              Os links para o catálogo da loja na OLX serão atualizados em breve.
-            </p>
-          )}
         </div>
       </section>
     </main>
