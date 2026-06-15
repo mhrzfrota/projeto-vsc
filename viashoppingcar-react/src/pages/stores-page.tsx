@@ -1,4 +1,4 @@
-import { ArrowRight, Instagram, MessageCircle } from 'lucide-react'
+import { ArrowRight, Instagram, MessageCircle, Tag } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { storesCatalog, type StoreCatalogItem } from '../site-data'
 
@@ -21,63 +21,79 @@ export function StoresPage() {
       <section className="stores-catalog section">
         <div className="container">
           <div className="stores-catalog-grid">
-            {storesWithLogo.map((store, index) => (
-              <article
-                key={store.slug}
-                className="store-catalog-card reveal"
-                style={{ animationDelay: `${index * 60}ms` }}
-              >
-                <Link
-                  to={`/lojas/${store.slug}`}
-                  className="store-catalog-card-inner"
+            {storesWithLogo.map((store, index) => {
+              const hasInstagram = Boolean(store.instagramUrl?.trim())
+              const hasOlx = Boolean(store.olxUrl?.trim())
+
+              return (
+                <article
+                  key={store.slug}
+                  className="store-catalog-card reveal"
+                  style={{ animationDelay: `${index * 60}ms` }}
                 >
-                  <div className="store-catalog-card-logo">
-                    <img
-                      src={store.logo}
-                      alt={`Logo ${store.name}`}
-                      loading="lazy"
-                      decoding="async"
-                      draggable={false}
-                    />
-                  </div>
-                  <div className="store-catalog-card-content">
-                    <div className="store-catalog-card-top">
+                  <Link
+                    to={`/lojas/${store.slug}`}
+                    className="store-catalog-card-inner"
+                  >
+                    <div className="store-catalog-card-logo">
+                      <img
+                        src={store.logo}
+                        alt={`Logo ${store.name}`}
+                        loading="lazy"
+                        decoding="async"
+                        draggable={false}
+                      />
+                    </div>
+                    <div className="store-catalog-card-content">
                       <h3>{store.name}</h3>
                       {store.city && (
                         <span className="store-catalog-card-city">{store.city}</span>
                       )}
-                      {store.instagramHandle && (
-                        <span className="store-catalog-card-instagram">
-                          <Instagram size={13} />
-                          {store.instagramHandle}
-                        </span>
-                      )}
+                      <p>{store.tagline}</p>
                     </div>
-                    <p>{store.tagline}</p>
-                    {store.specialties && store.specialties.length > 0 && (
-                      <ul className="store-catalog-card-tags">
-                        {store.specialties.slice(0, 3).map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
+                    <span className="store-catalog-card-cta">
+                      Ver veículos da loja <ArrowRight size={16} />
+                    </span>
+                  </Link>
+
+                  <div className="store-catalog-card-links">
+                    <a
+                      href={store.contactLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="store-link-chip store-link-whatsapp"
+                    >
+                      <MessageCircle size={16} />
+                      WhatsApp
+                    </a>
+                    {hasInstagram && (
+                      <a
+                        href={store.instagramUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="store-link-chip store-link-instagram"
+                        aria-label={`Instagram da ${store.name}`}
+                      >
+                        <Instagram size={16} />
+                        Instagram
+                      </a>
+                    )}
+                    {hasOlx && (
+                      <a
+                        href={store.olxUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="store-link-chip store-link-olx"
+                        aria-label={`Anúncios da ${store.name} na OLX`}
+                      >
+                        <Tag size={16} />
+                        OLX
+                      </a>
                     )}
                   </div>
-                  <span className="store-catalog-card-cta">
-                    Ver veículos da loja <ArrowRight size={16} />
-                  </span>
-                </Link>
-                <a
-                  href={store.contactLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="store-catalog-card-whatsapp"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <MessageCircle size={16} />
-                  Falar com a loja
-                </a>
-              </article>
-            ))}
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>

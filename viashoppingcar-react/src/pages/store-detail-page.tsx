@@ -2,11 +2,12 @@ import {
   ArrowLeft,
   ArrowRight,
   Clock,
-  ExternalLink,
   Instagram,
   MapPin,
+  MessageCircle,
   Phone,
   Store,
+  Tag,
 } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { storesCatalog } from '../site-data'
@@ -175,7 +176,7 @@ export function StoreDetailPage() {
                   if (!hasOlx) event.preventDefault()
                 }}
               >
-                Ver catálogo completo na OLX <ExternalLink size={16} />
+                <Tag size={16} /> Ver catálogo completo na OLX
               </a>
               <a
                 className="btn btn-light"
@@ -183,7 +184,7 @@ export function StoreDetailPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                WhatsApp da loja
+                <MessageCircle size={16} /> WhatsApp da loja
               </a>
               {hasInstagram && (
                 <a

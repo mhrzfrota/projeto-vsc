@@ -198,6 +198,11 @@
   background: #fff;
 }
 
+.promo-banner picture {
+  display: block;
+  width: 100%;
+}
+
 .promo-banner img {
   width: 100%;
   max-width: none;
@@ -3463,10 +3468,6 @@
     position: static;
   }
 
-  .search-by-types {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .search-by-brand {
     grid-template-columns: 1fr;
   }
@@ -3549,7 +3550,6 @@
     padding: 4rem 0;
   }
 
-  .hero-actions .btn,
   .shopping-showcase-actions .btn,
   .shopping-brand-actions .btn,
   .stores-actions .btn,
@@ -3560,6 +3560,43 @@
   .inventory-browser-actions .btn,
   .vehicle-actions .btn {
     width: 100%;
+  }
+
+  .hero-actions {
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.7rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .search-by-types {
+    gap: 0.5rem;
+  }
+
+  .search-by-type-card {
+    padding: 0.85rem 0.4rem 0.7rem;
+    gap: 0.4rem;
+    border-radius: 14px;
+  }
+
+  .search-by-type-icon {
+    width: 40px;
+    height: 34px;
+  }
+
+  .search-by-type-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .search-by-type-label {
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
   }
 
   .utility-wrap {
@@ -4067,86 +4104,48 @@
 .store-catalog-card-content {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.3rem;
   flex: 1;
-  padding: 0.85rem 0.95rem 0;
-}
-
-.store-catalog-card-top {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  padding: 0.9rem 1rem 0;
 }
 
 .store-catalog-card h3 {
   margin: 0;
   font-family: 'Sora', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
+  font-weight: 700;
   letter-spacing: -0.01em;
+  color: var(--color-ink);
 }
 
 .store-catalog-card-city {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--color-muted);
 }
 
-.store-catalog-card-instagram {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  width: fit-content;
-  color: var(--color-primary);
-  font-size: 0.72rem;
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.store-catalog-card-instagram svg {
-  flex-shrink: 0;
-}
-
 .store-catalog-card p {
-  margin: 0;
+  margin: 0.15rem 0 0;
   color: var(--color-muted);
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-height: 1.45;
-  font-size: 0.8rem;
-}
-
-.store-catalog-card-tags {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-}
-
-.store-catalog-card-tags li {
-  padding: 0.2rem 0.48rem;
-  border-radius: 999px;
-  background: rgba(13, 16, 20, 0.05);
-  color: var(--color-ink);
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-size: 0.82rem;
 }
 
 .store-catalog-card-cta {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  margin: 0.65rem 0.95rem 0.85rem;
-  padding-top: 0.65rem;
+  margin: 0.75rem 1rem 0.85rem;
+  padding-top: 0.7rem;
   border-top: 1px solid var(--color-border);
   font-weight: 800;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--color-primary);
   transition: gap 220ms ease;
   margin-top: auto;
@@ -4156,32 +4155,52 @@
   gap: 0.45rem;
 }
 
-.store-catalog-card-whatsapp {
+/* Quick contact / social links on each store card */
+.store-catalog-card-links {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0 0.85rem 0.85rem;
+}
+
+.store-link-chip {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  width: 100%;
-  padding: 0.65rem 0.95rem;
-  border: none;
-  border-top: 1px solid var(--color-border);
+  gap: 0.35rem;
+  flex: 1 1 auto;
+  padding: 0.5rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 200ms ease, filter 200ms ease, background 200ms ease;
+}
+
+.store-link-chip svg {
+  flex-shrink: 0;
+}
+
+.store-link-chip:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+.store-link-whatsapp {
   background: #25d366;
   color: #fff;
-  font-size: 0.8rem;
-  font-weight: 800;
-  line-height: 1.2;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background 220ms ease, gap 220ms ease;
 }
 
-.store-catalog-card-whatsapp:hover {
-  background: #1da954;
-  gap: 0.55rem;
+.store-link-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff;
 }
 
-.store-catalog-card-whatsapp svg {
-  flex-shrink: 0;
+.store-link-olx {
+  background: #6e0ad6;
+  color: #fff;
 }
 
 /* Store detail */

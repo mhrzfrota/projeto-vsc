@@ -37,7 +37,13 @@ export function SiteFrame({
   const shouldShowPromoBanner = location.pathname === '/'
   const headerNavItems = navItems.filter((item) => item.href !== '/servicos')
 
-  const promoBanners = [
+  // Para o mobile, basta criar um recorte mais "alto" (ex.: 1080x1080 ou 1080x1350)
+  // e informar o caminho em `mobileSrc`. Enquanto não existir, usamos a versão larga.
+  const promoBanners: {
+    src: string
+    mobileSrc?: string
+    href: string | null
+  }[] = [
     {
       src: '/assets/banner7.png',
       href: createWhatsappLink('Olá! Vim pelo banner de ofertas do Via Shopping Car.'),
@@ -152,8 +158,17 @@ export function SiteFrame({
             className="promo-banner-track"
             style={{ transform: `translateX(-${activeBanner * 100}%)` }}
           >
-            {promoBanners.map((banner, index) =>
-              banner.href ? (
+            {promoBanners.map((banner, index) => {
+              const media = banner.mobileSrc ? (
+                <picture>
+                  <source media="(max-width: 760px)" srcSet={banner.mobileSrc} />
+                  <img src={banner.src} alt="Via Shopping Car" />
+                </picture>
+              ) : (
+                <img src={banner.src} alt="Via Shopping Car" />
+              )
+
+              return banner.href ? (
                 <a
                   key={banner.src}
                   className="promo-banner promo-banner-slide"
@@ -164,7 +179,7 @@ export function SiteFrame({
                   aria-hidden={index !== activeBanner}
                   aria-label="Abrir WhatsApp pelo banner de ofertas do Via Shopping Car"
                 >
-                  <img src={banner.src} alt="Via Shopping Car" />
+                  {media}
                 </a>
               ) : (
                 <div
@@ -172,10 +187,10 @@ export function SiteFrame({
                   className="promo-banner promo-banner-slide"
                   aria-hidden={index !== activeBanner}
                 >
-                  <img src={banner.src} alt="Via Shopping Car" />
+                  {media}
                 </div>
-              ),
-            )}
+              )
+            })}
           </div>
 
           <button
