@@ -110,11 +110,11 @@ export function SiteFrame({
           <div className="nav-actions">
             <a
               className="btn btn-primary nav-cta"
-              href={createWhatsappLink('Olá! Quero agendar uma visita ao Via Shopping Car.')}
-              target="_blank"
-              rel="noreferrer"
+              href={contactPhoneHref}
+              aria-label={`Ligar para o Via Shopping Car no ${contactPhone}`}
             >
-              Fale agora
+              <Phone size={16} strokeWidth={2.5} />
+              <span className="nav-cta-label">Ligar agora</span>
             </a>
             <button
               type="button"

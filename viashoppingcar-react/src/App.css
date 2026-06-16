@@ -3618,7 +3618,17 @@
   }
 
   .nav-cta {
-    display: none;
+    padding: 0.6rem 0.95rem;
+    font-size: 0.85rem;
+  }
+
+  .nav-cta svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .nav-actions {
+    gap: 0.5rem;
   }
 
   .mobile-nav-panel {
@@ -3856,6 +3866,31 @@
     width: 170px;
   }
 
+  .nav-cta {
+    gap: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: #000;
+  }
+
+  .nav-cta:hover {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .nav-cta svg {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+
+  .nav-cta-label {
+    display: none;
+  }
+
   .mobile-menu-toggle {
     width: 2.6rem;
     height: 2.6rem;
@@ -3996,28 +4031,47 @@
 /* Stores catalog */
 .stores-catalog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.1rem;
 }
 
 .store-catalog-card {
   display: flex;
   flex-direction: column;
   padding: 0;
-  border: 1px solid var(--color-border);
-  border-radius: 18px;
+  border: 1px solid rgba(13, 16, 20, 0.07);
+  border-radius: 20px;
   background: #fff;
   color: var(--color-ink);
-  box-shadow: 0 18px 46px -38px rgba(13, 16, 20, 0.48);
-  transition: transform 280ms ease, border-color 240ms ease, box-shadow 280ms ease;
+  box-shadow:
+    0 1px 2px rgba(13, 16, 20, 0.04),
+    0 22px 48px -40px rgba(13, 16, 20, 0.55);
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), border-color 280ms ease, box-shadow 320ms ease;
   overflow: hidden;
   position: relative;
 }
 
+.store-catalog-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), #ff5a36);
+  opacity: 0;
+  transition: opacity 320ms ease;
+  z-index: 2;
+}
+
 .store-catalog-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(222, 8, 5, 0.32);
-  box-shadow: 0 28px 64px -40px rgba(222, 8, 5, 0.42);
+  transform: translateY(-6px);
+  border-color: rgba(222, 8, 5, 0.18);
+  box-shadow:
+    0 1px 2px rgba(13, 16, 20, 0.05),
+    0 36px 70px -42px rgba(222, 8, 5, 0.4);
+}
+
+.store-catalog-card:hover::before {
+  opacity: 1;
 }
 
 .store-catalog-card-inner {
@@ -4140,19 +4194,24 @@
 .store-catalog-card-cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  margin: 0.75rem 1rem 0.85rem;
-  padding-top: 0.7rem;
+  gap: 0.4rem;
+  margin: 0.8rem 1rem 0.9rem;
+  padding-top: 0.8rem;
   border-top: 1px solid var(--color-border);
-  font-weight: 800;
-  font-size: 0.82rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
   color: var(--color-primary);
   transition: gap 220ms ease;
   margin-top: auto;
 }
 
-.store-catalog-card:hover .store-catalog-card-cta {
-  gap: 0.45rem;
+.store-catalog-card-cta svg {
+  transition: transform 220ms ease;
+}
+
+.store-catalog-card:hover .store-catalog-card-cta svg {
+  transform: translateX(3px);
 }
 
 /* Quick contact / social links on each store card */
@@ -4160,47 +4219,56 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  padding: 0 0.85rem 0.85rem;
+  padding: 0 0.95rem 0.95rem;
 }
 
 .store-link-chip {
+  --chip-color: var(--color-primary);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   flex: 1 1 auto;
-  padding: 0.5rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.78rem;
-  font-weight: 800;
+  padding: 0.42rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   line-height: 1;
   text-decoration: none;
-  border: 1px solid transparent;
-  transition: transform 200ms ease, filter 200ms ease, background 200ms ease;
+  color: var(--color-ink);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-border);
+  transition: color 200ms ease, background 200ms ease, border-color 200ms ease, transform 200ms ease;
 }
 
 .store-link-chip svg {
   flex-shrink: 0;
+  color: var(--chip-color);
+  transition: color 200ms ease;
 }
 
 .store-link-chip:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.03);
+  transform: translateY(-1px);
+  color: #fff;
+  background: var(--chip-color);
+  border-color: var(--chip-color);
+}
+
+.store-link-chip:hover svg {
+  color: #fff;
 }
 
 .store-link-whatsapp {
-  background: #25d366;
-  color: #fff;
+  --chip-color: #1fae57;
 }
 
 .store-link-instagram {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  color: #fff;
+  --chip-color: #d6286a;
 }
 
 .store-link-olx {
-  background: #6e0ad6;
-  color: #fff;
+  --chip-color: #6e0ad6;
 }
 
 /* Store detail */
@@ -4234,15 +4302,20 @@
 }
 
 .store-detail-logo {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 150px;
-  padding: 1.25rem;
-  border-radius: 22px;
-  background: #fff;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 18px 50px -42px rgba(13, 16, 20, 0.55);
+  height: 160px;
+  padding: 1.5rem;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 60%),
+    linear-gradient(160deg, #ffffff 0%, #eef1f6 100%);
+  border: 1px solid rgba(13, 16, 20, 0.06);
+  box-shadow:
+    0 1px 2px rgba(13, 16, 20, 0.04),
+    0 26px 56px -44px rgba(13, 16, 20, 0.6);
 }
 
 .store-detail-logo img {
@@ -4253,6 +4326,7 @@
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
+  filter: drop-shadow(0 12px 22px rgba(13, 16, 20, 0.12));
 }
 
 .store-detail-logo-fallback {
@@ -4290,14 +4364,16 @@
 .store-detail-meta {
   list-style: none;
   margin: 0;
-  padding: 1rem 1.1rem;
+  padding: 1.15rem 1.25rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.9rem 1.4rem;
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: 18px;
-  box-shadow: 0 18px 50px -42px rgba(13, 16, 20, 0.45);
+  gap: 1rem 1.5rem;
+  background: linear-gradient(160deg, #ffffff 0%, #fafbfd 100%);
+  border: 1px solid rgba(13, 16, 20, 0.07);
+  border-radius: 20px;
+  box-shadow:
+    0 1px 2px rgba(13, 16, 20, 0.04),
+    0 22px 50px -44px rgba(13, 16, 20, 0.5);
 }
 
 .store-detail-meta li {
@@ -4358,17 +4434,40 @@
 }
 
 .store-detail-specialties li {
-  padding: 0.35rem 0.85rem;
+  padding: 0.4rem 0.9rem;
   border-radius: 999px;
-  background: rgba(222, 8, 5, 0.08);
+  background: rgba(222, 8, 5, 0.06);
+  border: 1px solid rgba(222, 8, 5, 0.16);
   color: var(--color-primary);
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 600;
   letter-spacing: 0.02em;
 }
 
 .store-detail-actions {
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
+  gap: 0.6rem;
+}
+
+.store-detail-actions .btn {
+  padding: 0.7rem 1.2rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* WhatsApp da loja — refined green instead of flat dark */
+.store-detail-actions.page-hero-actions .btn-light {
+  background: linear-gradient(135deg, #16b85c 0%, #0f9d4b 100%);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 16px 30px -22px rgba(15, 157, 75, 0.9);
+}
+
+.store-detail-actions .btn-secondary {
+  background: #fff;
+  border: 1px solid rgba(13, 16, 20, 0.12);
+  color: var(--color-ink);
+  box-shadow: 0 1px 2px rgba(13, 16, 20, 0.04);
 }
 
 .store-detail-olx-icon {
