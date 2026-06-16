@@ -46,10 +46,12 @@ export function SiteFrame({
   }[] = [
     {
       src: '/assets/banner7.png',
+      mobileSrc: '/assets/banner9.png',
       href: createWhatsappLink('Olá! Vim pelo banner de ofertas do Via Shopping Car.'),
     },
     {
       src: '/assets/banner8.png',
+      mobileSrc: '/assets/banner10.png',
       href: null,
     },
   ]
