@@ -69,135 +69,6 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="search-by section" id="pesquise">
-        <div className="container">
-          <div className="search-by-header reveal">
-            <p className="search-by-eyebrow">Pesquise por:</p>
-            <div className="search-by-tabs" role="tablist" aria-label="Modos de pesquisa">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={searchTab === 'tipo'}
-                className={`search-by-tab${searchTab === 'tipo' ? ' is-active' : ''}`}
-                onClick={() => setSearchTab('tipo')}
-              >
-                Tipo
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={searchTab === 'marca'}
-                className={`search-by-tab${searchTab === 'marca' ? ' is-active' : ''}`}
-                onClick={() => setSearchTab('marca')}
-              >
-                Marca e Modelo
-              </button>
-            </div>
-          </div>
-
-          {searchTab === 'tipo' ? (
-            <div className="search-by-types reveal delay-1" role="tabpanel">
-              {vehicleTypes.map((type, index) => (
-                <button
-                  key={type}
-                  type="button"
-                  className="search-by-type-card"
-                  style={{ animationDelay: `${index * 80}ms` }}
-                  onClick={() => navigate(`/estoque?type=${encodeURIComponent(type)}`)}
-                >
-                  <span className="search-by-type-icon">{renderVehicleTypeIcon(type)}</span>
-                  <span className="search-by-type-label">{type}</span>
-                </button>
-              ))}
-            </div>
-          ) : (
-            <form
-              className="search-by-brand reveal delay-1"
-              role="tabpanel"
-              onSubmit={(event) => {
-                event.preventDefault()
-                const params = new URLSearchParams()
-                if (searchBrand) params.set('brand', searchBrand)
-                if (searchModel) params.set('model', searchModel)
-                const query = params.toString()
-                navigate(query ? `/estoque?${query}` : '/estoque')
-              }}
-            >
-              <label>
-                Marca
-                <select
-                  value={searchBrand}
-                  onChange={(event) => {
-                    setSearchBrand(event.target.value)
-                    setSearchModel('')
-                  }}
-                >
-                  <option value="">Todas</option>
-                  {brands.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>
-                Modelo
-                <select
-                  value={searchModel}
-                  onChange={(event) => setSearchModel(event.target.value)}
-                >
-                  <option value="">Todos</option>
-                  {vehicles
-                    .filter((vehicle) => !searchBrand || vehicle.brand === searchBrand)
-                    .map((vehicle) => vehicle.model)
-                    .filter((value, index, array) => array.indexOf(value) === index)
-                    .map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
-                </select>
-              </label>
-
-              <button type="submit" className="btn btn-primary search-by-brand-submit">
-                Buscar <Search size={16} />
-              </button>
-            </form>
-          )}
-        </div>
-      </section>
-
-      <section className="inventory section" id="estoque">
-        <div className="container">
-          <div className="section-header reveal">
-            <p className="eyebrow eyebrow-dark">Estoque atualizado</p>
-            <h2>Veículos em destaque</h2>
-          </div>
-
-          <div className="inventory-grid reveal delay-1">
-            {vehicles.map((vehicle, index) => (
-              <article
-                key={vehicle.id}
-                className="vehicle-card vehicle-card-soon"
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                <div className="vehicle-media vehicle-media-soon">
-                  <Car size={42} />
-                </div>
-                <div className="vehicle-body">
-                  <span className="vehicle-soon-badge">
-                    <Clock size={14} /> Em breve
-                  </span>
-                  <h3>Em breve</h3>
-                  <p className="vehicle-subtitle">Novo veículo a caminho do estoque</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="logo-marquee section" aria-label="Lojas parceiras">
         <div className="container">
           <div className="logo-marquee-header reveal">
@@ -333,6 +204,135 @@ export function HomePage() {
 
       <section className="strip-banner">
         <img src="/assets/strip-cars.jpg" alt="Faixa de veículos do Via Shopping Car" />
+      </section>
+
+      <section className="search-by section" id="pesquise">
+        <div className="container">
+          <div className="search-by-header reveal">
+            <p className="search-by-eyebrow">Pesquise por:</p>
+            <div className="search-by-tabs" role="tablist" aria-label="Modos de pesquisa">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={searchTab === 'tipo'}
+                className={`search-by-tab${searchTab === 'tipo' ? ' is-active' : ''}`}
+                onClick={() => setSearchTab('tipo')}
+              >
+                Tipo
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={searchTab === 'marca'}
+                className={`search-by-tab${searchTab === 'marca' ? ' is-active' : ''}`}
+                onClick={() => setSearchTab('marca')}
+              >
+                Marca e Modelo
+              </button>
+            </div>
+          </div>
+
+          {searchTab === 'tipo' ? (
+            <div className="search-by-types reveal delay-1" role="tabpanel">
+              {vehicleTypes.map((type, index) => (
+                <button
+                  key={type}
+                  type="button"
+                  className="search-by-type-card"
+                  style={{ animationDelay: `${index * 80}ms` }}
+                  onClick={() => navigate(`/estoque?type=${encodeURIComponent(type)}`)}
+                >
+                  <span className="search-by-type-icon">{renderVehicleTypeIcon(type)}</span>
+                  <span className="search-by-type-label">{type}</span>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <form
+              className="search-by-brand reveal delay-1"
+              role="tabpanel"
+              onSubmit={(event) => {
+                event.preventDefault()
+                const params = new URLSearchParams()
+                if (searchBrand) params.set('brand', searchBrand)
+                if (searchModel) params.set('model', searchModel)
+                const query = params.toString()
+                navigate(query ? `/estoque?${query}` : '/estoque')
+              }}
+            >
+              <label>
+                Marca
+                <select
+                  value={searchBrand}
+                  onChange={(event) => {
+                    setSearchBrand(event.target.value)
+                    setSearchModel('')
+                  }}
+                >
+                  <option value="">Todas</option>
+                  {brands.map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label>
+                Modelo
+                <select
+                  value={searchModel}
+                  onChange={(event) => setSearchModel(event.target.value)}
+                >
+                  <option value="">Todos</option>
+                  {vehicles
+                    .filter((vehicle) => !searchBrand || vehicle.brand === searchBrand)
+                    .map((vehicle) => vehicle.model)
+                    .filter((value, index, array) => array.indexOf(value) === index)
+                    .map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                </select>
+              </label>
+
+              <button type="submit" className="btn btn-primary search-by-brand-submit">
+                Buscar <Search size={16} />
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
+
+      <section className="inventory section" id="estoque">
+        <div className="container">
+          <div className="section-header reveal">
+            <p className="eyebrow eyebrow-dark">Estoque atualizado</p>
+            <h2>Veículos em destaque</h2>
+          </div>
+
+          <div className="inventory-grid reveal delay-1">
+            {vehicles.map((vehicle, index) => (
+              <article
+                key={vehicle.id}
+                className="vehicle-card vehicle-card-soon"
+                style={{ animationDelay: `${index * 80}ms` }}
+              >
+                <div className="vehicle-media vehicle-media-soon">
+                  <Car size={42} />
+                </div>
+                <div className="vehicle-body">
+                  <span className="vehicle-soon-badge">
+                    <Clock size={14} /> Em breve
+                  </span>
+                  <h3>Em breve</h3>
+                  <p className="vehicle-subtitle">Novo veículo a caminho do estoque</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="location-section section" id="localizacao" aria-label="Localização">
