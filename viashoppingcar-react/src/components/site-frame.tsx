@@ -54,6 +54,10 @@ export function SiteFrame({
       mobileSrc: '/assets/banner10.png',
       href: null,
     },
+    {
+      src: '/assets/banner11.png',
+      href: null,
+    },
   ]
 
   function goToBanner(index: number) {

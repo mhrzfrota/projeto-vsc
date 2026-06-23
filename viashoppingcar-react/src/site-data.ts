@@ -145,8 +145,8 @@ export const publicVerificationNote =
 export const navItems = [
   { label: 'Home', href: '/' },
   { label: 'Estoque', href: '/estoque' },
-  { label: 'Sobre', href: '/sobre' },
   { label: 'Todas as lojas', href: '/lojas' },
+  { label: 'Sobre', href: '/sobre' },
   { label: 'Serviços', href: '/servicos' },
   { label: 'Anuncie aqui', href: '/anuncie-aqui' },
   { label: 'Contato', href: '/contato' },
