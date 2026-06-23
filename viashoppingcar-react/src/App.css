@@ -1310,6 +1310,71 @@
   font-weight: 700;
 }
 
+/* Home "Em breve" vehicle cards */
+.vehicle-card-soon {
+  cursor: default;
+}
+
+.vehicle-card-soon:hover {
+  transform: none;
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.vehicle-media-soon {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f4f5f7 0%, #e9ebef 100%);
+  color: #9aa1ad;
+}
+
+.vehicle-soon-badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: #111827;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Inventory page "Em breve" rows */
+.inventory-row-media-soon {
+  display: grid;
+  place-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, #f4f5f7 0%, #e9ebef 100%);
+  color: #9aa1ad;
+}
+
+.inventory-row-media-soon span {
+  position: static;
+  background: transparent;
+  color: #6b7280;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+}
+
+.inventory-row-badge-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.inventory-row-soon-text {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
 .inventory-carousel-wrap {
   position: relative;
 }
@@ -2442,7 +2507,7 @@
 
 .insta-stories-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
 

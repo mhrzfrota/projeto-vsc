@@ -1,22 +1,7 @@
 import { useMemo, useState } from 'react'
-import {
-  ArrowRight,
-  CalendarDays,
-  CarFront,
-  Fuel,
-  Gauge,
-  Search,
-  SlidersHorizontal,
-} from 'lucide-react'
-import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom'
-import {
-  createStoreWhatsappLink,
-  formatCurrency,
-  mapsLink,
-  stores as allStores,
-  vehicles,
-  type Vehicle,
-} from '../site-data'
+import { Car, Clock, Search, SlidersHorizontal } from 'lucide-react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { createWhatsappLink, stores as allStores, vehicles } from '../site-data'
 
 type InventorySort = 'recent' | 'price-low' | 'price-high' | 'km-low'
 
@@ -34,11 +19,6 @@ export function InventoryPage() {
   const [fuel, setFuel] = useState('')
   const [color, setColor] = useState('')
   const [sort, setSort] = useState<InventorySort>('recent')
-  const [focusedVehicleId, setFocusedVehicleId] = useState<number | null>(() => {
-    const focus = searchParams.get('focus')
-    return focus ? Number(focus) : null
-  })
-  const [comparedVehicleIds, setComparedVehicleIds] = useState<number[]>([])
 
   const brands = useMemo(
     () => [...new Set(vehicles.map((vehicle) => vehicle.brand))].sort(),
@@ -131,11 +111,6 @@ export function InventoryPage() {
     })
   }, [brand, color, fuel, keyword, model, sort, store, transmission, type, year])
 
-  const comparedVehicles = useMemo(
-    () => vehicles.filter((vehicle) => comparedVehicleIds.includes(vehicle.id)),
-    [comparedVehicleIds],
-  )
-
   function handleResetFilters() {
     setKeyword('')
     setBrand('')
@@ -147,26 +122,6 @@ export function InventoryPage() {
     setFuel('')
     setColor('')
     setSort('recent')
-    setComparedVehicleIds([])
-    setFocusedVehicleId(null)
-  }
-
-  function handleToggleCompare(vehicleId: number) {
-    setComparedVehicleIds((current) => {
-      if (current.includes(vehicleId)) {
-        return current.filter((item) => item !== vehicleId)
-      }
-
-      if (current.length === 2) {
-        return [...current.slice(1), vehicleId]
-      }
-
-      return [...current, vehicleId]
-    })
-  }
-
-  function handleSelectVehicle(vehicleId: number) {
-    setFocusedVehicleId(vehicleId)
   }
 
   function handleBackToHome() {
@@ -194,7 +149,7 @@ export function InventoryPage() {
             <aside className="inventory-panel">
               <div className="inventory-panel-card inventory-panel-count">
                 <strong>{filteredVehicles.length}</strong>
-                <span>carros encontrados</span>
+                <span>veículos a caminho</span>
                 <button type="button" className="inventory-clear" onClick={handleResetFilters}>
                   Limpar filtros
                 </button>
@@ -317,8 +272,8 @@ export function InventoryPage() {
             <div className="inventory-results">
               <div className="inventory-results-toolbar">
                 <div className="inventory-results-copy">
-                  <strong>{filteredVehicles.length} oportunidades</strong>
-                  <span>selecione até dois veículos para comparar lado a lado</span>
+                  <strong>{filteredVehicles.length} veículos em breve</strong>
+                  <span>novos carros e motos estão chegando ao showroom</span>
                 </div>
                 <div className="inventory-toolbar-actions">
                   <label className="inventory-sort">
@@ -333,59 +288,55 @@ export function InventoryPage() {
                       <option value="km-low">Km menor</option>
                     </select>
                   </label>
-                  <button
-                    type="button"
-                    className="btn btn-secondary inventory-compare-trigger"
-                    disabled={comparedVehicles.length < 2}
-                  >
-                    Comparar {comparedVehicles.length}/2
-                  </button>
                 </div>
               </div>
 
-              {comparedVehicles.length > 0 && (
-                <div className="inventory-compare-panel">
-                  {comparedVehicles.map((vehicle) => (
-                    <div key={vehicle.id} className="inventory-compare-card">
-                      <strong>
-                        {vehicle.brand} {vehicle.model}
-                      </strong>
-                      <span>{formatCurrency(vehicle.price)}</span>
-                      <p>
-                        {vehicle.year} • {vehicle.km.toLocaleString('pt-BR')} km • {vehicle.color}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
-
               {filteredVehicles.length > 0 ? (
                 <div className="inventory-list">
-                  {filteredVehicles.map((vehicle) => {
-                    const isFocused = focusedVehicleId === vehicle.id
-                    const isCompared = comparedVehicleIds.includes(vehicle.id)
+                  {filteredVehicles.map((vehicle) => (
+                    <article key={vehicle.id} className="inventory-row inventory-row-soon">
+                      <div className="inventory-row-media inventory-row-media-soon">
+                        <Car size={34} />
+                        <span>Em breve</span>
+                      </div>
 
-                    return (
-                      <InventoryRow
-                        key={vehicle.id}
-                        isCompared={isCompared}
-                        isFocused={isFocused}
-                        vehicle={vehicle}
-                        onInterested={() =>
-                          window.open(
-                            createStoreWhatsappLink(
-                              vehicle.store,
-                              `Olá ${vehicle.store}! Tenho interesse no ${vehicle.brand} ${vehicle.model} ${vehicle.year} do Via Shopping Car.`,
-                            ),
-                            '_blank',
-                            'noopener,noreferrer',
-                          )
-                        }
-                        onSelect={() => handleSelectVehicle(vehicle.id)}
-                        onToggleCompare={() => handleToggleCompare(vehicle.id)}
-                      />
-                    )
-                  })}
+                      <div className="inventory-row-content">
+                        <div className="inventory-row-heading">
+                          <div>
+                            <h3>Em breve</h3>
+                            <p>Novo veículo chegando ao estoque</p>
+                          </div>
+                          <span className="inventory-row-badge inventory-row-badge-soon">
+                            <Clock size={13} /> Em breve
+                          </span>
+                        </div>
+
+                        <p className="inventory-row-soon-text">
+                          Estamos preparando este veículo para você. Em breve os detalhes
+                          completos estarão disponíveis aqui.
+                        </p>
+
+                        <div className="inventory-row-actions">
+                          <a
+                            className="btn btn-primary"
+                            href={createWhatsappLink(
+                              'Olá! Quero ser avisado quando novos veículos entrarem no estoque do Via Shopping Car.',
+                            )}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Quero ser avisado
+                          </a>
+                        </div>
+                      </div>
+
+                      <div className="inventory-row-contact">
+                        <strong>Em breve</strong>
+                        <h4>Disponível em breve</h4>
+                        <p>Aguarde novidades</p>
+                      </div>
+                    </article>
+                  ))}
                 </div>
               ) : (
                 <div className="inventory-browser-empty">
@@ -400,103 +351,5 @@ export function InventoryPage() {
         </div>
       </section>
     </main>
-  )
-}
-
-type InventoryRowProps = {
-  vehicle: Vehicle
-  isCompared: boolean
-  isFocused: boolean
-  onInterested: () => void
-  onSelect: () => void
-  onToggleCompare: () => void
-}
-
-function InventoryRow({
-  vehicle,
-  isCompared,
-  isFocused,
-  onInterested,
-  onSelect,
-  onToggleCompare,
-}: InventoryRowProps) {
-  const detailParams = createSearchParams({
-    focus: String(vehicle.id),
-  })
-
-  return (
-    <article className={`inventory-row${isFocused ? ' is-focused' : ''}`}>
-      <button type="button" className="inventory-row-media" onClick={onSelect}>
-        <img src={vehicle.image} alt={`${vehicle.brand} ${vehicle.model}`} />
-        <span>{vehicle.photos} fotos</span>
-      </button>
-
-      <div className="inventory-row-content">
-        <div className="inventory-row-heading">
-          <div>
-            <h3>
-              {vehicle.year} {vehicle.brand} {vehicle.model}
-            </h3>
-            <p>{vehicle.subtitle}</p>
-          </div>
-          {isFocused && <span className="inventory-row-badge">Selecionado</span>}
-        </div>
-
-        <div className="inventory-row-specs">
-          <span>
-            <Gauge size={16} />
-            {vehicle.km.toLocaleString('pt-BR')} km
-          </span>
-          <span>
-            <CalendarDays size={16} />
-            {vehicle.color}
-          </span>
-          <span>
-            <CarFront size={16} />
-            {vehicle.transmission}
-          </span>
-          <span>
-            <Fuel size={16} />
-            {vehicle.fuel}
-          </span>
-        </div>
-
-        <div className="inventory-row-actions">
-          <button type="button" className="btn btn-secondary" onClick={onSelect}>
-            Ver detalhes
-          </button>
-          <button type="button" className="btn btn-primary" onClick={onInterested}>
-            Estou interessado
-          </button>
-        </div>
-
-        {isFocused && (
-          <div className="inventory-row-detail">
-            <p>{vehicle.description}</p>
-            <a className="inventory-inline-link" href={`/estoque?${detailParams.toString()}`}>
-              Manter este veículo em foco <ArrowRight size={15} />
-            </a>
-          </div>
-        )}
-      </div>
-
-      <div className="inventory-row-contact">
-        <strong>{formatCurrency(vehicle.price)}</strong>
-        <h4>Consulte-nos</h4>
-        <p>{vehicle.store}</p>
-        <span>{vehicle.city}</span>
-        <a href={`tel:${vehicle.phone.replace(/\D/g, '')}`}>{vehicle.phone}</a>
-        <a href={mapsLink} target="_blank" rel="noreferrer">
-          Ver no mapa
-        </a>
-        <button
-          type="button"
-          className={`inventory-compare${isCompared ? ' is-active' : ''}`}
-          onClick={onToggleCompare}
-        >
-          {isCompared ? 'Na comparação' : 'Comparar'}
-        </button>
-      </div>
-    </article>
   )
 }
