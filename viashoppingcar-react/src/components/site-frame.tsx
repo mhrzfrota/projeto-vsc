@@ -66,6 +66,14 @@ export function SiteFrame({
   }
 
   useEffect(() => {
+    if (!shouldShowPromoBanner || promoBanners.length < 2) return
+    const timer = window.setTimeout(() => {
+      setActiveBanner((current) => (current + 1) % promoBanners.length)
+    }, 7000)
+    return () => window.clearTimeout(timer)
+  }, [activeBanner, shouldShowPromoBanner, promoBanners.length])
+
+  useEffect(() => {
     document.body.style.overflow =
       isMobileMenuOpen || isPolicyModalOpen || isCookieModalOpen ? 'hidden' : ''
 
