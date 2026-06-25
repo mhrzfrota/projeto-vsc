@@ -103,7 +103,11 @@ const featuredGallery = {
             </div>
             <div className="shopping-showcase-body">
               <h3>Chegue fácil ao<br/>Via Shopping Car</h3>
-              <p>faca com que fique assim na secao, assim o titulo melhor de entender</p>
+              <p>
+                Estamos na Av. Washington Soares, 2100, em Fortaleza, com acesso simples e
+                estacionamento para clientes. Abra o mapa ou trace a rota no Waze e venha conhecer
+                as lojas e o mix de veículos pessoalmente.
+              </p>
               <div className="shopping-showcase-actions">
                 <a className="btn btn-secondary" href={mapsLink} target="_blank" rel="noreferrer">
                   Abrir no Google Maps

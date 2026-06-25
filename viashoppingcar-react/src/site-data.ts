@@ -674,7 +674,7 @@ export const storesCatalog: StoreCatalogItem[] = [
     phone: '(85) 3037-3036',
     hours: 'Seg. a sex. 08h-19h · Sáb. 08h-14h',
     olxUrl: '',
-    contactLink: 'https://wa.me/5585999485005?text=Quero%2520saber%2520mais%2520informa%25C3%25B5es%2520sobre%2520o%2520carro%2520%255Bescreva%2520o%2520seu%2520carro%255D',
+    contactLink: 'https://wa.me/5585999485005?text=Quero%20saber%20mais%20informa%C3%B5es%20sobre%20o%20carro%20%5Bescreva%20o%20seu%20carro%5D',
     instagramHandle: '@pulsecar.of',
     instagramUrl: createInstagramProfileLink('@pulsecar.of'),
     logo: '/assets/logos/pulse.png',
