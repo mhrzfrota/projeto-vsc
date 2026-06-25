@@ -3521,7 +3521,10 @@
     grid-template-columns: 1fr;
   }
 
-  .advertise-hero {
+  .advertise-hero,
+  .about-page-hero,
+  .stores-page-hero,
+  .contact-page-hero {
     min-height: 365px;
   }
 
@@ -3749,7 +3752,10 @@
     grid-template-columns: 1fr;
   }
 
-  .advertise-hero {
+  .advertise-hero,
+  .about-page-hero,
+  .stores-page-hero,
+  .contact-page-hero {
     min-height: 340px;
   }
 
@@ -4936,7 +4942,7 @@
 .about-page-hero {
   position: relative;
   overflow: hidden;
-  min-height: clamp(340px, 42vw, 520px);
+  min-height: clamp(300px, 40vh, 440px);
   display: grid;
   align-items: center;
   color: #fff;
@@ -4975,7 +4981,7 @@
 .contact-page-hero {
   position: relative;
   overflow: hidden;
-  min-height: clamp(300px, 34vw, 450px);
+  min-height: clamp(300px, 40vh, 440px);
   display: grid;
   align-items: center;
   color: #fff;
